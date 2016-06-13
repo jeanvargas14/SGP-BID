@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<h:head>
+		<title>
+			<h:outputText value="Curso EAD de Java EE 6" /> -
+			<ui:insert name="titulo">JSF 2.0</ui:insert>
+		</title>
+	</h:head>
+	
+	<h:body>
+		<ui:include src="/menu.xhtml" />
+		<h1>
+			<ui:insert name="subtitulo">Tela de template Exemplo</ui:insert>
+		</h1>
+		<h:panelGrid columns="1" width="100%" border="0">
+			<ui:insert name="conteudo">
+				Conteudo principal
+			</ui:insert>
+			<ui:include src="/rodape.xhtml" />
+		</h:panelGrid>
+	</h:body>
+</html>
