@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import org.hibernate.dialect.lock.PessimisticReadSelectLockingStrategy;
 
 /**
  * 13 de jun de 2016
