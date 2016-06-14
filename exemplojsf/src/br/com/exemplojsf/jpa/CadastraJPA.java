@@ -9,6 +9,7 @@ import br.com.exemplojsf.entity.Projeto;
 public class CadastraJPA {
 
 	public static void main(String[] args) {
+		//new CadastraJPA().cadastraProjeto();
 		//new CadastraJPA().findProjeto();
 		new CadastraJPA().cadastraFinalidade();
 	}
