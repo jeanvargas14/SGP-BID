@@ -18,5 +18,7 @@ import br.com.exemplojsf.entity.Projeto;
 public interface CadastrobasicoLocal {
 
 	void salvarProjeto(Projeto projeto);
+	void removeProjeto(Projeto projeto);
+	Projeto findById(Long id);
 	List<Projeto> findAllProjeto();
 }
