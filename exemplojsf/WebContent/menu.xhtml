@@ -5,6 +5,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
 
+	<f:loadBundle basename="mensagens" var="i18n"/>
+	
 	<ui:composition>
 		<h:form>
 			<p:growl id="messages"/>
@@ -12,7 +14,7 @@
 		    <p:menubar>
 		        <p:submenu label="File" icon="ui-icon-document">
 		            <p:submenu label="New" icon="ui-icon-contact">
-		                <p:menuitem value="Project" url="#" />
+		                <p:menuitem value="#{i18n['label.field.projeto']}" action="#{projetoMB.novo}" />
 		                <p:menuitem value="Other" url="#" />
 		            </p:submenu>
 		            

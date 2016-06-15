@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/resources/templates/template.xhtml">
+   			<ui:define name="titulo"><h:outputText value="Cadastro de Projeto" /></ui:define>
+   			<ui:define name="subtitulo"><h:outputText value="Cadastro de Projeto" /></ui:define>
+   			<ui:define name="conteudo">
+   				<h:form>
+   					<p:growl id="messages" life="2000" />
+   					
+   					<h:outputLabel value="#{i18n['label.field.nome.projeto']}" />:
+   					<p:inputText value="#{projetoMB.projeto.nmProjeto}"/>
+   					<p:commandButton value="#{i18n['botao.salvar']}" id="btSalvar" update="messages" action="#{projetoMB.save}" styleClass="ui-priority-primary" />
+   				</h:form>
+   			</ui:define>   			
+   	</ui:composition>
+</html>
