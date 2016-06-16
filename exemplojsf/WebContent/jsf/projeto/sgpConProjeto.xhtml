@@ -6,15 +6,34 @@
       xmlns:p="http://primefaces.org/ui">
 
 	<ui:composition template="/resources/templates/template.xhtml">
-   			<ui:define name="titulo"><h:outputText value="Consulta de Projeto" /></ui:define>
-   			<ui:define name="subtitulo"><h:outputText value="Consulta de Projeto" /></ui:define>
+   			<ui:define name="titulo"><h:outputText value="#{i18n['label.consulta.projetos']}}" /></ui:define>
    			<ui:define name="conteudo">
    				<h:form>   					
-   					<p:growl id="messages" life="2000" />					
+   					<h3 style="margin-top:0">#{i18n['label.consulta.projetos']}</h3>
    					
+				    <p:accordionPanel>
+				        <p:tab title="#{i18n['label.parametros.consulta']}">
+				            <h:panelGrid columns="2" cellpadding="10">
+				                <h:outputText value="#{i18n['label.field.codigo']}" style="font-weight: bold" />
+				                <h:inputText value="#{projetoMB.filtro.cdProjeto}" />
+                				<h:outputText value="#{i18n['label.field.descricao']}" />
+                				<h:inputText value="#{projetoMB.filtro.nmProjeto}" />				                
+				            </h:panelGrid>
+				            
+				            <p align="right">
+				            	<p:commandButton value="Consultar" id="btConsultar" actionListener="#{projetoMB.consultarProjetos}" ajax="false" styleClass="ui-priority-primary" />
+				            	<p:commandButton value="Novo" id="btNovo" actionListener="#{projetoMB.novo}" ajax="false" styleClass="ui-priority-secundary" />
+<!-- 				            	<h:commandButton value="Consultar" id="btConsultar" actionListener="#{projetoMB.consultarProjetos}"  styleClass="btn btn-primary" /> -->
+<!-- 				            	<h:commandButton value="Novo" id="btNovo" actionListener="#{projetoMB.novo}" styleClass="btn btn-default" /> -->
+				            </p>
+				        </p:tab>				        
+				    </p:accordionPanel>
    					
-   					<p:dataTable var="projeto" value="#{projetoMB.projetos}">
-					    <p:column headerText="#{i18n['label.field.codigo']}">
+   					<br />
+   					
+   					<p:dataTable var="projeto" value="#{projetoMB.projetos}" id="tblProjeto1" emptyMessage="#{i18n['label.consulta.sem.resultado']}"
+   						filteredValue="#{projetoMB.filtro}">
+					    <p:column headerText="#{i18n['label.field.codigo']}" width="60">
 					        <h:outputText value="#{projeto.cdProjeto}" />
 					    </p:column>
 					 
@@ -22,6 +41,72 @@
 					        <h:outputText value="#{projeto.nmProjeto}" />
 					    </p:column>					 
 					</p:dataTable>
+					
+					<br />
+					<br />
+					
+					<p:dataTable id="projetos" var="projeto" value="#{projetoMB.projetos}"
+					                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+					                 paginator="true" rows="10" style="margin-bottom:20px">
+					 
+					        <f:facet name="{Exporters}">
+					            <h:commandLink>
+					                <p:graphicImage name="/imagens/excel.png" width="24"/>
+					                <p:dataExporter type="xls" target="projetos" fileName="projetos" />
+					            </h:commandLink>
+					 
+					            <h:commandLink>
+					                <p:graphicImage name="/imagens/pdf.png" width="24"/>
+					                <p:dataExporter type="pdf" target="projetos" fileName="projetos"/>
+					            </h:commandLink>
+					 
+					            <h:commandLink>
+					                <p:graphicImage name="/imagens/csv.png" width="24"/>
+					                <p:dataExporter type="csv" target="projetos" fileName="projetos" />
+					            </h:commandLink>
+					 
+					            <h:commandLink>
+					                <p:graphicImage name="/imagens/xml.png" width="24"/>
+					                <p:dataExporter type="xml" target="projetos" fileName="projetos" />
+					            </h:commandLink>
+					        </f:facet>
+					 
+					        <p:column width="60">
+					            <f:facet name="header">
+					                <h:outputText value="#{i18n['label.field.codigo']}" />
+					            </f:facet>
+					            <h:outputText value="#{projeto.cdProjeto}" />
+					        </p:column>
+					 
+					        <p:column >
+					            <f:facet name="header">
+					                <h:outputText value="#{i18n['label.field.descricao']}"/>
+					            </f:facet>
+					            <h:outputText value="#{projeto.nmProjeto}" />
+					        </p:column>
+					    </p:dataTable>
+					 
+					    <h3>Export Page Data Only</h3>
+					    <h:commandLink>
+					        <p:graphicImage name="/imagens/excel.png" />
+					        <p:dataExporter type="xls" target="projetos" fileName="projetos" pageOnly="true"/>
+					    </h:commandLink>
+					 
+					    <h:commandLink>
+					        <p:graphicImage name="/imagens/pdf.png" />
+					        <p:dataExporter type="pdf" target="projetos" fileName="projetos" pageOnly="true" />
+					    </h:commandLink>
+					 
+					    <h:commandLink>
+					        <p:graphicImage name="/imagens/csv.png" />
+					        <p:dataExporter type="csv" target="projetos" fileName="projetos" pageOnly="true" />
+					    </h:commandLink>
+					 
+					    <h:commandLink>
+					        <p:graphicImage name="/imagens/xml.png" />
+					        <p:dataExporter type="xml" target="projetos" fileName="projetos" pageOnly="true" />
+					    </h:commandLink>
+
    				</h:form>
    			</ui:define>
 	</ui:composition>

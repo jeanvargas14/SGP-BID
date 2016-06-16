@@ -13,7 +13,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
@@ -39,6 +38,9 @@ public class ProjetoMB implements Serializable{
 	@Named
 	private Projeto projeto;
 	
+	@Named
+	private Projeto filtro;
+	
 	@EJB
 	private CadastrobasicoLocal cadastrobasicoBean;
 	
@@ -50,6 +52,7 @@ public class ProjetoMB implements Serializable{
 	public void init(){
 		projeto  = new Projeto();
 		projetos = new ArrayList<Projeto>();
+		filtro = new Projeto();
 	}
 	
 	public String novo(){
@@ -77,7 +80,15 @@ public class ProjetoMB implements Serializable{
 		System.out.println("Executando método LISTAR projeto ...");
 		setProjetos(cadastrobasicoBean.findAllProjeto());
 		System.out.println("Total de projetos: "+projetos.size());
+		filtro = new Projeto();
 		return CONSULTA_JSF;
+	}
+	
+	public String consultarProjetos(){
+		System.out.println("Consulta de projetos tem q implementar o filtro: "+filtro.toString());
+		
+		setProjeto(cadastrobasicoBean.findById(filtro.getCdProjeto()));
+		return CONSULTA_JSF;		
 	}
 	
 	public void addMessage(Severity severity, String summary, String detail) {
@@ -99,5 +110,13 @@ public class ProjetoMB implements Serializable{
 
 	public void setProjetos(List<Projeto> projetos) {
 		this.projetos = projetos;
+	}
+
+	public Projeto getFiltro() {
+		return filtro;
+	}
+
+	public void setFiltro(Projeto filtro) {
+		this.filtro = filtro;
 	}
 }
