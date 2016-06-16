@@ -12,6 +12,8 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
@@ -24,10 +26,14 @@ import br.com.exemplojsf.entity.Projeto;
  *
  */
 @ManagedBean
+@SessionScoped
 public class ProjetoMB implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private static final String CADASTRO_JSF = "/jsf/projeto/sgpCadProjeto";
+	private static final String CONSULTA_JSF = "/jsf/projeto/sgpConProjeto";
+	
+	@Named
 	private List<Projeto> projetos;
 	
 	@Named
@@ -67,8 +73,11 @@ public class ProjetoMB implements Serializable{
 		}
 	}
 	
-	public void listar(){
-		
+	public String abrirConProjetos(){
+		System.out.println("Executando método LISTAR projeto ...");
+		setProjetos(cadastrobasicoBean.findAllProjeto());
+		System.out.println("Total de projetos: "+projetos.size());
+		return CONSULTA_JSF;
 	}
 	
 	public void addMessage(Severity severity, String summary, String detail) {
@@ -82,5 +91,13 @@ public class ProjetoMB implements Serializable{
 
 	public void setProjeto(Projeto projeto) {
 		this.projeto = projeto;
-	}	
+	}
+
+	public List<Projeto> getProjetos() {
+		return projetos;
+	}
+
+	public void setProjetos(List<Projeto> projetos) {
+		this.projetos = projetos;
+	}
 }
