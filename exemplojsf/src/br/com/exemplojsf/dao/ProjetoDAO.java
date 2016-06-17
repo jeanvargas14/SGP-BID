@@ -82,5 +82,34 @@ public class ProjetoDAO {
 			throw new RuntimeException("Erro ao carregar todos os projetos ", e);
 		}
 		return projetos;
+	}
+
+	public List<Projeto> findProjetos(Projeto filtro) {
+		List<Projeto> projetos;
+		try {
+			StringBuilder hql = new StringBuilder();
+			hql.append(" select p from Projeto p ");
+			hql.append(" where 1 = 1 ");
+			if(filtro.getCdProjeto()!=null && filtro.getCdProjeto() != 0){
+				hql.append(" and p.cdProjeto = :cdprojeto ");
+			}
+			if(filtro.getNmProjeto()!=null && !filtro.getNmProjeto().isEmpty()){
+				hql.append(" and upper(p.nmProjeto) like :nmprojeto ");
+			}
+			
+			TypedQuery<Projeto> query = em.createQuery(hql.toString(),Projeto.class);
+			
+			if(filtro.getCdProjeto()!=null && filtro.getCdProjeto() != 0){
+				query.setParameter("cdprojeto", filtro.getCdProjeto());
+			}
+			if(filtro.getNmProjeto()!=null && !filtro.getNmProjeto().isEmpty()){
+				query.setParameter("nmprojeto", "%"+filtro.getNmProjeto().toUpperCase()+"%");
+			}
+			
+			projetos = query.getResultList();
+		} catch (Exception e) {
+			throw new RuntimeException("Erro ao carregar todos os findProjetos ", e);
+		}
+		return projetos;
 	}	
 }

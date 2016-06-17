@@ -20,7 +20,7 @@ import br.com.exemplojsf.entity.Projeto;
  */
 @ManagedBean
 @Stateless
-public class CadastrobasicoBean implements CadastrobasicoLocal, Serializable{
+public class CadastrobasicoBean implements ICadastrobasico, Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -41,5 +41,10 @@ public class CadastrobasicoBean implements CadastrobasicoLocal, Serializable{
 
 	public Projeto findById(Long id) {
 		return projetoDAO.findById(id);
+	}
+
+	@Override
+	public List<Projeto> findProjetos(Projeto filtro) {
+		return projetoDAO.findProjetos(filtro);
 	}
 }

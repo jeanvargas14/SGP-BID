@@ -6,15 +6,22 @@
       xmlns:p="http://primefaces.org/ui">
 
 	<ui:composition template="/resources/templates/template.xhtml">
-   			<ui:define name="titulo"><h:outputText value="Cadastro de Projeto" /></ui:define>
-   			<ui:define name="subtitulo"><h:outputText value="Cadastro de Projeto" /></ui:define>
+   			<ui:define name="titulo"><p:outputLabel value="Cadastro de Projeto" /></ui:define>
+   			<ui:define name="subtitulo"><p:outputLabel value="Cadastro de Projeto" /></ui:define>
    			<ui:define name="conteudo">
    				<h:form>
    					<p:growl id="messages" life="2000" />
    					
-   					<h:outputLabel value="#{i18n['label.field.nome.projeto']}" />:
-   					<p:inputText value="#{projetoMB.projeto.nmProjeto}"/>
-   					<p:commandButton value="#{i18n['botao.salvar']}" id="btSalvar" update="messages" action="#{projetoMB.save}" styleClass="ui-priority-primary" />
+   					<p:panel header="Cadastro de Projeto" style="margin-bottom:20px">
+				        <h:panelGrid columns="2" cellpadding="5">				            
+		   					<p:outputLabel value="#{i18n['label.field.nome.projeto']}" />
+		   					<p:inputText value="#{projetoMB.projeto.nmProjeto}" size="100"/>
+				        </h:panelGrid>
+	   					<p align="right">
+	   						<p:commandButton value="#{i18n['botao.salvar']}" id="btSalvar" update="messages" action="#{projetoMB.save}" styleClass="ui-priority-primary" ajax="false"/>
+	   					</p>
+				    </p:panel>
+   					
    				</h:form>
    			</ui:define>   			
    	</ui:composition>

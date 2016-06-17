@@ -12,11 +12,9 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 
-import br.com.exemplojsf.ejb.CadastrobasicoLocal;
+import br.com.exemplojsf.ejb.ICadastrobasico;
 import br.com.exemplojsf.entity.Projeto;
 
 /**
@@ -25,24 +23,21 @@ import br.com.exemplojsf.entity.Projeto;
  *
  */
 @ManagedBean
-@SessionScoped
+//@SessionScoped
 public class ProjetoMB implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private static final String CADASTRO_JSF = "/jsf/projeto/sgpCadProjeto";
 	private static final String CONSULTA_JSF = "/jsf/projeto/sgpConProjeto";
 	
-	@Named
 	private List<Projeto> projetos;
 	
-	@Named
 	private Projeto projeto;
 	
-	@Named
 	private Projeto filtro;
 	
 	@EJB
-	private CadastrobasicoLocal cadastrobasicoBean;
+	private ICadastrobasico cadastrobasicoBean;
 	
 	public ProjetoMB() {
 		System.out.println("Criando instancia de ProjetoMB");		
@@ -71,24 +66,22 @@ public class ProjetoMB implements Serializable{
 			System.out.println("Executando método SAVE projeto ...");
 			cadastrobasicoBean.salvarProjeto(projeto);			
 			addMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Projeto salvo com sucesso");
+			projeto = new Projeto();
 		} catch(Exception e ){
 			addMessage(FacesMessage.SEVERITY_ERROR, "ERRO", "Erro ao salvar projeto");			
 		}
 	}
 	
-	public String abrirConProjetos(){
-		System.out.println("Executando método LISTAR projeto ...");
-		setProjetos(cadastrobasicoBean.findAllProjeto());
-		System.out.println("Total de projetos: "+projetos.size());
+	public String abrirConProjetos(){		
 		filtro = new Projeto();
 		return CONSULTA_JSF;
 	}
 	
-	public String consultarProjetos(){
+	public void consultarProjetos(){
 		System.out.println("Consulta de projetos tem q implementar o filtro: "+filtro.toString());
-		
-		setProjeto(cadastrobasicoBean.findById(filtro.getCdProjeto()));
-		return CONSULTA_JSF;		
+		setProjetos(cadastrobasicoBean.findProjetos(filtro));
+		System.out.println("Projetos encontrados: "+projetos.size());
+		//return CONSULTA_JSF;		
 	}
 	
 	public void addMessage(Severity severity, String summary, String detail) {

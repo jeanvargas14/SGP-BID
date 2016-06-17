@@ -15,10 +15,11 @@ import br.com.exemplojsf.entity.Projeto;
  *
  */
 @Local
-public interface CadastrobasicoLocal {
+public interface ICadastrobasico {
 
 	void salvarProjeto(Projeto projeto);
 	void removeProjeto(Projeto projeto);
 	Projeto findById(Long id);
 	List<Projeto> findAllProjeto();
+	List<Projeto> findProjetos(Projeto filtro);
 }
