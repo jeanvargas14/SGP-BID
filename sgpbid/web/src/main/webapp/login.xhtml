@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<f:loadBundle basename="mensagens" var="i18n"/>
+	<h:head>
+		<title>
+			<h:outputText value="SGP - Sistema Integrado de Gestão de Projetos " />
+		</title>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<style type="text/css">
+			.centerClass {
+			   width: 380px;
+ 			   height: 200px;
+    		   margin-left: -190px; /* metade da largura */
+    		   margin-top: -100px; /* metade da altura */
+    		   position: absolute;
+    		   top: 45%;
+    		   left: 45%;    		 
+    		   padding: 9px 14px;    		   
+    		   background-color: #f7f7f9;
+    		   border: 1px solid #e1e1e8;
+    		   border-radius: 4px;      		   
+			}
+		</style>   		
+	</h:head>
+	
+	<h:body>
+		<h:form>
+			 <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+	         <div class="centerClass ">
+		         <h2>Login</h2>		         
+		         <h:panelGrid columns="3" cellpadding="5">
+		            <p:outputLabel for="usuario" value="#{i18n['label.field.usuario']}"/>
+		            <p:inputText id="usuario" value="#{loginMB.usuario}" required="true" label="usuario"/>
+		            <h:message for="usuario" errorClass="invalid"/>
+		
+		            <p:outputLabel for="senha" value="#{i18n['label.field.senha']}"/>
+		            <p:password id="senha" value="#{loginMB.senha}" required="true" label="senha"/>
+		            <h:message for="senha" errorClass="invalid"/>
+		            
+		            <f:facet name="footer">
+		            	<p:commandButton value="#{i18n['botao.entrar']}" update="growl" actionListener="#{loginMB.login}" />
+		            </f:facet>
+		         </h:panelGrid>
+	         </div>
+	    </h:form>		
+	</h:body>
+</html>

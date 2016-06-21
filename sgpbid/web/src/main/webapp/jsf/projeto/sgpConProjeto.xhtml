@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:p="http://primefaces.org/ui"
+   template="/WEB-INF/templates/template.xhtml">
+   
+   			<ui:define name="titulo"><h:outputText value="#{i18n['label.consulta.projetos']}" /></ui:define>
+   			<ui:define name="conteudo">
+   				<h:form>   					
+   					<h3 style="margin-top:0">#{i18n['label.consulta.projetos']}</h3>
+   					
+				    <p:accordionPanel>
+				        <p:tab title="#{i18n['label.parametros.consulta']}">
+				            <h:panelGrid columns="2" cellpadding="5">
+				                <p:outputLabel value="#{i18n['label.field.codigo']}" style="font-weight: bold" />
+				                <p:inputText value="#{projetoMB.filtro.cdProjeto}" size="20" style="width: 80px;"/>
+                				<p:outputLabel value="#{i18n['label.field.descricao']}" style="font-weight: bold"/>
+                				<p:inputText value="#{projetoMB.filtro.nmProjeto}" size="100" style="width: 100%;"/>				                
+				            </h:panelGrid>
+				            
+				            <p align="right">
+				            	<p:commandButton value="Consultar" id="btConsultar" action="#{projetoMB.consultarProjetos}" styleClass="ui-priority-primary" ajax="false" />
+				            	<p:commandButton value="Novo" id="btNovo" action="#{projetoMB.novo}" ajax="false"/>
+				            </p>
+				        </p:tab>				        
+				    </p:accordionPanel>
+   					
+   					<hr />
+   					<br />
+   					
+   					<p:dataTable var="projeto" value="#{projetoMB.projetos}" 
+   						emptyMessage="#{i18n['label.consulta.sem.resultado']}"
+   						paginator="true" rows="10">
+					    <p:column headerText="#{i18n['label.field.codigo']}" width="60">
+					        <h:outputText value="#{projeto.cdProjeto}" />
+					    </p:column>
+					 
+					    <p:column headerText="#{i18n['label.field.descricao']}">
+					        <h:outputText value="#{projeto.nmProjeto}" />
+					    </p:column>					 
+					</p:dataTable>					
+   				</h:form>
+   			</ui:define>
+</ui:composition>
