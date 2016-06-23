@@ -31,24 +31,24 @@
 	</h:head>
 	
 	<h:body>
-		<h:form>
+		<form method="post" action="j_security_check">
 			 <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
 	         <div class="centerClass ">
 		         <h2>Login</h2>		         
 		         <h:panelGrid columns="3" cellpadding="5">
 		            <p:outputLabel for="usuario" value="#{i18n['label.field.usuario']}"/>
-		            <p:inputText id="usuario" value="#{loginMB.usuario}" required="true" label="usuario"/>
+		            <input type="text" name="j_username" id="usuario" />
 		            <h:message for="usuario" errorClass="invalid"/>
 		
 		            <p:outputLabel for="senha" value="#{i18n['label.field.senha']}"/>
-		            <p:password id="senha" value="#{loginMB.senha}" required="true" label="senha"/>
+		            <input type="password" id="senha" required="true" name="j_password"/>
 		            <h:message for="senha" errorClass="invalid"/>
 		            
 		            <f:facet name="footer">
-		            	<p:commandButton value="#{i18n['botao.entrar']}" update="growl" actionListener="#{loginMB.login}" />
+		            	<input type="submit" value="#{i18n['botao.entrar']}"/>
 		            </f:facet>
 		         </h:panelGrid>
 	         </div>
-	    </h:form>		
+	    </form>		
 	</h:body>
 </html>

@@ -1,9 +1,12 @@
 package br.com.empresa.sgpbid.data.usuario;
 
+import java.util.List;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import br.com.empresa.sgpbid.model.usuario.Usuario;
 
@@ -25,6 +28,15 @@ public class UsuarioDAO {
 		}
 	}
 
+	public void adiciona(Usuario u){
+		em.persist(u);
+	}
+	
+	public List<Usuario> buscaTodos(){
+		TypedQuery<Usuario> query = em.createQuery("select x from Usuario x ",Usuario.class);
+		return query.getResultList();
+	} 
+	
 	public boolean inserirUsuario(Usuario usuario) {
 		try {
 			em.persist(usuario);

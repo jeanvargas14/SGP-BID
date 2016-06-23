@@ -1,36 +1,40 @@
 package br.com.empresa.sgpbid.model.usuario;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@Table(name="sgpUsuario")
 public class Usuario {
 
 	@Id
-	@Column(name = "id", nullable = false, unique = true)
-	private int id;
+	private String cdUsuario;
 
-	@Column(name = "userName", nullable = false, unique = true)
-	private String nomeUsuario;
-
-	@Column(name = "password", nullable = false, unique = false)
 	private String senha;
 
-	@Column(name = "lastAccess", unique = true)
-	@Temporal(TemporalType.DATE)
-	private Date ultimoAcesso;
+//	@Column(name = "lastAccess", unique = true)
+//	@Temporal(TemporalType.DATE)
+//	private Date ultimoAcesso;
 
-	public String getNomeUsuario() {
-		return nomeUsuario;
+	@ManyToMany(fetch=FetchType.EAGER)
+	private List<Grupo> grupos = new ArrayList<Grupo>();
+	
+	public String getCdUsuario() {
+		return cdUsuario;
 	}
 
-	public void setNomeUsuario(String nomeUsuario) {
-		this.nomeUsuario = nomeUsuario;
+	public void setCdUsuario(String cdUsuario) {
+		this.cdUsuario = cdUsuario;
 	}
 
 	public String getSenha() {
@@ -41,11 +45,11 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public Date getUltimoAcesso() {
-		return ultimoAcesso;
+	public List<Grupo> getGrupos() {
+		return grupos;
 	}
 
-	public void setUltimoAcesso(Date ultimoAcesso) {
-		this.ultimoAcesso = ultimoAcesso;
-	}
+	public void setGrupos(List<Grupo> grupos) {
+		this.grupos = grupos;
+	}	
 }
