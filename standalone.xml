@@ -242,7 +242,7 @@
                     </authorization>
                 </security-domain>
 				<!--Bob --> 
-				<security-domain name="jaasSgpJaas" cache-type="default">
+				<security-domain name="testRealm" cache-type="default">
 					<authentication>
 						<login-module code="Database" flag="required">
 							<module-option name="dsJndiName" value="java:jboss/datasources/sgpDS"/>
