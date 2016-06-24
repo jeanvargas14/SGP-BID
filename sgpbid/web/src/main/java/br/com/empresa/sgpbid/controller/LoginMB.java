@@ -114,7 +114,8 @@ public class LoginMB {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		ExternalContext ec = fc.getExternalContext();
 		HttpSession session = (HttpSession) ec.getSession(false);
-		session.invalidate();		
+		session.invalidate();
+		System.out.println("LoginMB executando metodo sair.");
 		return "/login" ;
 	}
 }

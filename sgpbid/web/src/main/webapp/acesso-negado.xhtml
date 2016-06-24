@@ -7,11 +7,12 @@
 
 	<f:loadBundle basename="mensagens" var="i18n"/>
 	<h:head>
-		<title>#{i18n['label.titulo.seguranca']}</title>
+		<title>Segurança</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   		
 	</h:head>
 	
 	<h:body>
-		<h1>#{i18n['label.field.acesso.negado']}</h1>		
+		<h1>Acesso Negado</h1>
+		<h:link outcome="/login" value="Tentar novamente" />		
 	</h:body>
 </html>

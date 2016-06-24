@@ -5,7 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
 
-	<f:loadBundle basename="mensagens" var="i18n"/>
+<!-- 	<f:loadBundle basename="mensagens" var="i18n"/> -->
 	<h:head>
 		<title>
 			<h:outputText value="SGP - Sistema Integrado de Gestão de Projetos " />
@@ -32,22 +32,22 @@
 	
 	<h:body>
 		<form method="post" action="j_security_check">
-			 <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
 	         <div class="centerClass ">
 		         <h2>Login</h2>		         
-		         <h:panelGrid columns="3" cellpadding="5">
-		            <p:outputLabel for="usuario" value="#{i18n['label.field.usuario']}"/>
-		            <input type="text" name="j_username" id="usuario" />
-		            <h:message for="usuario" errorClass="invalid"/>
-		
-		            <p:outputLabel for="senha" value="#{i18n['label.field.senha']}"/>
-		            <input type="password" id="senha" required="true" name="j_password"/>
-		            <h:message for="senha" errorClass="invalid"/>
-		            
-		            <f:facet name="footer">
-		            	<input type="submit" value="#{i18n['botao.entrar']}"/>
-		            </f:facet>
-		         </h:panelGrid>
+		         <table>
+		         	<tr>
+		         		<td>Usuário:</td>
+		         		<td><input type="text" name="j_username"/></td>
+		         	</tr>
+		         	<tr>
+		         		<td>Senha:</td>
+		         		<td><input type="password" name="j_password"/></td>
+		         	</tr>
+		         	<tr>
+		         		<td>&nbsp;</td>
+		         		<td><input type="submit" value="Entrar"/></td>
+		         	</tr>		         	
+		         </table>
 	         </div>
 	    </form>		
 	</h:body>
