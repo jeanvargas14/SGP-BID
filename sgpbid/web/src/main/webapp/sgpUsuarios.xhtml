@@ -9,7 +9,7 @@
   			<ui:define name="titulo"><p:outputLabel value="#{i18n['label.titulo.seguranca']}" /></ui:define>
   			<ui:define name="subtitulo"><p:outputLabel value="#{i18n['label.titulo.seguranca']}" /></ui:define>
   			<ui:define name="conteudo">
-  				<h1>##{i18n['label.titulo.novo.usuario']}</h1>  				
+  				<h1>#{i18n['label.titulo.novo.usuario']}</h1>  				
   				<h:form>
   					<p:growl id="messages" life="2000" />
   					
@@ -27,19 +27,19 @@
   						
   					</h:panelGrid>
   					
-					<h:commandButton value="##{i18n['botao.salvar']}" action="#{loginMB.adiciona}" />
+					<h:commandButton value="#{i18n['botao.salvar']}" action="#{loginMB.adiciona}" />
   				</h:form>
   					
 				<hr />
 				
 				<h:dataTable value="#{loginMB.usuarios}" var="u" border="1">
 					<h:column>
-						<f:facet name="header">##{i18n['label.field.nome.usuario']}</f:facet>
+						<f:facet name="header">#{i18n['label.field.nome.usuario']}</f:facet>
 						<h:outputText value="#{u.cdUsuario}" />
 					</h:column>
 					
 					<h:column>
-						<f:facet name="header">##{i18n['label.field.grupos']}</f:facet>
+						<f:facet name="header">#{i18n['label.field.grupos']}</f:facet>
 						<h:outputText value="#{u.grupos}" />
 					</h:column>
 				</h:dataTable>  					
