@@ -11,16 +11,14 @@ import br.com.empresa.sgpbid.model.usuario.Grupo;
 import br.com.empresa.sgpbid.model.usuario.Usuario;
 
 /**
- * 21 de jun de 2016
+ * 28 de jun de 2016
  * @author roberto.conceicao
  *
  */
 @Local
-public interface ILogin {
-
-	Usuario logar(String nome, String senha);
-	void adiciona(Usuario u);
-	void adiciona(Grupo g);
+public interface IUsuarioService {
+	void adicionaUsuario(Usuario u);
+	void adicionaGrupo(Grupo g);
 	List<Usuario> buscaTodosUsuarios();
 	List<Grupo> buscaTodosGrupos();
 }

@@ -15,24 +15,24 @@
   					
   					<h:panelGrid columns="2">
   						<p:outputLabel value="#{i18n['label.field.nome']}" />
-  						<p:inputText value="#{loginMB.usuario.cdUsuario}" size="100" required="true"/>
+  						<p:inputText value="#{usuarioMB.usuario.cdUsuario}" size="100" required="true"/>
   						
   						<p:outputLabel value="#{i18n['label.field.senha']}" />
-  						<h:inputSecret value="#{loginMB.usuario.senha}" size="100" required="true"/>
+  						<h:inputSecret value="#{usuarioMB.usuario.senha}" size="100" required="true"/>
   						
-  						<h:selectManyCheckbox value="#{loginMB.nomesDosGrupos}" required="true">
-  							<f:selectItems value="#{loginMB.grupos}" var="g" 
+  						<h:selectManyCheckbox value="#{usuarioMB.nomesDosGrupos}" required="true">
+  							<f:selectItems value="#{usuarioMB.grupos}" var="g" 
   								itemLabel="#{g.cdGrupo}" itemValue="#{g.cdGrupo}" />  						
   						</h:selectManyCheckbox>
   						
   					</h:panelGrid>
   					
-					<h:commandButton value="#{i18n['botao.salvar']}" action="#{loginMB.adiciona}" />
+					<h:commandButton value="#{i18n['botao.salvar']}" action="#{usuarioMB.adiciona}" />
   				</h:form>
   					
 				<hr />
 				
-				<h:dataTable value="#{loginMB.usuarios}" var="u" border="1">
+				<h:dataTable value="#{usuarioMB.usuarios}" var="u" border="1">
 					<h:column>
 						<f:facet name="header">#{i18n['label.field.nome.usuario']}</f:facet>
 						<h:outputText value="#{u.cdUsuario}" />

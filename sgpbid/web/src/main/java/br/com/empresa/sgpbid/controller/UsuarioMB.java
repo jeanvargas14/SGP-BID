@@ -15,10 +15,10 @@ import javax.servlet.http.HttpSession;
 
 import br.com.empresa.sgpbid.model.usuario.Grupo;
 import br.com.empresa.sgpbid.model.usuario.Usuario;
-import br.com.empresa.sgpbid.service.ILogin;
+import br.com.empresa.sgpbid.service.IUsuarioService;
  
 @ManagedBean
-public class LoginMB {
+public class UsuarioMB {
 	
 	private static final String MAIN_JSF = "/jsf/projeto/sgpCadProjeto";
 	
@@ -31,9 +31,9 @@ public class LoginMB {
 	private List<Grupo> grupos;
 	
 	@Inject
-	private ILogin loginService;
+	private IUsuarioService usuarioService;
 	
-	public LoginMB() {
+	public UsuarioMB() {
 		System.out.println("Criando uma instancia do manager bean LoginMB");
 	}
 	
@@ -62,45 +62,21 @@ public class LoginMB {
 			senhaCriptografada = "0" + senhaCriptografada ;
 		}
 		this.usuario.setSenha(senhaCriptografada);
-		loginService.adiciona(usuario);
+		usuarioService.adicionaUsuario(usuario);
 		usuario = new Usuario();
 		usuarios=null;
 	}
 	
-	
-
-//	public String login(ActionEvent event) {
-//        RequestContext context = RequestContext.getCurrentInstance();
-//        FacesMessage message = null;
-//        boolean loggedIn = false;
-//        
-//        usuario = loginService.logar(usuario.getNomeUsuario(), usuario.getSenha());
-//        if(usuario == null) {
-//        	loggedIn = false;
-//        	message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Loggin Error", "Invalid credentials");
-//        	FacesContext.getCurrentInstance().addMessage(null, message);
-//        	context.addCallbackParam("loggedIn", loggedIn);
-//        	return null;
-//        } else {
-//        	loggedIn = true;
-//        	message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bem vindo "+usuario.getNomeUsuario(), "");
-//        	FacesContext.getCurrentInstance().addMessage(null, message);
-//        	context.addCallbackParam("loggedIn", loggedIn);
-//        	return MAIN_JSF;
-//        }
-//         
-//    }   
-	
 	public List<Grupo> getGrupos() {
 		if(grupos == null){
-			grupos = loginService.buscaTodosGrupos();
+			grupos = usuarioService.buscaTodosGrupos();
 		}
 		return grupos;
 	}
 	
 	public List<Usuario> getUsuarios() {
 		if(usuarios == null){
-			usuarios = loginService.buscaTodosUsuarios();
+			usuarios = usuarioService.buscaTodosUsuarios();
 		}
 		return usuarios;
 	}
