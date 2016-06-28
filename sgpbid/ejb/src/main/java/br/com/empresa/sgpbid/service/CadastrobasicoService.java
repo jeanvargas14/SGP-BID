@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 import br.com.empresa.sgpbid.data.projeto.ProjetoDAO;
 import br.com.empresa.sgpbid.model.projeto.Projeto;
@@ -22,8 +23,13 @@ public class CadastrobasicoService implements ICadastrobasico, Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	@Resource
+	//@Resource
+	@Inject
 	private ProjetoDAO projetoDAO;
+	
+	public CadastrobasicoService() {
+		System.out.println("Criando uma instancia do [CadastrobasicoService]");
+	}
 	
 	public void salvarProjeto(Projeto projeto){
 		projetoDAO.save(projeto);

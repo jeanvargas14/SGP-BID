@@ -5,8 +5,8 @@ package br.com.empresa.sgpbid.service;
 
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 import br.com.empresa.sgpbid.data.usuario.GrupoDAO;
 import br.com.empresa.sgpbid.data.usuario.UsuarioDAO;
@@ -21,11 +21,17 @@ import br.com.empresa.sgpbid.model.usuario.Usuario;
 @Stateless
 public class LoginService implements ILogin {
 
-	@Resource
+//	@Resource
+	@Inject
 	private UsuarioDAO usuarioDAO;
 	
-	@Resource
+//	@Resource
+	@Inject
 	private GrupoDAO grupoDAO;
+	
+	public LoginService() {
+		System.out.println("Criando uma instancia do [LoginService]");
+	}
 	
 	@Override
 	public Usuario logar(String nome, String senha) {

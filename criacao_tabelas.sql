@@ -50,9 +50,9 @@ ALTER TABLE sgpUsuarioGrupo ADD CONSTRAINT  XPKsgpUsuarioGrupo  PRIMARY KEY
 ); 
 
 -- Inserindo usuarios para testes os proximos podem ser inseridos via interface
-INSERT INTO sgpUsuario (cdUsuario, senha ) VALUES ( 'sgp' , md5 ('sgp'));
-INSERT INTO sgpUsuario (cdUsuario, senha ) VALUES ( 'bob' , md5 ('bob'));
-INSERT INTO sgpUsuario (cdUsuario, senha ) VALUES ( 'jean' , md5 ('jean'));
+INSERT INTO sgpUsuario (cdUsuario, senha ) VALUES ( 'sgp' , 'C5nCRry4A+tK/BB0Gc15uQ=='); --senha sgp
+INSERT INTO sgpUsuario (cdUsuario, senha ) VALUES ( 'bob' , 'C5nCRry4A+tK/BB0Gc15uQ==');
+INSERT INTO sgpUsuario (cdUsuario, senha ) VALUES ( 'jean', 'C5nCRry4A+tK/BB0Gc15uQ==');
 
 INSERT INTO sgpGrupo (cdGrupo) VALUES ( 'admin' );
 INSERT INTO sgpGrupo (cdGrupo) VALUES ( 'users' );

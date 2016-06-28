@@ -27,7 +27,13 @@
     		   border: 1px solid #e1e1e8;
     		   border-radius: 4px;      		   
 			}
-		</style>   		
+		</style>   
+		
+		<script type="text/javascript">
+			window.onload = function() {
+  			  document.getElementById("username").focus();
+			};
+		</script>		
 	</h:head>
 	
 	<h:body>
@@ -37,7 +43,7 @@
 		         <table>
 		         	<tr>
 		         		<td>Usuário:</td>
-		         		<td><input type="text" name="j_username"/></td>
+		         		<td><input type="text" name="j_username" id="username"/></td>
 		         	</tr>
 		         	<tr>
 		         		<td>Senha:</td>

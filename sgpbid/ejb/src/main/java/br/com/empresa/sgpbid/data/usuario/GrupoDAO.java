@@ -23,7 +23,9 @@ public class GrupoDAO {
 	@PersistenceContext
 	private EntityManager em;
 	
-	
+	public GrupoDAO() {
+		System.out.println("Criando uma instancia do [GrupoDAO]");
+	}
 	public void adiciona(Grupo g){
 		em.persist(g);
 	}

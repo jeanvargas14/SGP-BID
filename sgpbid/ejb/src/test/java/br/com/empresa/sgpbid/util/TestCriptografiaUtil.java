@@ -33,6 +33,7 @@ public class TestCriptografiaUtil {
 	public void testMD5Base64(){
 		try {		
 			Assert.assertEquals("XUFAKrxLKna5cZ2REBfFkg==", CriptografiaUtil.md5_Base64("hello"));
+			Assert.assertEquals("C5nCRry4A+tK/BB0Gc15uQ==", CriptografiaUtil.md5_Base64("sgp"));
 		} catch (NoSuchAlgorithmException e) {		
 			Assert.fail();
 		}

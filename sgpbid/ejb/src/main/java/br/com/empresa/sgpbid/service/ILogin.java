@@ -5,6 +5,8 @@ package br.com.empresa.sgpbid.service;
 
 import java.util.List;
 
+import javax.ejb.Local;
+
 import br.com.empresa.sgpbid.model.usuario.Grupo;
 import br.com.empresa.sgpbid.model.usuario.Usuario;
 
@@ -13,6 +15,7 @@ import br.com.empresa.sgpbid.model.usuario.Usuario;
  * @author roberto.conceicao
  *
  */
+@Local
 public interface ILogin {
 
 	Usuario logar(String nome, String senha);

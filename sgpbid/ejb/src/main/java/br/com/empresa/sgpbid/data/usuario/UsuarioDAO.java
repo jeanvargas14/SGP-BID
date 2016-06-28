@@ -15,6 +15,10 @@ public class UsuarioDAO {
 
 	@PersistenceContext
 	private EntityManager em;
+	
+	public UsuarioDAO() {
+		System.out.println("Criando uma instancia do [UsuarioDAO]");
+	}
 
 	public Usuario getUsuario(String nomeUsuario, String senha) {
 		try {

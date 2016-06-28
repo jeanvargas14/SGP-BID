@@ -3,10 +3,11 @@ package br.com.empresa.sgpbid.controller;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -17,12 +18,12 @@ import br.com.empresa.sgpbid.model.usuario.Usuario;
 import br.com.empresa.sgpbid.service.ILogin;
  
 @Model
-@ManagedBean
+//@ManagedBean
 public class LoginMB {
 	
 	private static final String MAIN_JSF = "/jsf/projeto/sgpCadProjeto";
 	
-	private Usuario usuario = new Usuario(); 
+	private Usuario usuario; 
 
 	private List<String> nomesDosGrupos;
 	
@@ -32,6 +33,18 @@ public class LoginMB {
 	
 	@Inject
 	private ILogin loginService;
+	
+	public LoginMB() {
+		System.out.println("Criando uma instancia do manager bean LoginMB");
+	}
+	
+	@PostConstruct
+	public void init(){
+		usuario = new Usuario();
+		nomesDosGrupos = new ArrayList<String>();
+		usuarios = new ArrayList<Usuario>();
+		grupos = new ArrayList<Grupo>();
+	}
 	   
 	public void adiciona() throws NoSuchAlgorithmException {
 		// Associa os Grupos ao novo Usuario

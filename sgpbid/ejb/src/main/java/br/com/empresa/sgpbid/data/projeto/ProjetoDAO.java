@@ -15,8 +15,9 @@ public class ProjetoDAO {
 	@PersistenceContext
 	private EntityManager em;
 	
-//	@Resource
-//	private UserTransaction tx;
+	public ProjetoDAO() {
+		System.out.println("Criando uma instancia do [ProjetoDAO]");
+	}
 	
 	public void save(Projeto projeto){
 		if(projeto == null){
@@ -24,19 +25,12 @@ public class ProjetoDAO {
 		}
 		Long id = projeto.getCdProjeto();
 		try {
-//			tx.begin();
 			if(id == null){
 				em.persist(projeto);				
 			} else {
 				projeto = em.merge(projeto);
 			}
-	//		tx.commit();
 		} catch (Exception e) {
-//			try {
-//				tx.setRollbackOnly();
-//			} catch (SystemException e1) {
-//				e1.printStackTrace();
-//			}
 			throw new RuntimeException("Erro ao persistir o projeto: "+projeto.toString(), e);
 		}
 	}
