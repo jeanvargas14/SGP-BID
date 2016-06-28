@@ -5,6 +5,7 @@ package br.com.empresa.sgpbid.data.usuario;
 
 import java.util.List;
 
+import javax.annotation.ManagedBean;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,7 +18,8 @@ import br.com.empresa.sgpbid.model.usuario.Grupo;
  * @author roberto.conceicao
  *
  */
-@ApplicationScoped
+//@ApplicationScoped
+@ManagedBean
 public class GrupoDAO {
 
 	@PersistenceContext

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.inject.Model;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -17,8 +17,7 @@ import br.com.empresa.sgpbid.model.usuario.Grupo;
 import br.com.empresa.sgpbid.model.usuario.Usuario;
 import br.com.empresa.sgpbid.service.ILogin;
  
-@Model
-//@ManagedBean
+@ManagedBean
 public class LoginMB {
 	
 	private static final String MAIN_JSF = "/jsf/projeto/sgpCadProjeto";

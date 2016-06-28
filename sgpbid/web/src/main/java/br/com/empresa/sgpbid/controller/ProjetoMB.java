@@ -9,9 +9,9 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
@@ -23,9 +23,7 @@ import br.com.empresa.sgpbid.service.ICadastrobasico;
  * @author roberto.conceicao
  *
  */
-@Model
-//@ManagedBean
-//@SessionScoped
+@ManagedBean
 public class ProjetoMB implements Serializable{
 
 	private static final long serialVersionUID = 1L;

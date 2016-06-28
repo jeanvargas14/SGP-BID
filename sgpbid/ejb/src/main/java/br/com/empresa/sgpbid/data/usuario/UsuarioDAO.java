@@ -2,7 +2,7 @@ package br.com.empresa.sgpbid.data.usuario;
 
 import java.util.List;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.annotation.ManagedBean;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -10,7 +10,8 @@ import javax.persistence.TypedQuery;
 
 import br.com.empresa.sgpbid.model.usuario.Usuario;
 
-@ApplicationScoped
+//@ApplicationScoped
+@ManagedBean
 public class UsuarioDAO {
 
 	@PersistenceContext

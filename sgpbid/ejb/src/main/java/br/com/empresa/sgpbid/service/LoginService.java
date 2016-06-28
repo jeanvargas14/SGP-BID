@@ -20,17 +20,17 @@ import br.com.empresa.sgpbid.model.usuario.Usuario;
  */
 @Stateless
 public class LoginService implements ILogin {
-
-//	@Resource
+	
 	@Inject
 	private UsuarioDAO usuarioDAO;
 	
-//	@Resource
 	@Inject
 	private GrupoDAO grupoDAO;
 	
 	public LoginService() {
 		System.out.println("Criando uma instancia do [LoginService]");
+		//usuarioDAO = new UsuarioDAO();
+		//grupoDAO = new GrupoDAO();
 	}
 	
 	@Override
