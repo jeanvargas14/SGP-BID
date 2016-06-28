@@ -17,32 +17,27 @@
   						<p:outputLabel value="#{i18n['label.field.nome']}" />
   						<p:inputText value="#{usuarioMB.usuario.cdUsuario}" size="100" required="true"/>
   						
-  						<p:outputLabel value="#{i18n['label.field.senha']}" />
-  						<h:inputSecret value="#{usuarioMB.usuario.senha}" size="100" required="true"/>
+  						<p:outputLabel value="#{i18n['label.field.senha']}" />  						
+  						<p:password value="#{usuarioMB.usuario.senha}" required="true"/>
   						
-  						<h:selectManyCheckbox value="#{usuarioMB.nomesDosGrupos}" required="true">
-  							<f:selectItems value="#{usuarioMB.grupos}" var="g" 
-  								itemLabel="#{g.cdGrupo}" itemValue="#{g.cdGrupo}" />  						
-  						</h:selectManyCheckbox>
-  						
+  						<p:selectManyCheckbox id="grid" value="#{usuarioMB.nomesDosGrupos}" layout="grid" columns="3">
+					        <f:selectItems value="#{usuarioMB.grupos}" var="g" itemLabel="#{g.cdGrupo}" itemValue="#{g.cdGrupo}" />
+					    </p:selectManyCheckbox>  						
   					</h:panelGrid>
   					
 					<h:commandButton value="#{i18n['botao.salvar']}" action="#{usuarioMB.adiciona}" />
   				</h:form>
   					
 				<hr />
-				
-				<h:dataTable value="#{usuarioMB.usuarios}" var="u" border="1">
-					<h:column>
-						<f:facet name="header">#{i18n['label.field.nome.usuario']}</f:facet>
-						<h:outputText value="#{u.cdUsuario}" />
-					</h:column>
-					
-					<h:column>
-						<f:facet name="header">#{i18n['label.field.grupos']}</f:facet>
-						<h:outputText value="#{u.grupos}" />
-					</h:column>
-				</h:dataTable>  					
-  			</ui:define>   			
+				<p:dataTable value="#{usuarioMB.usuarios}" var="u">
+				    <p:column headerText="#{i18n['label.field.nome.usuario']}">
+				        <h:outputText value="#{u.cdUsuario}" />
+				    </p:column>
+				 
+				    <p:column headerText="#{i18n['label.field.grupos']}">
+				        <h:outputText value="#{u.grupos}" />
+				    </p:column>				 
+				</p:dataTable>	
+  			</ui:define>
 	</ui:composition>
 </html>

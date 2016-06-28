@@ -20,7 +20,7 @@ import br.com.empresa.sgpbid.service.IUsuarioService;
 @ManagedBean
 public class UsuarioMB {
 	
-	private static final String MAIN_JSF = "/jsf/projeto/sgpCadProjeto";
+	private static final String USUARIOS_JSF = "/jsf/usuario/sgpUsuarios";
 	
 	private Usuario usuario; 
 
@@ -34,15 +34,19 @@ public class UsuarioMB {
 	private IUsuarioService usuarioService;
 	
 	public UsuarioMB() {
-		System.out.println("Criando uma instancia do manager bean LoginMB");
+		System.out.println("Criando uma instancia do manager bean UsuarioMB");
 	}
 	
 	@PostConstruct
 	public void init(){
 		usuario = new Usuario();
 		nomesDosGrupos = new ArrayList<String>();
-		usuarios = new ArrayList<Usuario>();
-		grupos = new ArrayList<Grupo>();
+		usuarios = getUsuarios();
+		grupos = getGrupos();
+	}
+	
+	public String abrirUsuarios(){
+		return USUARIOS_JSF;
 	}
 	   
 	public void adiciona() throws NoSuchAlgorithmException {
