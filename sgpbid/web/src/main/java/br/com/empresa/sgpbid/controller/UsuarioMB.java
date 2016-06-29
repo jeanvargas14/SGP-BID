@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import br.com.empresa.sgpbid.model.usuario.Grupo;
 import br.com.empresa.sgpbid.model.usuario.Usuario;
 import br.com.empresa.sgpbid.service.IUsuarioService;
+import br.com.empresa.sgpbid.util.CriptografiaUtil;
  
 @ManagedBean
 public class UsuarioMB {
@@ -57,15 +58,8 @@ public class UsuarioMB {
 			this.usuario.getGrupos().add(g);
 		}
 		
-		// Criptografando a senha do novo Usuário
-		MessageDigest md = MessageDigest.getInstance("MD5");
-		md.update(this.usuario.getSenha().getBytes());
-		BigInteger hash = new BigInteger(1, md.digest());
-		String senhaCriptografada = hash.toString (16);
-		while ( senhaCriptografada.length()<32){
-			senhaCriptografada = "0" + senhaCriptografada ;
-		}
-		this.usuario.setSenha(senhaCriptografada);
+		// Criptografando a senha do novo Usuário		
+		this.usuario.setSenha(CriptografiaUtil.md5_Base64(this.usuario.getSenha()));
 		usuarioService.adicionaUsuario(usuario);
 		usuario = new Usuario();
 		usuarios=null;
