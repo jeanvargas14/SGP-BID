@@ -5,6 +5,7 @@ package br.com.empresa.sgpbid.model.usuario;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -18,7 +19,13 @@ public class Grupo {
 
 	@Id
 	private String cdGrupo;
-
+	
+//	@OneToMany(cascade=CascadeType.ALL)  
+//    @JoinTable(name="SGPUSUARIOGRUPO",  
+//              joinColumns={@JoinColumn(name="cdgrupo", referencedColumnName="cdgrupo")},  
+//              inverseJoinColumns={@JoinColumn(name="cdusuario", referencedColumnName="cdusuario", insertable=false, updatable=false)})	
+//	private List<Usuario> usuarios;	
+	
 	public String getCdGrupo() {
 		return cdGrupo;
 	}
@@ -26,6 +33,14 @@ public class Grupo {
 	public void setCdGrupo(String cdGrupo) {
 		this.cdGrupo = cdGrupo;
 	}
+	
+//	public List<Usuario> getUsuarios() {
+//		return usuarios;
+//	}
+//
+//	public void setUsuarios(List<Usuario> usuarios) {
+//		this.usuarios = usuarios;
+//	}
 
 	@Override
 	public String toString() {

@@ -1,17 +1,16 @@
 package br.com.empresa.sgpbid.model.usuario;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="sgpUsuario")
@@ -21,12 +20,23 @@ public class Usuario {
 	private String cdUsuario;
 
 	private String senha;
-
-//	@Column(name = "lastAccess", unique = true)
-//	@Temporal(TemporalType.DATE)
-//	private Date ultimoAcesso;
-
-	@ManyToMany(fetch=FetchType.EAGER)
+	
+	/*
+	 *  referencia: http://uaihebert.com/jpa-onetomany-e-manytoone-unidirecional-e-bidirecional/
+	 *  A anotação @JoinTable é bem simples e seu uso bem prático:		
+		“name” – indica qual será a tabela que realizará a junção entre Customer e Dog (Por padrão colocamos o lado dominante como primeiro nome na tabela).
+		“joinColumns” – informa ao JPA um conjunto de chaves (um array separado por vírgulas) a ser utilizado para se identificar um registro. Poderia ser, por exemplo, o ID e o nome (“name”).
+		“@JoinColumn” – aponta uma coluna que servirá de chave primária na tabela de relacionamento. “name” é o nome que a coluna da tabela terá, 
+		e “referencedColumnName” é a chave primária da tabela dona do relacionamento; em nosso caso utilizamos id da tabela Customer. 
+		(Ao final do post veremos o real lado dominante desse relacionamento. 
+		Utilizo o Customer apenas para ficar didaticamente mais fácil)
+		“inverseJoinColumns” – faz o mapeamento das colunas da tabela do lado “dominado/fraco”.
+	 */
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinTable(name="SGPUSUARIOGRUPO", 
+    		   joinColumns = @JoinColumn(name="cdusuario", referencedColumnName="cdusuario"), 
+    		   inverseJoinColumns= @JoinColumn(name="cdgrupo", referencedColumnName="cdgrupo", insertable=false, updatable=false)
+    		  )    
 	private List<Grupo> grupos = new ArrayList<Grupo>();
 	
 	public String getCdUsuario() {

@@ -35,7 +35,6 @@ public class UsuarioDAO {
 
 	public void adiciona(Usuario u){
 		em.persist(u);
-		//TODO para cada grupo add na tabela de relacionamento usuariogrupo
 	}
 	
 	public List<Usuario> buscaTodos(){
