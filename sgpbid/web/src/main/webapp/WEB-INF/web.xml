@@ -41,10 +41,11 @@
          <http-method>GET</http-method>
 	 </web-resource-collection>
 	 <auth-constraint>
-	 	<role-name>ADMIN</role-name>
-	 	<role-name>admin</role-name>
-	 	<role-name>USERS</role-name>
-	 	<role-name>users</role-name>
+	 		<role-name>*</role-name>
+<!-- 	 	<role-name>ADMIN</role-name> -->
+<!-- 	 	<role-name>admin</role-name> -->
+<!-- 	 	<role-name>USERS</role-name> -->
+<!-- 	 	<role-name>users</role-name> -->
 	 </auth-constraint>
   </security-constraint>
 </web-app>   
