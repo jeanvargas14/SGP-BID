@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import br.com.empresa.sgpbid.model.usuario.Usuario;
+import br.com.empresa.sgpbid.model.usuario.Usuariogrupo;
 
 //@ApplicationScoped
 @ManagedBean
@@ -38,27 +39,27 @@ public class UsuarioDAO {
 	}
 	
 	public List<Usuario> buscaTodos(){
-		TypedQuery<Usuario> query = em.createQuery("select x from Usuario x ",Usuario.class);
+		TypedQuery<Usuario> query = em.createQuery("select x from Usuario x "
+				+ " join fetch x.usuariogrupos ug "
+				+ " join fetch ug.grupo ",Usuario.class);
 		return query.getResultList();
 	} 
 	
-	public boolean inserirUsuario(Usuario usuario) {
-		try {
-			em.persist(usuario);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+	public void inserirUsuario(Usuario usuario) {
+		em.persist(usuario);
 	}
 
-	public boolean deletarUsuario(Usuario usuario) {
-		try {
-			em.remove(usuario);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
+	public void deletarUsuario(Usuario usuario) {
+		em.remove(usuario);
+	}
+
+	/**
+	 * @param usuariogrupos
+	 */
+	public void adicionaUsuariogrupo(List<Usuariogrupo> usuariogrupos) {
+		for (Usuariogrupo usuariogrupo : usuariogrupos) {
+			System.out.println(usuariogrupo);
+			em.persist(usuariogrupo);
 		}
 	}
 }

@@ -23,15 +23,15 @@
 	 <auth-method>FORM</auth-method>
 	 <realm-name>testRealm</realm-name>
 	 <form-login-config>
-	 	<form-login-page>/login.xhtml</form-login-page>
-	 	<form-error-page>/acesso-negado.xhtml</form-error-page>
+	 	<form-login-page>/public/login.jsf</form-login-page>
+	 	<form-error-page>/public/login.jsf</form-error-page>
 	 </form-login-config>
   </login-config>
 	
   <security-constraint>
 	 <web-resource-collection>
-	 	<web-resource-name>resources</web-resource-name>
-	 	 <url-pattern>/*</url-pattern>
+	 	 <web-resource-name>resources</web-resource-name>	 	 
+	 	 <url-pattern>/restrito/*</url-pattern>	 	 
 	 	 <http-method>TRACE</http-method>
          <http-method>OPTIONS</http-method>
          <http-method>HEAD</http-method>

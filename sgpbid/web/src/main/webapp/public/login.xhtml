@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+	
+	  <h:head>
+	  	<title>Login</title>
+	  </h:head>
+	  
+	  <style type="text/css">
+			.centerClass {
+			   width: 300px;
+ 			   height: 220px;
+    		   margin-left: -190px; /* metade da largura */
+    		   margin-top: -100px; /* metade da altura */
+    		   position: absolute;
+    		   top: 45%;
+    		   left: 45%;    		 
+    		   background-color: #f7f7f9;
+    		   /*padding: 9px 14px;*/    		   
+    		   /*border: 1px solid #e1e1e8;*/
+    		   /*border-radius: 4px;*/      		   
+			}
+		</style>
+		
+	  <f:event listener="#{loginMB.verificaSeUsuarioJaLogado}" type="preRenderView" />
+	  
+	  <h:body>
+		<p:messages id="messages" globalOnly="true" />
+		<h:form id="form">
+	  		<p:fieldset styleClass="centerClass">		        
+					<h:panelGrid id="grid" columns="1" cellpadding="2">
+						<p:outputLabel value="Usuário" for="inputUsuario" />
+						<p:inputText id="inputUsuario" required="true"
+							value="#{loginMB.usuario}" />
+						<p:message for="inputUsuario" display="tooltip" />
+		
+						<p:outputLabel value="Senha" for="inputSenha" />
+						<p:password id="inputSenha" required="true"
+							value="#{loginMB.senha}" />
+						<p:message for="inputSenha" display="tooltip"/>
+					</h:panelGrid>
+		
+					<p:commandButton id="btEntrar" value="Entrar" ajax="false"
+						action="#{loginMB.onClickLogar}" update="grid"					
+						styleClass="ui-priority-primary" />
+		    </p:fieldset>
+		</h:form>
+	  </h:body>
+</html>

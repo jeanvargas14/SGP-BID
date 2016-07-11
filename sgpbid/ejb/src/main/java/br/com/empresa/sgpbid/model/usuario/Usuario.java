@@ -3,12 +3,9 @@ package br.com.empresa.sgpbid.model.usuario;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -31,13 +28,20 @@ public class Usuario {
 		(Ao final do post veremos o real lado dominante desse relacionamento. 
 		Utilizo o Customer apenas para ficar didaticamente mais fácil)
 		“inverseJoinColumns” – faz o mapeamento das colunas da tabela do lado “dominado/fraco”.
-	 */
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinTable(name="SGPUSUARIOGRUPO", 
     		   joinColumns = @JoinColumn(name="cdusuario", referencedColumnName="cdusuario"), 
     		   inverseJoinColumns= @JoinColumn(name="cdgrupo", referencedColumnName="cdgrupo", insertable=false, updatable=false)
     		  )    
 	private List<Grupo> grupos = new ArrayList<Grupo>();
+	 */
+
+	@OneToMany(mappedBy="usuario", fetch=FetchType.LAZY)
+	private List<Usuariogrupo> usuariogrupos;
+	
+	public Usuario() {
+		setUsuariogrupos(new ArrayList<Usuariogrupo>());
+	}
 	
 	public String getCdUsuario() {
 		return cdUsuario;
@@ -55,11 +59,11 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public List<Grupo> getGrupos() {
-		return grupos;
+	public List<Usuariogrupo> getUsuariogrupos() {
+		return usuariogrupos;
 	}
 
-	public void setGrupos(List<Grupo> grupos) {
-		this.grupos = grupos;
+	public void setUsuariogrupos(List<Usuariogrupo> usuariogrupos) {
+		this.usuariogrupos = usuariogrupos;
 	}	
 }

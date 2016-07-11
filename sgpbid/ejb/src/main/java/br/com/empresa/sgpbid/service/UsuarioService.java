@@ -34,7 +34,7 @@ public class UsuarioService implements IUsuarioService {
 	@Override
 	public void adicionaUsuario(Usuario u) {
 		usuarioDAO.adiciona(u);
-		
+		usuarioDAO.adicionaUsuariogrupo(u.getUsuariogrupos());		
 	}
 
 	@Override

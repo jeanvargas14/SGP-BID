@@ -26,6 +26,13 @@ public class Grupo {
 //              inverseJoinColumns={@JoinColumn(name="cdusuario", referencedColumnName="cdusuario", insertable=false, updatable=false)})	
 //	private List<Usuario> usuarios;	
 	
+	public Grupo() {
+	}
+	
+	public Grupo(String cdGrupo){
+		setCdGrupo(cdGrupo);
+	}
+	
 	public String getCdGrupo() {
 		return cdGrupo;
 	}

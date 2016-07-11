@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import br.com.empresa.sgpbid.model.usuario.Grupo;
 import br.com.empresa.sgpbid.model.usuario.Usuario;
+import br.com.empresa.sgpbid.model.usuario.Usuariogrupo;
 import br.com.empresa.sgpbid.service.IUsuarioService;
 import br.com.empresa.sgpbid.util.CriptografiaUtil;
  
@@ -51,14 +52,17 @@ public class UsuarioMB {
 	public void adiciona() throws NoSuchAlgorithmException {
 		// Associa os Grupos ao novo Usuario
 		for(String nomeDoGrupo : this.nomesDosGrupos){
-			Grupo g = new Grupo();
-			g.setCdGrupo(nomeDoGrupo);
-			this.usuario.getGrupos().add(g);
+			Usuariogrupo ug = new Usuariogrupo();
+			ug.setGrupo(new Grupo(nomeDoGrupo));			
+			ug.setUsuario(this.usuario);
+			
+			this.usuario.getUsuariogrupos().add(ug);
 		}
 		
 		// Criptografando a senha do novo Usuário		
 		this.usuario.setSenha(CriptografiaUtil.md5_Base64(this.usuario.getSenha()));
 		usuarioService.adicionaUsuario(usuario);
+		
 		usuario = new Usuario();
 		usuarios=null;
 	}
@@ -91,15 +95,5 @@ public class UsuarioMB {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}
-	
-
-	public String sair() {
-		FacesContext fc = FacesContext.getCurrentInstance();
-		ExternalContext ec = fc.getExternalContext();
-		HttpSession session = (HttpSession) ec.getSession(false);
-		session.invalidate();
-		System.out.println("LoginMB executando metodo sair.");
-		return "/login" ;
 	}
 }

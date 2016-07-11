@@ -38,11 +38,13 @@ CREATE TABLE sgpgrupo
 
 CREATE TABLE sgpusuariogrupo
 (
+  id integer NOT NULL,
   cdusuario character varying(255) NOT NULL,
   cdgrupo character varying(255) NOT NULL,
-  CONSTRAINT xpksgpusuariogrupo PRIMARY KEY (cdusuario, cdgrupo),
+  CONSTRAINT xpksgpusuariogrupo PRIMARY KEY (id),
   FOREIGN KEY (cdusuario) REFERENCES sgpUsuario(cdusuario),
-  FOREIGN KEY (cdgrupo) REFERENCES sgpGrupo(cdgrupo)
+  FOREIGN KEY (cdgrupo) REFERENCES sgpGrupo(cdgrupo),
+  UNIQUE(cdusuario, cdgrupo)
 );
 
 -- Inserindo usuarios para testes os proximos podem ser inseridos via interface
@@ -53,6 +55,6 @@ INSERT INTO sgpUsuario (cdUsuario, senha ) VALUES ( 'jean', 'C5nCRry4A+tK/BB0Gc1
 INSERT INTO sgpGrupo (cdGrupo) VALUES ( 'admin' );
 INSERT INTO sgpGrupo (cdGrupo) VALUES ( 'users' );
 
-INSERT INTO sgpUsuarioGrupo (cdUsuario, cdGrupo) VALUES ( 'sgp', 'users');
-INSERT INTO sgpUsuarioGrupo (cdUsuario, cdGrupo) VALUES ( 'bob', 'admin');
-INSERT INTO sgpUsuarioGrupo (cdUsuario, cdGrupo) VALUES ( 'jean', 'admin');
+INSERT INTO sgpUsuarioGrupo (id, cdUsuario, cdGrupo) VALUES ( 1, 'sgp', 'users');
+INSERT INTO sgpUsuarioGrupo (id, cdUsuario, cdGrupo) VALUES ( 2, 'bob', 'admin');
+INSERT INTO sgpUsuarioGrupo (id, cdUsuario, cdGrupo) VALUES ( 3, 'jean', 'admin');
