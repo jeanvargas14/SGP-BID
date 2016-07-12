@@ -26,8 +26,8 @@ import br.com.empresa.sgpbid.service.ICadastrobasico;
 public class ProjetoMB implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	private static final String CADASTRO_JSF = "/jsf/projeto/sgpCadProjeto";
-	private static final String CONSULTA_JSF = "/jsf/projeto/sgpConProjeto";
+	private static final String CADASTRO_JSF = "/restrito/jsf/projeto/sgpCadProjeto.xhtml";
+	private static final String CONSULTA_JSF = "/restrito/jsf/projeto/sgpConProjeto.xhtml";
 	
 	private List<Projeto> projetos;
 	

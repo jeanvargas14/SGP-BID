@@ -35,7 +35,7 @@ public class LoginMB {
             request.login(this.usuario, this.senha);
             return PAGINA_INDEX;
         } catch (ServletException e) {
-        	FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "usuário/senha inválido", "");
+        	FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "usuário/senha inválido", "usuário/senha inválido");
             FacesContext.getCurrentInstance().addMessage(null, message);
         	//se houver erro no Login Module vai cair aqui... 
             //Você pode fazer log por exemplo!
@@ -44,19 +44,30 @@ public class LoginMB {
             //do Login Module exibindo-as na forma de FacesMessage
 	}
 
-        return null;
+        return PAGINA_LOGIN;
     }
     
     public String verificaSeUsuarioJaLogado(){
+    	System.out.println("[LoginMB] metodo verificaSeUsuarioJaLogado");
     	HttpSession session = getSession();
     	if(session != null){
+    		System.out.println("[LoginMB] tem sessao devolve para index.jsf");
     		return PAGINA_INDEX;
     	}
+    	System.out.println("[LoginMB] não tem sessao vai para tela de login.jsf");
     	return PAGINA_LOGIN;
     }
     
     public String logout(){    	
-    	HttpSession session = getSession();
+    	try {
+    		System.out.println("[LoginMB] fazendo logout");
+    		HttpServletRequest request = (HttpServletRequest) FacesContext.
+                getCurrentInstance().getExternalContext().getRequest();
+				request.logout();
+		} catch (ServletException e) {
+			e.printStackTrace();
+		}
+		HttpSession session = getSession();
     	session.invalidate();
     	return PAGINA_LOGIN;
     }    

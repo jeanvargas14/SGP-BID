@@ -6,10 +6,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 
 import br.com.empresa.sgpbid.model.usuario.Grupo;
 import br.com.empresa.sgpbid.model.usuario.Usuario;
@@ -20,7 +17,7 @@ import br.com.empresa.sgpbid.util.CriptografiaUtil;
 @ManagedBean
 public class UsuarioMB {
 	
-	private static final String USUARIOS_JSF = "/jsf/usuario/sgpUsuarios";
+	private static final String USUARIOS_JSF = "/restrito/jsf/usuario/sgpUsuarios.xhtml";
 	
 	private Usuario usuario; 
 

@@ -13,11 +13,11 @@
 			.centerClass {
 			   width: 300px;
  			   height: 220px;
-    		   margin-left: -190px; /* metade da largura */
-    		   margin-top: -100px; /* metade da altura */
+    		   margin-left: -150px; /* metade da largura */
+    		   margin-top: -110px; /* metade da altura */
     		   position: absolute;
-    		   top: 45%;
-    		   left: 45%;    		 
+    		   top: 50%;
+    		   left: 50%;    		 
     		   background-color: #f7f7f9;
     		   /*padding: 9px 14px;*/    		   
     		   /*border: 1px solid #e1e1e8;*/
@@ -28,8 +28,8 @@
 	  <f:event listener="#{loginMB.verificaSeUsuarioJaLogado}" type="preRenderView" />
 	  
 	  <h:body>
-		<p:messages id="messages" globalOnly="true" />
 		<h:form id="form">
+		    
 	  		<p:fieldset styleClass="centerClass">		        
 					<h:panelGrid id="grid" columns="1" cellpadding="2">
 						<p:outputLabel value="Usuário" for="inputUsuario" />
@@ -41,11 +41,13 @@
 						<p:password id="inputSenha" required="true"
 							value="#{loginMB.senha}" />
 						<p:message for="inputSenha" display="tooltip"/>
-					</h:panelGrid>
 		
-					<p:commandButton id="btEntrar" value="Entrar" ajax="false"
-						action="#{loginMB.onClickLogar}" update="grid"					
-						styleClass="ui-priority-primary" />
+						<p:commandButton id="btEntrar" value="Entrar" ajax="false"
+							action="#{loginMB.onClickLogar}" update="grid"					
+							styleClass="ui-priority-primary" />
+						
+					    <p:growl id="messages"/>
+					</h:panelGrid>		
 		    </p:fieldset>
 		</h:form>
 	  </h:body>
