@@ -6,8 +6,7 @@
    	xmlns:p="http://primefaces.org/ui">
    
 	<ui:composition template="/templates/template.xhtml">   
-  			<ui:define name="titulo"><p:outputLabel value="#{i18n['label.titulo.seguranca']}" /></ui:define>
-  			<ui:define name="subtitulo"><p:outputLabel value="#{i18n['label.titulo.seguranca']}" /></ui:define>
+  			<ui:define name="titulo"><p:outputLabel value="#{i18n['label.titulo.seguranca']}" /></ui:define>  			
   			<ui:define name="conteudo">
   				<h1>#{i18n['label.titulo.novo.usuario']}</h1>  				
   				<h:form>
@@ -25,7 +24,7 @@
 					    </p:selectManyCheckbox>  						
   					</h:panelGrid>
   					
-					<h:commandButton value="#{i18n['botao.salvar']}" action="#{usuarioMB.adiciona}" />
+					<p:commandButton value="#{i18n['botao.salvar']}" action="#{usuarioMB.adiciona}" styleClass="ui-priority-primary" ajax="false"/>
   				</h:form>
   					
 				<hr />

@@ -29,6 +29,7 @@ public class LoginMB {
     private String senha;
 
     public String onClickLogar() {
+    	System.out.println("[LoginMB] metodo onClickLogar");
         try {
 	    HttpServletRequest request = (HttpServletRequest) FacesContext.
                 getCurrentInstance().getExternalContext().getRequest();

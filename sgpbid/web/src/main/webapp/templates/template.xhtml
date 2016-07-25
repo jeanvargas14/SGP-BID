@@ -16,13 +16,9 @@
 	</h:head>
 	
 	<h:body>
-		<ui:include src="menu.xhtml" />
-		<h1>
-			<ui:insert name="subtitulo"></ui:insert>
-		</h1>
+		<ui:include src="menu.xhtml" />		
 		<h:panelGrid columns="1" width="100%" border="0">
-			<ui:insert name="conteudo">
-				Conteudo principal
+			<ui:insert name="conteudo">				
 			</ui:insert>
 			<ui:include src="rodape.xhtml" />
 		</h:panelGrid>
