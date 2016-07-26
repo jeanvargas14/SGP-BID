@@ -9,4 +9,4 @@
   sgMutuario varchar (15) NOT NULL,
   nuAnoInicio decimal(4,0) NOT NULL,
   nuAnoFim decimal(4,0) NOT NULL,
-  CONSTRAINT XPKsgpPrograma PRIMARY KEY (cdPrograma));
+  CONSTRAINT XPKsgpPrograma PRIMARY KEY (cdPrograma,nuPrograma,nuOperacao));
