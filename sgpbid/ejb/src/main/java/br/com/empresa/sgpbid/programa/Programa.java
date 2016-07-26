@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 
 /**
@@ -30,8 +31,9 @@ public class Programa {
 	@NotNull
 	@Size(min=1, max=150)
 	private String 	nmPrograma;
-	@NotNull
-	@Size(min=1, max=150)
+	
+	@Null
+	@Size(min=0, max=150)
 	private String 	nmProgramaIngles;
 	@NotNull
 	@Size(min=1, max=15)
