@@ -115,5 +115,35 @@ public class Programa {
 	}
 	public void setNuAnoFim(Integer nuAnoFim) {
 		this.nuAnoFim = nuAnoFim;
-	}	
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cdPrograma == null) ? 0 : cdPrograma.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Programa other = (Programa) obj;
+		if (cdPrograma == null) {
+			if (other.cdPrograma != null)
+				return false;
+		} else if (!cdPrograma.equals(other.cdPrograma))
+			return false;
+		return true;
+	}
+	@Override
+	public String toString() {
+		return "Programa [cdPrograma=" + cdPrograma + ", nmPrograma=" + nmPrograma + ", nmProgramaIngles="
+				+ nmProgramaIngles + ", nuPrograma=" + nuPrograma + ", nuOperacao=" + nuOperacao + ", dePrograma="
+				+ dePrograma + ", nmMutuario=" + nmMutuario + ", sgMutuario=" + sgMutuario + ", nuAnoInicio="
+				+ nuAnoInicio + ", nuAnoFim=" + nuAnoFim + ", detalhePrograma=" + detalhePrograma + "]";
+	}
 }

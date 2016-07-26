@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:p="http://primefaces.org/ui"
+   template="/templates/template.xhtml">
+   
+   			<ui:define name="titulo"><h:outputText value="#{i18n['label.consulta.programas']}" /></ui:define>
+   			<ui:define name="conteudo">
+   				<h:form>   					
+   					<h3 style="margin-top:0">#{i18n['label.consulta.programas']}</h3>
+   					
+				    <p:accordionPanel>
+				        <p:tab title="#{i18n['label.parametros.consulta']}">
+				            <h:panelGrid columns="2" cellpadding="5">
+				            	<f:validateBean disabled="true">
+					                <p:outputLabel value="#{i18n['label.field.nome.programa']}" style="font-weight: bold" />
+					                <p:inputText value="#{programaMB.filtro.nmPrograma}" size="100" style="width: 100%;"/>
+	                				<p:outputLabel value="#{i18n['label.field.numero.programa']}" style="font-weight: bold"/>
+	                				<p:inputText value="#{programaMB.filtro.nuPrograma}" size="50" style="width: 50%;"/>
+                				</f:validateBean>				                
+				            </h:panelGrid>
+				            
+				            <p align="right">
+				            	<p:commandButton value="Consultar" id="btConsultar" action="#{programaMB.consultarPrograma}" styleClass="ui-priority-primary" ajax="false" />
+				            	<p:commandButton value="Novo" id="btNovo" action="#{programaMB.novo}" ajax="false"/>
+				            </p>
+				        </p:tab>				        
+				    </p:accordionPanel>
+   					
+   					<hr />
+   					<br />
+   					
+   					<p:dataTable var="programa" value="#{programaMB.lista}" 
+   						emptyMessage="#{i18n['label.consulta.sem.resultado']}"
+   						paginator="true" rows="10">
+					    <p:column headerText="#{i18n['label.field.numero.programa']}" width="200">
+					        <h:outputText value="#{programa.nuPrograma}" />
+					    </p:column>
+					 
+					    <p:column headerText="#{i18n['label.field.nome.programa']}">
+					        <h:outputText value="#{programa.nmPrograma}" />
+					    </p:column>
+					</p:dataTable>					
+   				</h:form>
+   			</ui:define>
+</ui:composition>
