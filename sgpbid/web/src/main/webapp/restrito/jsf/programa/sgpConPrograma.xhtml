@@ -36,6 +36,7 @@
    					<p:dataTable var="programa" value="#{programaMB.lista}" 
    						emptyMessage="#{i18n['label.consulta.sem.resultado']}"
    						paginator="true" rows="10">
+   						
 					    <p:column headerText="#{i18n['label.field.numero.programa']}" width="200">
 					        <h:outputText value="#{programa.nuPrograma}" />
 					    </p:column>
@@ -43,6 +44,12 @@
 					    <p:column headerText="#{i18n['label.field.nome.programa']}">
 					        <h:outputText value="#{programa.nmPrograma}" />
 					    </p:column>
+					    
+					    <p:column style="width:32px;text-align: center">
+				             <p:commandButton icon="ui-icon ui-icon-pencil" title="Etidar" action="#{programaMB.editar}">
+				                <f:setPropertyActionListener value="#{programa}" target="#{programaMB.programa}" />
+				            </p:commandButton>
+				        </p:column>
 					</p:dataTable>					
    				</h:form>
    			</ui:define>

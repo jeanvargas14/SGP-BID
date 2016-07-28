@@ -9,8 +9,11 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+
+import org.primefaces.event.SelectEvent;
 
 import br.com.empresa.sgpbid.programa.Programa;
 import br.com.empresa.sgpbid.service.ICadastrobasico;
@@ -21,6 +24,7 @@ import br.com.empresa.sgpbid.service.ICadastrobasico;
  *
  */
 @ManagedBean
+@SessionScoped
 public class ProgramaMB {
 
 	private static final String CADASTRO_JSF = "/restrito/jsf/programa/sgpCadPrograma.xhtml";
@@ -58,9 +62,14 @@ public class ProgramaMB {
 		return CADASTRO_JSF;
 	}
 	
-	public String editar(){
-		return CADASTRO_JSF;		
+	public String editar(){		
+		return CADASTRO_JSF;
 	}
+	
+	public void onRowSelect(SelectEvent event) {
+        FacesMessage msg = new FacesMessage("Programa Selected", ""+((Programa) event.getObject()).getCdPrograma());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
 	
 	public void save(){
 		try {

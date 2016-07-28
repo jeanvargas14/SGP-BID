@@ -14,34 +14,75 @@
   					
   					<p:growl id="messages" life="2000" />  				
 					<div class="ui-fluid">
-							<p:panelGrid columns="4" styleClass="ui-panelgrid-blank">
-			   					<p:outputLabel for="nuPrograma" value="#{i18n['label.field.numero.programa']}" indicateRequired="true"/>
-			   					<p:inputMask mask="999999999999" id="nuPrograma" value="#{programaMB.programa.nuPrograma}" required="true"/>
-			   					
-			   					<p:outputLabel for="nuOperacao" value="#{i18n['label.field.numero.operacao']}" indicateRequired="true"/>
-			   					<p:inputMask mask="999999999999" id="nuOperacao" value="#{programaMB.programa.nuOperacao}" required="true"/>
-		   					</p:panelGrid>
-							<p:panelGrid columns="2" styleClass="ui-panelgrid-blank">		   					
-			   					<p:outputLabel for="nmPrograma" value="#{i18n['label.field.nome.programa']}" indicateRequired="true"/>
-			   					<p:inputText id="nmPrograma" value="#{programaMB.programa.nmPrograma}" required="true"/>
-			   					
-			   					<p:outputLabel for="nmMutuario" value="#{i18n['label.field.nome.mutuario']}" indicateRequired="true"/>
-			   					<p:inputText id="nmMutuario" value="#{programaMB.programa.nmMutuario}" required="true"/>
-			   					
-			   					<p:outputLabel for="sgMutuario" value="#{i18n['label.field.sigla.mutuario']}" indicateRequired="true"/>
-			   					<p:inputText id="sgMutuario" value="#{programaMB.programa.sgMutuario}" required="true"/>
+						<p:panelGrid styleClass="ui-responsive ui-panelgrid-blank"  style="width: 100%;">								
+							<p:row>
+								<p:column width="50px;">
+			   						<p:outputLabel for="nuPrograma" value="#{i18n['label.field.numero.programa']}" indicateRequired="true"/>
+								</p:column>												   					
+		   						<p:column>
+			   						<p:inputMask mask="999999999999" id="nuPrograma" value="#{programaMB.programa.nuPrograma}" required="true"/>
+		   						</p:column>
+		   					
+								<p:column width="50px;">
+		   							<p:outputLabel for="nuOperacao" value="#{i18n['label.field.numero.operacao']}" indicateRequired="true"/>
+		   						</p:column>			   					
+								<p:column>
+		   							<p:inputMask mask="999999999999" id="nuOperacao" value="#{programaMB.programa.nuOperacao}" required="true"/>
+		   						</p:column>
+	   						</p:row>
+	   						
+	   						<p:row>
+								<p:column>	   					
+		   							<p:outputLabel for="nmPrograma" value="#{i18n['label.field.nome.programa']}" indicateRequired="true"/>
+		   						</p:column>			   					
+		   						<p:column colspan="3">
+				   					<p:inputText id="nmPrograma" value="#{programaMB.programa.nmPrograma}" required="true"/>
+		   						</p:column>
+		   					</p:row>
+		   					
+		   					<p:row>
+								<p:column>
+		   							<p:outputLabel for="nmMutuario" value="#{i18n['label.field.nome.mutuario']}" indicateRequired="true"/>
+		   						</p:column>
+		   						<p:column colspan="3">
+				   					<p:inputText id="nmMutuario" value="#{programaMB.programa.nmMutuario}" required="true"/>
+		   						</p:column>
+		   					</p:row>
+		   					
+		   					<p:row>
+								<p:column>
+		   							<p:outputLabel for="sgMutuario" value="#{i18n['label.field.sigla.mutuario']}" indicateRequired="true"/>
+		   						</p:column>
+		   						<p:column colspan="3">
+				   					<p:inputText id="sgMutuario" value="#{programaMB.programa.sgMutuario}" required="true"/>
+		   						</p:column>
+		   					</p:row>
+	   				
+	   						<p:row>
+								<p:column>
+		   							<p:outputLabel for="dePrograma" value="#{i18n['label.field.observacao.programa']}" indicateRequired="true"/>
+		   						</p:column>
+		   						<p:column colspan="3">
+				   					<p:inputTextarea id="dePrograma" value="#{programaMB.programa.dePrograma}" rows="6" required="true"/>
+		   						</p:column>
+		   					</p:row>
 		   				
-			   					<p:outputLabel for="dePrograma" value="#{i18n['label.field.observacao.programa']}" indicateRequired="true"/>
-			   					<p:inputTextarea id="dePrograma" value="#{programaMB.programa.dePrograma}" rows="6" required="true"/>
-			   					
-			   				</p:panelGrid>	
-			   				<p:panelGrid columns="4" styleClass="ui-panelgrid-blank">
-			   					<p:outputLabel for="nuAnoInicio" value="#{i18n['label.field.ano.inicio']}" indicateRequired="true"/>
-			   					<p:inputMask mask="9999" id="nuAnoInicio" value="#{programaMB.programa.nuAnoInicio}" required="true" size="10"/>
-			   					
-			   					<p:outputLabel for="nuAnoFim" value="#{i18n['label.field.ano.fim']}" indicateRequired="true"/>
-			   					<p:inputMask mask="9999" id="nuAnoFim" value="#{programaMB.programa.nuAnoFim}" required="true" size="10"/>
-			   				</p:panelGrid>
+		   					<p:row>
+								<p:column>
+		   							<p:outputLabel for="nuAnoInicio" value="#{i18n['label.field.ano.inicio']}" indicateRequired="true"/>
+		   						</p:column>
+								<p:column>			   						
+		   							<p:inputMask mask="9999" id="nuAnoInicio" value="#{programaMB.programa.nuAnoInicio}" required="true" size="10"/>
+		   						</p:column>
+		   						
+		   						<p:column>
+		   							<p:outputLabel for="nuAnoFim" value="#{i18n['label.field.ano.fim']}" indicateRequired="true"/>
+		   						</p:column>
+		   						<p:column>
+		   							<p:inputMask mask="9999" id="nuAnoFim" value="#{programaMB.programa.nuAnoFim}" required="true" size="10"/>
+		   						</p:column>
+		   					</p:row>
+		   				</p:panelGrid>
 		   			</div>		
    					<p align="right">
    						<p:commandButton value="#{i18n['botao.salvar']}" id="btSalvar" update="messages" action="#{programaMB.save}" 
