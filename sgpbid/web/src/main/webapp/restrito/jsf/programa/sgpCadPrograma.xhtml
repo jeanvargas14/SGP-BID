@@ -12,22 +12,24 @@
   				<h:form>
   					<h3 style="margin-top:10">#{i18n['label.cadastro.programa']}</h3>
   					
+  					<h:inputHidden value="#{programaMB.programa.cdPrograma}" />
+  					
   					<p:growl id="messages" life="2000" />  				
-					<div class="ui-fluid">
+					<div class="ui-fluid">						
 						<p:panelGrid styleClass="ui-responsive ui-panelgrid-blank"  style="width: 100%;">								
 							<p:row>
 								<p:column width="50px;">
 			   						<p:outputLabel for="nuPrograma" value="#{i18n['label.field.numero.programa']}" indicateRequired="true"/>
 								</p:column>												   					
 		   						<p:column>
-			   						<p:inputMask mask="999999999999" id="nuPrograma" value="#{programaMB.programa.nuPrograma}" required="true"/>
+			   						<p:inputText id="nuPrograma" value="#{programaMB.programa.nuPrograma}" required="true"/>
 		   						</p:column>
 		   					
 								<p:column width="50px;">
 		   							<p:outputLabel for="nuOperacao" value="#{i18n['label.field.numero.operacao']}" indicateRequired="true"/>
 		   						</p:column>			   					
 								<p:column>
-		   							<p:inputMask mask="999999999999" id="nuOperacao" value="#{programaMB.programa.nuOperacao}" required="true"/>
+		   							<p:inputText id="nuOperacao" value="#{programaMB.programa.nuOperacao}" required="true"/>
 		   						</p:column>
 	   						</p:row>
 	   						
