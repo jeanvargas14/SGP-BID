@@ -66,11 +66,11 @@ public class ProgramaMB {
 		try {
 			System.out.println("Executando metodo salvar programa ...");
 			cadastrobasicoService.salvarPrograma(programa);
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "");
-	        FacesContext.getCurrentInstance().addMessage(null, message);
+			FacesContext context = FacesContext.getCurrentInstance();
+	        context.addMessage(null, new FacesMessage("Sucesso",  "Operação realizada com sucesso"));			
 		} catch(Exception e ){
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao salvar o programa", "");
-	        FacesContext.getCurrentInstance().addMessage(null, message);						
+			FacesContext context = FacesContext.getCurrentInstance();
+	        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Erro", "Erro ao realizar a operação"));
 		}		
 	}
 
