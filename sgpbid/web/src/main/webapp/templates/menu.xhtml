@@ -7,6 +7,7 @@
 
 	<f:loadBundle basename="mensagens" var="i18n"/>
 	
+<!-- 	http://www.primefaces.org/showcase/ui/misc/fa.xhtml -->
 	<ui:composition>
 		<h:form>
 			<p:growl id="messages"/>
@@ -19,7 +20,7 @@
 		        </p:submenu>
 		 
 		        <f:facet name="options">
-		            <p:commandButton value="#{i18n['botao.sair']}" icon="ui-icon-extlink" ajax="false" action="#{loginMB.logout}" />
+		            <p:commandButton value="#{i18n['botao.sair']}" icon="fa fa-fw fa-sign-out" ajax="false" action="#{loginMB.logout}" />
 		        </f:facet>
 		    </p:menubar>
 		</h:form>

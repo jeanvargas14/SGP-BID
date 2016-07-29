@@ -42,14 +42,17 @@ public class ProgramaMB {
 		System.out.println("[ProgramaMB] instanciando ...");
 	}
 
-	@PostConstruct
-	public void init(){
+//	@PostConstruct
+//	public void init(){
+//		programa = new Programa();
+//		filtro = new Programa();
+//		lista = new ArrayList<Programa>();
+//	}
+	
+	public String abrirConPrograma(){
 		programa = new Programa();
 		filtro = new Programa();
 		lista = new ArrayList<Programa>();
-	}
-	
-	public String abrirConPrograma(){
 		return CONSULTA_JSF;
 	}
 	
