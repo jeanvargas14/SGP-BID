@@ -24,8 +24,9 @@
 				            </h:panelGrid>
 				            
 				            <p align="right">
-				            	<p:commandButton value="Consultar" id="btConsultar" action="#{programaMB.consultarPrograma}" styleClass="ui-priority-primary" ajax="false" />
-				            	<p:commandButton value="Novo" id="btNovo" action="#{programaMB.novo}" ajax="false"/>
+				            	<p:commandButton value="Consultar" id="btConsultar" action="#{programaMB.consultarPrograma}" styleClass="ui-priority-primary" 
+				            		icon="fa fa-search"	ajax="false" />
+				            	<p:commandButton value="Novo" id="btNovo" action="#{programaMB.novo}" ajax="false" icon="fa fa-newspaper-o"/>
 				            </p>
 				        </p:tab>				        
 				    </p:accordionPanel>
@@ -46,7 +47,7 @@
 					    </p:column>
 					    
 					    <p:column style="width:32px;text-align: center">
-				             <p:commandButton icon="ui-icon ui-icon-pencil" title="Etidar" action="#{programaMB.editar}">
+				             <p:commandButton icon="fa fa-edit" title="Etidar" action="#{programaMB.editar}" styleClass="ui-priority-primary">
 				                <f:setPropertyActionListener value="#{programa}" target="#{programaMB.programa}" />
 				            </p:commandButton>
 				        </p:column>
