@@ -11,6 +11,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import org.primefaces.event.SelectEvent;
@@ -39,7 +40,11 @@ public class ProgramaMB {
 	private Programa programa;	
 	private Programa filtro;
 	
+	private List<SelectItem> fontes;
+	
 	private DetalhePrograma detalhePrograma;
+	
+	private boolean disabled;
 	
 	public ProgramaMB() {
 		System.out.println("[ProgramaMB] instanciando ...");
@@ -52,8 +57,16 @@ public class ProgramaMB {
 		filtro = new Programa();
 		lista = new ArrayList<Programa>();
 		detalhePrograma = new DetalhePrograma();
+		disabled = false;
+		carregaFontes();
 	}
 	
+	private void carregaFontes() {
+		fontes = new ArrayList<SelectItem>();
+		fontes.add(new SelectItem('1', "CO", "CO"));
+		fontes.add(new SelectItem('2', "FOE", "FOE"));
+	}
+
 	public String abrirConPrograma(){
 		programa = new Programa();
 		filtro = new Programa();
@@ -67,10 +80,12 @@ public class ProgramaMB {
 	
 	public String novo(){
 		programa = new Programa();
+		disabled = false;
 		return CADASTRO_JSF;
 	}
 	
-	public String editar(){		
+	public String editar(){	
+		disabled = true;
 		return CADASTRO_JSF;
 	}
 	
@@ -89,7 +104,8 @@ public class ProgramaMB {
 			System.out.println("Executando metodo salvar programa ...");
 			cadastrobasicoService.salvarPrograma(programa);
 			FacesContext context = FacesContext.getCurrentInstance();
-	        context.addMessage(null, new FacesMessage("Sucesso",  "Operação realizada com sucesso"));			
+	        context.addMessage(null, new FacesMessage("Sucesso",  "Operação realizada com sucesso"));
+	        disabled = true;
 		} catch(Exception e ){
 			FacesContext context = FacesContext.getCurrentInstance();
 	        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Erro", "Erro ao realizar a operação"));
@@ -131,5 +147,21 @@ public class ProgramaMB {
 	}
 	public void setDetalhePrograma(DetalhePrograma detalhePrograma) {
 		this.detalhePrograma = detalhePrograma;
+	}
+
+	public boolean isDisabled() {
+		return disabled;
+	}
+
+	public void setDisabled(boolean disabled) {
+		this.disabled = disabled;
+	}
+	
+	public List<SelectItem> getFontes() {
+		return fontes;
+	}
+
+	public void setFontes(List<SelectItem> fontes) {
+		this.fontes = fontes;
 	}	
 }

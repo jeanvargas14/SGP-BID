@@ -26,20 +26,23 @@
 				   					<p:outputLabel for="nuPrograma" value="#{i18n['label.field.numero.programa']}" indicateRequired="true"/>
 								</div>
 		   						<div class="ui-grid-col-4">
-									<p:inputText id="nuPrograma" value="#{programaMB.programa.nuPrograma}" required="true" title="#{i18n['label.field.numero.programa']}"/>
+									<p:inputText id="nuPrograma" value="#{programaMB.programa.nuPrograma}" required="true" title="#{i18n['label.field.numero.programa']}"
+										disabled="#{programaMB.disabled}"/>
 			   					</div>
 			   					<div class="ui-grid-col-2">
 			   						<p:outputLabel for="nuOperacao" value="#{i18n['label.field.numero.operacao']}" indicateRequired="true"/>
 			   					</div>					
 								<div class="ui-grid-col-4">
-			   						<p:inputText id="nuOperacao" value="#{programaMB.programa.nuOperacao}" required="true" title="#{i18n['label.field.numero.operacao']}"/>
+			   						<p:inputText id="nuOperacao" value="#{programaMB.programa.nuOperacao}" required="true" title="#{i18n['label.field.numero.operacao']}"
+			   							disabled="#{programaMB.disabled}"/>
 								</div>
 								
 		   						<div class="ui-grid-col-2">	   					
 			   						<p:outputLabel for="nmPrograma" value="#{i18n['label.field.nome.programa']}" indicateRequired="true"/>
 			   					</div>			   					
 			   					<div class="ui-grid-col-10">
-					   				<p:inputText id="nmPrograma" value="#{programaMB.programa.nmPrograma}" required="true" title="#{i18n['label.field.nome.programa']}"/>
+					   				<p:inputText id="nmPrograma" value="#{programaMB.programa.nmPrograma}" required="true" title="#{i18n['label.field.nome.programa']}"
+					   					disabled="#{programaMB.disabled}"/>
 			   					</div>
 			   				
 			   					
@@ -47,14 +50,16 @@
 			   						<p:outputLabel for="nmMutuario" value="#{i18n['label.field.nome.mutuario']}" indicateRequired="true"/>
 			   					</div>
 			   					<div class="ui-grid-col-10">
-			   						<p:inputText id="nmMutuario" value="#{programaMB.programa.nmMutuario}" required="true" title="#{i18n['label.field.nome.mutuario']}"/>
+			   						<p:inputText id="nmMutuario" value="#{programaMB.programa.nmMutuario}" required="true" title="#{i18n['label.field.nome.mutuario']}"
+			   							disabled="#{programaMB.disabled}"/>
 			   					</div>
 			   					
 			   					<div class="ui-grid-col-2">
 			   						<p:outputLabel for="sgMutuario" value="#{i18n['label.field.sigla.mutuario']}" indicateRequired="true"/>
 			   					</div>
 			   					<div class="ui-grid-col-10">
-					   				<p:inputText id="sgMutuario" value="#{programaMB.programa.sgMutuario}" required="true" title="#{i18n['label.field.sigla.mutuario']}"/>
+					   				<p:inputText id="sgMutuario" value="#{programaMB.programa.sgMutuario}" required="true" title="#{i18n['label.field.sigla.mutuario']}"
+					   					disabled="#{programaMB.disabled}"/>
 			   					</div>
 			   					
 		   				
@@ -69,13 +74,15 @@
 			   						<p:outputLabel for="nuAnoInicio" value="#{i18n['label.field.ano.inicio']}" indicateRequired="true"/>
 			   					</div>
 								<div class="ui-grid-col-4">			   						
-			   						<p:inputMask mask="9999" id="nuAnoInicio" value="#{programaMB.programa.nuAnoInicio}" required="true" size="10" title="#{i18n['label.field.ano.inicio']}"/>
+			   						<p:inputMask mask="9999" id="nuAnoInicio" value="#{programaMB.programa.nuAnoInicio}" required="true" size="10" title="#{i18n['label.field.ano.inicio']}"
+			   							disabled="#{programaMB.disabled}"/>
 			   					</div>
 			   					<div class="ui-grid-col-2">
 			   						<p:outputLabel for="nuAnoFim" value="#{i18n['label.field.ano.fim']}" indicateRequired="true"/>
 		   						</div>
 		   						<div class="ui-grid-col-4">
-		   							<p:inputMask mask="9999" id="nuAnoFim" value="#{programaMB.programa.nuAnoFim}" required="true" size="10" title="#{i18n['label.field.ano.fim']}"/>
+		   							<p:inputMask mask="9999" id="nuAnoFim" value="#{programaMB.programa.nuAnoFim}" required="true" size="10" title="#{i18n['label.field.ano.fim']}"
+		   								disabled="#{programaMB.disabled}"/>
 		   						</div>
 		   					</div>		   					
 			   			</div>		
