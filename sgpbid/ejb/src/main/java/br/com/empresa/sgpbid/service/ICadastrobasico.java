@@ -8,6 +8,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import br.com.empresa.sgpbid.model.projeto.Projeto;
+import br.com.empresa.sgpbid.programa.DetalhePrograma;
 import br.com.empresa.sgpbid.programa.Programa;
 
 /**
@@ -26,4 +27,8 @@ public interface ICadastrobasico {
 	
 	List<Programa> findProgramas(Programa filtro);
 	void salvarPrograma(Programa programa);
+	
+	void salvarDetalheprograma(DetalhePrograma detalhePrograma);
+	
+	DetalhePrograma findDetalheprograma(Integer cdPrograma);
 }

@@ -116,6 +116,34 @@ public class ProgramaDAO {
 			throw new RuntimeException("Erro ao carregar todos os findProgramas ", e);
 		}
 		return programas;
-	}	
+	}
 	
+	public void salvarDetalheprograma(DetalhePrograma detalhePrograma) {
+		if(detalhePrograma == null){
+			throw new IllegalArgumentException("Um detalhePrograma eh obrigatorio");
+		}
+		
+		try {
+			detalhePrograma = em.merge(detalhePrograma);
+		} catch (Exception e) {
+			throw new RuntimeException("Erro ao persistir o detalhePrograma: "+detalhePrograma.toString(), e);
+		}
+	}
+
+	/**
+	 * @param cdPrograma
+	 * @return
+	 */
+	public DetalhePrograma findDetalheprograma(Integer id) {
+		if(id == null){
+			throw new IllegalArgumentException("Um id eh obrigatorio.");
+		}
+		DetalhePrograma detalhePrograma;	
+		try {
+			detalhePrograma = em.find(DetalhePrograma.class, id);
+		} catch (Exception e) {
+			throw new RuntimeException("Erro ao buscar detalhe programa por id: "+id, e);
+		}
+		return detalhePrograma;
+	}
 }

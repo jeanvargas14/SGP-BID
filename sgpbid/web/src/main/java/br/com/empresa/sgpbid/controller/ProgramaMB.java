@@ -15,6 +15,7 @@ import javax.inject.Inject;
 
 import org.primefaces.event.SelectEvent;
 
+import br.com.empresa.sgpbid.programa.DetalhePrograma;
 import br.com.empresa.sgpbid.programa.Programa;
 import br.com.empresa.sgpbid.service.ICadastrobasico;
 
@@ -27,8 +28,9 @@ import br.com.empresa.sgpbid.service.ICadastrobasico;
 @SessionScoped
 public class ProgramaMB {
 
-	private static final String CADASTRO_JSF = "/restrito/jsf/programa/sgpCadPrograma.xhtml";
-	private static final String CONSULTA_JSF = "/restrito/jsf/programa/sgpConPrograma.xhtml";
+	public static final String CADASTRO_JSF = "/restrito/jsf/programa/sgpCadPrograma.xhtml";
+	public static final String CONSULTA_JSF = "/restrito/jsf/programa/sgpConPrograma.xhtml";
+	public static final String DETALHE_PROGRAMA_JSF = "/restrito/jsf/programa/sgpCadDetalhePrograma.xhtml";
 	
 	@Inject
 	private ICadastrobasico cadastrobasicoService;
@@ -37,17 +39,20 @@ public class ProgramaMB {
 	private Programa programa;	
 	private Programa filtro;
 	
+	private DetalhePrograma detalhePrograma;
 	
 	public ProgramaMB() {
 		System.out.println("[ProgramaMB] instanciando ...");
 	}
 
-//	@PostConstruct
-//	public void init(){
-//		programa = new Programa();
-//		filtro = new Programa();
-//		lista = new ArrayList<Programa>();
-//	}
+	@PostConstruct
+	public void init(){
+		System.out.println("[ProgramaMB] init ...");
+		programa = new Programa();
+		filtro = new Programa();
+		lista = new ArrayList<Programa>();
+		detalhePrograma = new DetalhePrograma();
+	}
 	
 	public String abrirConPrograma(){
 		programa = new Programa();
@@ -69,6 +74,11 @@ public class ProgramaMB {
 		return CADASTRO_JSF;
 	}
 	
+	public String detalhePrograma(){
+		detalhePrograma = cadastrobasicoService.findDetalheprograma(programa.getCdPrograma()); 
+		return DETALHE_PROGRAMA_JSF;
+	}
+	
 	public void onRowSelect(SelectEvent event) {
         FacesMessage msg = new FacesMessage("Programa Selected", ""+((Programa) event.getObject()).getCdPrograma());
         FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -86,27 +96,40 @@ public class ProgramaMB {
 		}		
 	}
 
+	public void salvarDetalheprograma(){
+		try {
+			System.out.println("Executando metodo salvar detalhe programa ...");
+			cadastrobasicoService.salvarDetalheprograma(detalhePrograma);
+			FacesContext context = FacesContext.getCurrentInstance();
+	        context.addMessage(null, new FacesMessage("Sucesso",  "Operação realizada com sucesso"));			
+		} catch(Exception e ){
+			FacesContext context = FacesContext.getCurrentInstance();
+	        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Erro", "Erro ao realizar a operação"));
+		}		
+	}
+	
 	public List<Programa> getLista() {
 		return lista;
 	}
-
 	public void setLista(List<Programa> lista) {
 		this.lista = lista;
 	}
-
 	public Programa getPrograma() {
 		return programa;
 	}
-
 	public void setPrograma(Programa programa) {
 		this.programa = programa;
 	}
-
 	public Programa getFiltro() {
 		return filtro;
 	}
-
 	public void setFiltro(Programa filtro) {
 		this.filtro = filtro;
 	}
+	public DetalhePrograma getDetalhePrograma() {
+		return detalhePrograma;
+	}
+	public void setDetalhePrograma(DetalhePrograma detalhePrograma) {
+		this.detalhePrograma = detalhePrograma;
+	}	
 }

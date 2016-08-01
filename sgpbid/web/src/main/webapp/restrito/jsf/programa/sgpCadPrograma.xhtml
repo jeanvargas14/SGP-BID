@@ -6,9 +6,14 @@
    xmlns:h="http://java.sun.com/jsf/html"
    xmlns:p="http://primefaces.org/ui"
    template="/templates/template.xhtml">
-   
+
   			<ui:define name="titulo"><p:outputLabel value="#{i18n['label.cadastro.programa']}" /></ui:define>  			
   			<ui:define name="conteudo">
+	   			
+	   			<h:panelGroup id="tableRenderPanel" rendered="#{not empty programaMB.programa.dePrograma}">
+		   			<ui:include src="menuPrograma.xhtml"  />
+    			</h:panelGroup>
+	   			
   				<h:form>
   					<h1 style="margin-top:10"></h1>
   					<p:panel id="painel" header="#{i18n['label.cadastro.programa']}">

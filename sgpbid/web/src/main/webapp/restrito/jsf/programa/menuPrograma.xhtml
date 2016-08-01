@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<f:loadBundle basename="mensagens" var="i18n"/>
+	<ui:composition>
+		<h:form id="formMenu">
+			<p:tabMenu id="tabMenu" activeIndex="#{tabMenuProgramaBean.index}">		        
+		        <p:menuitem value="#{i18n['label.menu.programa']}" action="#{tabMenuProgramaBean.tabPrograma}" />
+		        <p:menuitem value="#{i18n['label.menu.detalhe.programa']}" action="#{tabMenuProgramaBean.tabDetalhe}" />
+		    </p:tabMenu>
+		</h:form>
+	</ui:composition>
+</html>

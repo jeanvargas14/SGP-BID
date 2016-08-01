@@ -11,6 +11,7 @@ import javax.inject.Inject;
 
 import br.com.empresa.sgpbid.data.projeto.ProjetoDAO;
 import br.com.empresa.sgpbid.model.projeto.Projeto;
+import br.com.empresa.sgpbid.programa.DetalhePrograma;
 import br.com.empresa.sgpbid.programa.Programa;
 import br.com.empresa.sgpbid.programa.ProgramaDAO;
 
@@ -29,7 +30,7 @@ public class CadastrobasicoService implements ICadastrobasico, Serializable{
 	
 	@Inject
 	private ProgramaDAO programaDAO;
-	
+		
 	public CadastrobasicoService() {
 		System.out.println("Criando uma instancia do [CadastrobasicoService]");
 	}
@@ -63,5 +64,15 @@ public class CadastrobasicoService implements ICadastrobasico, Serializable{
 	@Override
 	public void salvarPrograma(Programa programa) {
 		programaDAO.save(programa);
+	}
+
+	@Override
+	public void salvarDetalheprograma(DetalhePrograma detalhePrograma) {
+		programaDAO.salvarDetalheprograma(detalhePrograma);
+	}
+
+	@Override
+	public DetalhePrograma findDetalheprograma(Integer cdPrograma) {
+		return programaDAO.findDetalheprograma(cdPrograma);
 	}
 }
