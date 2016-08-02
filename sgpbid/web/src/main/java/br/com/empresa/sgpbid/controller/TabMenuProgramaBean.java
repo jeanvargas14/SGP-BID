@@ -1,7 +1,6 @@
 package br.com.empresa.sgpbid.controller;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.inject.Inject;
  
 @ManagedBean
 @SessionScoped
@@ -12,10 +11,7 @@ public class TabMenuProgramaBean {
 	
 	private int index = TAB_PROGRAMA;
     
-	@Inject
-	private ProgramaMB programaMB;
-	
-    public int getIndex() {
+	public int getIndex() {
         return index;
     }
  
@@ -33,11 +29,11 @@ public class TabMenuProgramaBean {
         this.index = index;
         switch (index) {
 			case TAB_PROGRAMA:				
-				return programaMB.editar();
+				return ProgramaMB.CADASTRO_JSF;
 			case TAB_DETALHE:
-				return programaMB.detalhePrograma();	
+				return ProgramaMB.DETALHE_PROGRAMA_JSF;	
 			default:
-				return programaMB.abrirConPrograma();
+				return ProgramaMB.CONSULTA_JSF;
 		}
     }
 }
