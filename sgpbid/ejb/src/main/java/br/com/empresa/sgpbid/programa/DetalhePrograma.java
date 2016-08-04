@@ -88,19 +88,7 @@ public class DetalhePrograma {
 	}
 	public void setPrograma(Programa programa) {
 		this.programa = programa;
-	}
-	public String getSgTipoOperacao() {
-		return sgTipoOperacao;
-	}
-	public void setSgTipoOperacao(String sgTipoOperacao) {
-		this.sgTipoOperacao = sgTipoOperacao;
-	}
-	public char getTpfonte() {
-		return tpfonte;
-	}
-	public void setTpfonte(char tpfonte) {
-		this.tpfonte = tpfonte;
-	}
+	}	
 	public String getDeAtoCriacaoUnidade() {
 		return deAtoCriacaoUnidade;
 	}
