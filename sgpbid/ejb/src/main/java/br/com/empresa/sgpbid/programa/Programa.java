@@ -62,6 +62,7 @@ public class Programa {
 	private String deClassificacao;
 	
 	private Setor setor;
+	
 	/*
 	 * 
 	  cdSetor decimal(2,0) NOT NULL REFERENCES sgpSetor (cdSetor),
