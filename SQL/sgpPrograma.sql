@@ -9,4 +9,9 @@
   sgMutuario varchar (15) NOT NULL,
   nuAnoInicio decimal(4,0) NOT NULL,
   nuAnoFim decimal(4,0) NOT NULL,
-  CONSTRAINT XPKsgpPrograma PRIMARY KEY (cdPrograma,nuPrograma,nuOperacao));
+  sgTipoOperacao varchar (50) NOT NULL,
+  tpfonte char (1) NOT NULL,
+  cdSetor decimal(2,0) NOT NULL REFERENCES sgpSetor (cdSetor),
+  deClassificacao varchar (10) NULL,
+  CONSTRAINT XPKsgpPrograma PRIMARY KEY (cdPrograma),
+  UNIQUE (cdPrograma,nuPrograma,nuOperacao));

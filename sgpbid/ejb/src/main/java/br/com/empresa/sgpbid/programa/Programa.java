@@ -54,9 +54,24 @@ public class Programa {
 	private Integer nuAnoInicio;
 	@NotNull
 	private Integer nuAnoFim;
+	@NotNull
+	private String sgTipoOperacao;	
+	@NotNull
+	private char tpfonte;
+	
+	private String deClassificacao;
+	
+	private Setor setor;
+	/*
+	 * 
+	  cdSetor decimal(2,0) NOT NULL REFERENCES sgpSetor (cdSetor),
+	 */
+	
 	
 	@OneToOne(fetch=FetchType.LAZY, mappedBy="programa", optional=true)
 	private DetalhePrograma detalhePrograma;
+	
+	
 	
 	public Integer getCdPrograma() {
 		return cdPrograma;

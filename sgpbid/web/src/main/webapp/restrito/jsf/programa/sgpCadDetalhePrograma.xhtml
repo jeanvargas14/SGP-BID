@@ -39,27 +39,27 @@
 	  					<p:panel id="painelAprovacao" header="#{i18n['label.titulo.datas.chaves.posteriores.aprovacao']}">
 							<div class="ui-grid ui-grid-responsive">
 		   						<div class="ui-grid-col-2">
-				   					<p:outputLabel for="dtAprovacao" value="#{i18n['label.field.data.aprovacao']}"/>
+				   					<p:outputLabel for="dtAprovacao" value="#{i18n['label.field.data.aprovacao']}" indicateRequired="true"/>
 								</div>
 		   						<div class="ui-grid-col-4">
 									<p:calendar id="dtAprovacao" value="#{programaMB.detalhePrograma.dtAprovacao}" title="#{i18n['label.field.data.aprovacao']}" 
-										showOn="button" pattern="#{i18n['pattern.date']}" mask="true"/>
+										showOn="button" pattern="#{i18n['pattern.date']}" mask="true" required="true"/>
 			   					</div>			   					
 		   						<div class="ui-grid-col-2">
-				   					<p:outputLabel for="dtAssinatura" value="#{i18n['label.field.data.assinatura']}"/>
+				   					<p:outputLabel for="dtAssinatura" value="#{i18n['label.field.data.assinatura']}" indicateRequired="true"/>
 								</div>
 		   						<div class="ui-grid-col-4">
 									<p:calendar id="dtAssinatura" value="#{programaMB.detalhePrograma.dtAssinatura}" title="#{i18n['label.field.data.assinatura']}" 
-										showOn="button" pattern="#{i18n['pattern.date']}" mask="true"/>
+										showOn="button" pattern="#{i18n['pattern.date']}" mask="true" required="true"/>
 			   					</div>
 
 			   					
 		   						<div class="ui-grid-col-2">
-				   					<p:outputLabel for="dtElegibilidade" value="#{i18n['label.field.data.eligibilidade']}"/>
+				   					<p:outputLabel for="dtElegibilidade" value="#{i18n['label.field.data.eligibilidade']}" indicateRequired="true"/>
 								</div>
 		   						<div class="ui-grid-col-4">
 									<p:calendar id="dtElegibilidade" value="#{programaMB.detalhePrograma.dtElegibilidade}" title="#{i18n['label.field.data.eligibilidade']}" 
-										showOn="button" pattern="#{i18n['pattern.date']}" mask="true"/>
+										showOn="button" pattern="#{i18n['pattern.date']}" mask="true" required="true"/>
 			   					</div>   									   					
 		   						<div class="ui-grid-col-6">		   							
 								</div>		   						   									   					
@@ -85,16 +85,18 @@
 			   					</div>
 			   					
 			   					<div class="ui-grid-col-2">
-				   					<p:outputLabel value="#{i18n['label.field.data.original']}"/>
+				   					<p:outputLabel for="dtPrazoUltimoDesembOriginal" value="#{i18n['label.field.data.original']}"/>
 								</div>
 		   						<div class="ui-grid-col-4">
-									TODO #{i18n['label.field.data.original']}
+		   							<p:calendar id="dtPrazoUltimoDesembOriginal" value="#{programaMB.detalhePrograma.dtPrazoUltimoDesembOriginal}" title="#{i18n['label.field.data.original']}" 
+										showOn="button" pattern="#{i18n['pattern.date']}" mask="true"/>									
 			   					</div>			   					
 			   					<div class="ui-grid-col-2">
-				   					<p:outputLabel value="#{i18n['label.field.tipo.operacao']}"/>
+				   					<p:outputLabel for="dtPrazoUltimoDesembVigente" value="#{i18n['label.field.data.vigente']}"/>
 								</div>
 		   						<div class="ui-grid-col-4">
-									TODO #{i18n['label.field.tipo.operacao']}
+									<p:calendar id="dtPrazoUltimoDesembVigente" value="#{programaMB.detalhePrograma.dtPrazoUltimoDesembVigente}" title="#{i18n['label.field.data.vigente']}" 
+										showOn="button" pattern="#{i18n['pattern.date']}" mask="true"/>
 			   					</div>
 			   								   					
 		   						<div class="ui-grid-col-2">
@@ -112,7 +114,45 @@
 			   			</p:panel>			   			
 		   				<br />
 		   				
+		   				<p:panel id="painelEquipeBanco" header="#{i18n['label.titulo.equipe.projeto.banco']}">
+							<div class="ui-grid ui-grid-responsive">								
+			   					<div class="ui-grid-col-2">
+				   					<p:outputLabel for="" value="#{i18n['']}"/>
+								</div>
+		   						<div class="ui-grid-col-4">
+									
+			   					</div>			   					
+			   					
+			   				</div>
+			   			</p:panel>
+		   				<br />
 		   				
+		   				<p:panel id="painelCoordenacaoProjeto" header="#{i18n['label.titulo.unidade.coordenacao.projeto']}">
+							<div class="ui-grid ui-grid-responsive">								
+			   					<div class="ui-grid-col-2">
+				   					<p:outputLabel for="" value="#{i18n['']}"/>
+								</div>
+		   						<div class="ui-grid-col-4">
+									
+			   					</div>			   					
+			   					
+			   				</div>
+			   			</p:panel>
+			   			<br />
+			   			
+			   			<p:panel id="painelMonitoramentoAvaliacao" header="#{i18n['label.titulo.monitoramento.avaliacao']}">
+							<div class="ui-grid ui-grid-responsive">								
+			   					<div class="ui-grid-col-2">
+				   					<p:outputLabel for="" value="#{i18n['']}"/>
+								</div>
+		   						<div class="ui-grid-col-4">
+									
+			   					</div>			   					
+			   					
+			   				</div>
+			   			</p:panel>
+			   			<br />
+			   			
 		   			</div>		
    					<p align="right">
    						<p:commandButton value="#{i18n['botao.salvar']}" id="btSalvar" action="#{programaMB.salvarDetalheprograma}" 

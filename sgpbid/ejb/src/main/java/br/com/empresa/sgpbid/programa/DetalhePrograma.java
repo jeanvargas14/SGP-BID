@@ -38,10 +38,11 @@ public class DetalhePrograma {
 	@PrimaryKeyJoinColumn
 	private Programa programa;
 	
-	private String sgTipoOperacao;
-	private char tpfonte;
+	//Unidade de Coodernacao do Projeto
 	private String deAtoCriacaoUnidade;
 	private String deDesignacaoEquipe;
+	
+	
 	private String sgDivisao;
 	private Integer cdEspSetorial;
 	private Integer cdEspAlternativo;
