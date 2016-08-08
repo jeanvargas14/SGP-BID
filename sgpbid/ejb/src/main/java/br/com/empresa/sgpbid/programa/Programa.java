@@ -3,14 +3,12 @@
  */
 package br.com.empresa.sgpbid.programa;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
@@ -61,20 +59,18 @@ public class Programa {
 	@NotNull
 	private String sgTipoOperacao;	
 	@NotNull
-	private char tpfonte;
-	
-	private String deClassificacao;
+	private char tpfonte;	
+	@Size(max=10)
+	private String deClassificacao;	
+	@NotNull(message="Mensagem de teste ao nao informar o cdSetor")
+	private Integer cdSetor;
 	
 	@ManyToOne
-	@Column(name="cdSetor", insertable=false, updatable=false)
+	@JoinColumn(name="cdSetor", insertable=false, updatable=false)
 	private Setor setor;
 	
-	@OneToOne(fetch=FetchType.LAZY, mappedBy="programa", optional=true)
-	private DetalhePrograma detalhePrograma;
-	
 	public Programa() {
-		setSetor(new Setor());
-		setDetalhePrograma(new DetalhePrograma());		
+		setSetor(new Setor());			
 	}
 	public Integer getCdPrograma() {
 		return cdPrograma;
@@ -160,11 +156,11 @@ public class Programa {
 	public void setSetor(Setor setor) {
 		this.setor = setor;
 	}
-	public DetalhePrograma getDetalhePrograma() {
-		return detalhePrograma;
+	public Integer getCdSetor() {
+		return cdSetor;
 	}
-	public void setDetalhePrograma(DetalhePrograma detalhePrograma) {
-		this.detalhePrograma = detalhePrograma;
+	public void setCdSetor(Integer cdSetor) {
+		this.cdSetor = cdSetor;
 	}
 	@Override
 	public int hashCode() {
@@ -207,7 +203,7 @@ public class Programa {
 				+ nmProgramaIngles + ", nuPrograma=" + nuPrograma + ", nuOperacao=" + nuOperacao + ", dePrograma="
 				+ dePrograma + ", nmMutuario=" + nmMutuario + ", sgMutuario=" + sgMutuario + ", nuAnoInicio="
 				+ nuAnoInicio + ", nuAnoFim=" + nuAnoFim + ", sgTipoOperacao=" + sgTipoOperacao + ", tpfonte=" + tpfonte
-				+ ", deClassificacao=" + deClassificacao + ", setor=" + setor + ", detalhePrograma=" + detalhePrograma
+				+ ", deClassificacao=" + deClassificacao + ", setor=" + setor
 				+ "]";
 	}	
 }

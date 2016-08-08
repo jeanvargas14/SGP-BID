@@ -62,7 +62,43 @@
 					   					disabled="#{programaMB.disabled}"/>
 			   					</div>
 			   					
-		   				
+			   					<div class="ui-grid-col-2">
+			   						<p:outputLabel for="sgTipoOperacao" value="#{i18n['label.field.sigla.tipooperacao']}" indicateRequired="true"/>
+			   					</div>
+			   					<div class="ui-grid-col-10">
+					   				<p:inputText id="sgTipoOperacao" value="#{programaMB.programa.sgTipoOperacao}" required="true" title="#{i18n['label.field.sigla.tipooperacao']}"
+					   					disabled="#{programaMB.disabled}"/>
+			   					</div>
+			   					
+			   					<div class="ui-grid-col-2">
+			   						<p:outputLabel for="deClassificacao" value="#{i18n['label.field.classificacao']}"/>
+			   					</div>
+			   					<div class="ui-grid-col-10">
+					   				<p:inputText id="deClassificacao" value="#{programaMB.programa.deClassificacao}" title="#{i18n['label.field.classificacao']}"
+					   					disabled="#{programaMB.disabled}"/>
+			   					</div>
+			   							   				
+		   						<div class="ui-grid-col-2">
+				   					<p:outputLabel for="fonte" value="#{i18n['label.field.fonte']}" indicateRequired="true"/>
+								</div>
+		   						<div class="ui-grid-col-4">
+									<p:selectOneMenu id="fonte" value="#{programaMB.programa.tpfonte}" required="true">
+							            <f:selectItem itemLabel="#{i18n['label.field.selecione']}" itemValue="" />
+							            <f:selectItems value="#{programaMB.fontes}" />
+							        </p:selectOneMenu>
+			   					</div>
+			   					
+		   						<div class="ui-grid-col-2">
+				   					<p:outputLabel for="setor" value="#{i18n['label.field.setor']}" indicateRequired="true"/>
+								</div>
+		   						<div class="ui-grid-col-4">
+									<p:selectOneMenu id="setor" value="#{programaMB.programa.cdSetor}" required="true">
+							            <f:selectItem itemLabel="#{i18n['label.field.selecione']}" itemValue="" />
+							            <f:selectItems value="#{programaMB.setores}" />
+							        </p:selectOneMenu>
+			   					</div>
+			   					
+								
 		   						<div class="ui-grid-col-2">
 		   							<p:outputLabel for="dePrograma" value="#{i18n['label.field.observacao.programa']}" indicateRequired="true"/>
 			   					</div>

@@ -10,6 +10,7 @@ import javax.ejb.Local;
 import br.com.empresa.sgpbid.model.projeto.Projeto;
 import br.com.empresa.sgpbid.programa.DetalhePrograma;
 import br.com.empresa.sgpbid.programa.Programa;
+import br.com.empresa.sgpbid.setor.Setor;
 
 /**
  * 14 de jun de 2016
@@ -23,6 +24,7 @@ public interface ICadastrobasico {
 	void removeProjeto(Projeto projeto);
 	Projeto findById(Long id);
 	List<Projeto> findAllProjeto();
+	List<Setor> findAllSetor();
 	List<Projeto> findProjetos(Projeto filtro);
 	
 	List<Programa> findProgramas(Programa filtro);

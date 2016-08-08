@@ -19,6 +19,7 @@ import org.primefaces.event.SelectEvent;
 import br.com.empresa.sgpbid.programa.DetalhePrograma;
 import br.com.empresa.sgpbid.programa.Programa;
 import br.com.empresa.sgpbid.service.ICadastrobasico;
+import br.com.empresa.sgpbid.setor.Setor;
 
 /**
  * 26 de jul de 2016
@@ -41,6 +42,7 @@ public class ProgramaMB {
 	private Programa filtro;
 	
 	private List<SelectItem> fontes;
+	private List<SelectItem> setores;
 	
 	private DetalhePrograma detalhePrograma;
 	
@@ -59,8 +61,17 @@ public class ProgramaMB {
 		detalhePrograma = new DetalhePrograma();
 		disabled = false;
 		carregaFontes();
+		carregaSetores();
 	}
 	
+	private void carregaSetores() {
+		setores = new ArrayList<SelectItem>();
+		List<Setor> lista = cadastrobasicoService.findAllSetor();
+		for(Setor setor : lista){
+			setores.add(new SelectItem(setor.getCdSetor(), setor.getDeSetor(), setor.getSgSetor()));
+		}
+	}
+
 	private void carregaFontes() {
 		fontes = new ArrayList<SelectItem>();
 		fontes.add(new SelectItem('1', "CO", "CO"));
@@ -163,5 +174,13 @@ public class ProgramaMB {
 
 	public void setFontes(List<SelectItem> fontes) {
 		this.fontes = fontes;
+	}
+
+	public List<SelectItem> getSetores() {
+		return setores;
+	}
+
+	public void setSetores(List<SelectItem> setores) {
+		this.setores = setores;
 	}	
 }

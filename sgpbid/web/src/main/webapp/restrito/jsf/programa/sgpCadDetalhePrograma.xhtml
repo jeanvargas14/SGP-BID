@@ -98,18 +98,6 @@
 									<p:calendar id="dtPrazoUltimoDesembVigente" value="#{programaMB.detalhePrograma.dtPrazoUltimoDesembVigente}" title="#{i18n['label.field.data.vigente']}" 
 										showOn="button" pattern="#{i18n['pattern.date']}" mask="true"/>
 			   					</div>
-			   								   					
-		   						<div class="ui-grid-col-2">
-				   					<p:outputLabel for="fonte" value="#{i18n['label.field.fonte']}"/>
-								</div>
-		   						<div class="ui-grid-col-4">
-									<p:selectOneMenu id="fonte" value="#{programaMB.detalhePrograma.tpfonte}">
-							            <f:selectItem itemLabel="#{i18n['label.field.selecione']}" itemValue="" />
-							            <f:selectItems value="#{programaMB.fontes}" />
-							        </p:selectOneMenu>
-			   					</div>
-			   					<div class="ui-grid-col-6">			   						   					
-								</div>
 			   				</div>
 			   			</p:panel>			   			
 		   				<br />
