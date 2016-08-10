@@ -104,13 +104,26 @@
 		   				
 		   				<p:panel id="painelEquipeBanco" header="#{i18n['label.titulo.equipe.projeto.banco']}">
 							<div class="ui-grid ui-grid-responsive">								
-			   					<div class="ui-grid-col-2">
-				   					<p:outputLabel for="" value="#{i18n['']}"/>
+			   					<div class="ui-grid-col-12">
+				   					<p:dataTable var="aprovacao" value="#{programaMB.equipeAprovacao}" reflow="true" style="margin-top:20px">
+								        <f:facet name="header">
+								            #{i18n['label.field.composicao.equipe.banco']}
+								        </f:facet>
+								        <p:column headerText="#{i18n['label.field.nome']}">
+								            <h:outputText value="#{aprovacao}" />
+								        </p:column>
+								    </p:dataTable>
 								</div>
-		   						<div class="ui-grid-col-4">
-									
-			   					</div>			   					
-			   					
+		   						<div class="ui-grid-col-12">
+									<p:dataTable var="atual" value="#{programaMB.equipeAtual}" reflow="true" style="margin-top:20px">
+								        <f:facet name="header">
+								            #{i18n['label.field.composicao.equipe.atual']}
+								        </f:facet>
+								        <p:column headerText="#{i18n['label.field.nome']}">
+								            <h:outputText value="#{atual}" />
+								        </p:column>
+								    </p:dataTable>
+			   					</div>
 			   				</div>
 			   			</p:panel>
 		   				<br />
@@ -118,12 +131,11 @@
 		   				<p:panel id="painelCoordenacaoProjeto" header="#{i18n['label.titulo.unidade.coordenacao.projeto']}">
 							<div class="ui-grid ui-grid-responsive">								
 			   					<div class="ui-grid-col-2">
-				   					<p:outputLabel for="" value="#{i18n['']}"/>
+				   					
 								</div>
 		   						<div class="ui-grid-col-4">
 									
-			   					</div>			   					
-			   					
+			   					</div>
 			   				</div>
 			   			</p:panel>
 			   			<br />
@@ -131,7 +143,7 @@
 			   			<p:panel id="painelMonitoramentoAvaliacao" header="#{i18n['label.titulo.monitoramento.avaliacao']}">
 							<div class="ui-grid ui-grid-responsive">								
 			   					<div class="ui-grid-col-2">
-				   					<p:outputLabel for="" value="#{i18n['']}"/>
+				   					
 								</div>
 		   						<div class="ui-grid-col-4">
 									

@@ -38,6 +38,9 @@ public class ProgramaMB {
 	private ICadastrobasico cadastrobasicoService;
 	
 	private List<Programa> lista;
+	private List<String> equipeAprovacao;
+	private List<String> equipeAtual;
+	
 	private Programa programa;	
 	private Programa filtro;
 	
@@ -62,8 +65,24 @@ public class ProgramaMB {
 		disabled = false;
 		carregaFontes();
 		carregaSetores();
+		carregaEquipeAprovacao();
+		carregaEquipeAtual();
 	}
 	
+	private void carregaEquipeAtual() {
+		//TODO
+		equipeAtual = new ArrayList<String>();
+		equipeAtual.add("Marcia Silva Casseb");
+		equipeAtual.add("Pollyane Moreira Alves");
+		equipeAtual.add("Vicente J. Moles");
+	}
+	
+	private void carregaEquipeAprovacao() {		
+		//TODO
+		equipeAprovacao = new ArrayList<String>();		
+		equipeAprovacao.add("Jason Anthony Hobbs");
+	}
+
 	private void carregaSetores() {
 		setores = new ArrayList<SelectItem>();
 		List<Setor> lista = cadastrobasicoService.findAllSetor();
@@ -182,5 +201,21 @@ public class ProgramaMB {
 
 	public void setSetores(List<SelectItem> setores) {
 		this.setores = setores;
+	}
+
+	public List<String> getEquipeAprovacao() {
+		return equipeAprovacao;
+	}
+
+	public void setEquipeAprovacao(List<String> equipeAprovacao) {
+		this.equipeAprovacao = equipeAprovacao;
+	}
+
+	public List<String> getEquipeAtual() {
+		return equipeAtual;
+	}
+
+	public void setEquipeAtual(List<String> equipeAtual) {
+		this.equipeAtual = equipeAtual;
 	}	
 }

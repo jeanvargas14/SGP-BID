@@ -70,7 +70,7 @@ public class Programa {
 	private Setor setor;
 	
 	public Programa() {
-		setSetor(new Setor());			
+					
 	}
 	public Integer getCdPrograma() {
 		return cdPrograma;
