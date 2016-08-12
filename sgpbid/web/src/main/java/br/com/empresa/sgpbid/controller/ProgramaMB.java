@@ -145,6 +145,7 @@ public class ProgramaMB {
 	public void salvarDetalheprograma(){
 		try {
 			System.out.println("Executando metodo salvar detalhe programa ...");
+			detalhePrograma.setPrograma(programa);
 			cadastrobasicoService.salvarDetalheprograma(detalhePrograma);
 			FacesContext context = FacesContext.getCurrentInstance();
 	        context.addMessage(null, new FacesMessage("Sucesso",  "Operação realizada com sucesso"));			

@@ -1,4 +1,5 @@
 ﻿CREATE TABLE sgpDetalhePrograma(
+	cdDetalheprograma decimal (2,0) NOT NULL,
 	cdPrograma decimal (2,0) NOT NULL REFERENCES sgpPrograma (cdPrograma),
 	dtAprovacao date NULL,
   	dtAssinatura date NULL,
@@ -21,8 +22,6 @@
 	cdEspFinanceiro decimal (3,0) NULL,
 	vlOriginalAprovado decimal (12,2) NULL,
 	vlVigente decimal (12,2) NULL,
-  CONSTRAINT XPKsgpDetalhePrograma PRIMARY KEY 
-
-  (cdPrograma)
-
+  CONSTRAINT XPKsgpDetalhePrograma PRIMARY KEY (cdDetalheprograma),
+  UNIQUE (cdPrograma)
   );

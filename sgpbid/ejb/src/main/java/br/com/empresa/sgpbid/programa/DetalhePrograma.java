@@ -5,18 +5,15 @@ package br.com.empresa.sgpbid.programa;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
 
 /**
  * 21 de jul de 2016
@@ -27,16 +24,15 @@ import org.hibernate.annotations.Parameter;
 @Table(name="SGPDETALHEPROGRAMA")
 public class DetalhePrograma {
 
-	@GenericGenerator(name = "generator", strategy = "foreign", 
-			parameters = @Parameter(name = "property", value = "programa"))
-	@Id
-	@GeneratedValue(generator="generator")
-	@Column(name = "cdPrograma", unique = true, nullable = false)
-	private Integer cdPrograma;
-	
-	@OneToOne
-	@PrimaryKeyJoinColumn
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Integer cdDetalheprograma;
+    
+	@ManyToOne
+	@JoinColumn(name = "cdPrograma", unique = true, nullable = false, insertable=false, updatable=false)
 	private Programa programa;
+	
+	private Integer cdPrograma;
 	
 	//Unidade de Coodernacao do Projeto
 	private String deAtoCriacaoUnidade;
@@ -77,7 +73,13 @@ public class DetalhePrograma {
 	@Temporal(TemporalType.DATE)
 	private Date dtUltimaVisitaSupervisao;
 	
-	public Integer getCdPrograma() {
+	public Integer getCdDetalheprograma() {
+        return cdDetalheprograma;
+    }
+    public void setCdDetalheprograma(Integer cdDetalheprograma) {
+        this.cdDetalheprograma = cdDetalheprograma;
+    }
+    public Integer getCdPrograma() {
 		return cdPrograma;
 	}
 	public void setCdPrograma(Integer cdPrograma) {

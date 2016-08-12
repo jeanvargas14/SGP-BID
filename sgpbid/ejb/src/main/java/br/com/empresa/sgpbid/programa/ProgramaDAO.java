@@ -123,8 +123,12 @@ public class ProgramaDAO {
 			throw new IllegalArgumentException("Um detalhePrograma eh obrigatorio");
 		}
 		
-		try {
-			detalhePrograma = em.merge(detalhePrograma);
+		try {		    
+		    if(detalhePrograma.getCdDetalheprograma() == null){
+		        em.persist(detalhePrograma);
+		    } else {
+		        em.merge(detalhePrograma);
+		    }
 		} catch (Exception e) {
 			throw new RuntimeException("Erro ao persistir o detalhePrograma: "+detalhePrograma.toString(), e);
 		}
