@@ -57,6 +57,39 @@ ALTER TABLE sgpFinalidade ADD CONSTRAINT  XPKsgpFinalidade  PRIMARY KEY
   cdFinalidade 
 );
 
+CREATE TABLE sgpOrigem(
+	cdPrograma decimal(2,0) NOT NULL REFERENCES sgpPrograma (cdPrograma),
+	cdOrigem decimal(2,0) NOT NULL,
+	sgOrigem varchar(15) NOT NULL,
+	deOrigem varchar(100) NOT NULL,
+	flContrapartida decimal(1,0) NOT NULL,
+	CONSTRAINT XPKsgpOrigem PRIMARY KEY (cdPrograma, cdOrigem));
+
+INSERT INTO sgpOrigem VALUES (1,1,'BID','Banco Interamericano de Desenvolvimento',0)
+INSERT INTO sgpOrigem VALUES (1,2,'CNTP','Contrapartida',0)
+
+CREATE TABLE sgpComponente(
+	cdPrograma decimal(2,0) NOT NULL REFERENCES sgpPrograma (cdPrograma),
+	cdComponente decimal(3, 0) NOT NULL,
+	cdComponenteSuperior decimal(3,0) NULL,
+	cdAuxiliar varchar(20) NOT NULL,
+	deCategoria varchar(150) NOT NULL,
+	vlInicial decimal(11,2) NULL,
+	vlAtual decimal(11,2) NULL,
+	cdNivel decimal(2,0) NOT NULL,
+	flUltimoNivel decimal(1,0) NOT NULL,
+	flConcluido decimal(1, 0) NOT NULL,
+	CONSTRAINT XPKsgpComponente PRIMARY KEY (cdPrograma, cdComponente));
+	
+CREATE TABLE sgpComponenteOrigem(
+	cdPrograma decimal(2,0) NOT NULL REFERENCES sgpPrograma (cdPrograma),
+	cdComponente decimal(3, 0) NOT NULL,
+	cdOrigem decimal(2,0) NOT NULL REFERENCES sgpOrigem (cdOrigem),
+	vlInicial decimal(11,2) NOT NULL,
+	vlAtual decimal(11,2) NOT NULL,
+	peFinanciamento decimal(5,2) NOT NULL,
+	CONSTRAINT XPKsgpComponenteOrigem PRIMARY KEY (cdPrograma, cdComponente, cdOrigem));
+
 CREATE TABLE sgpUsuario( 
 	cdUsuario varchar (255) NOT NULL,
 	senha varchar (255) NOT NULL	
