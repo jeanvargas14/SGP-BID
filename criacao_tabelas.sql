@@ -83,7 +83,7 @@ CREATE TABLE sgpComponente(
 	
 CREATE TABLE sgpComponenteOrigem(
 	cdPrograma decimal(2,0) NOT NULL REFERENCES sgpPrograma (cdPrograma),
-	cdComponente decimal(3, 0) NOT NULL,
+	cdComponente decimal(3, 0) NOT NULL REFERENCES sgpComponente (cdComponente),
 	cdOrigem decimal(2,0) NOT NULL REFERENCES sgpOrigem (cdOrigem),
 	vlInicial decimal(11,2) NOT NULL,
 	vlAtual decimal(11,2) NOT NULL,
