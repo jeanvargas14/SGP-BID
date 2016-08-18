@@ -44,6 +44,13 @@ CREATE TABLE sgpPrograma(
   (cdPrograma)
 
   );
+CREATE TABLE sgpBanco (
+	cdBanco decimal(3,0) NOT NULL,
+	cdAuxiliar varchar(10) NOT NULL,
+	nmBanco varchar(50) NOT NULL,
+	sgBanco varchar(15) NULL,
+	CONSTRAINT XPKsgpBanco PRIMARY KEY (cdBanco)
+)
   
 CREATE TABLE sgpFinalidade(
   cdProjeto   decimal (2, 0) NOT NULL,
