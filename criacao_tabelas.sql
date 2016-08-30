@@ -1,20 +1,35 @@
+CREATE TABLE sgpSetor(
+	cdSetor decimal (2,0) NOT NULL,
+	deSetor varchar (100) NOT NULL,	
+	sgSetor varchar (15)  NULL,	
+	CONSTRAINT XPKsgpSetor PRIMARY KEY (cdSetor)
+);
+
+insert into sgpSetor values(1,'Saúde',null);
+
+insert into sgpPrograma values(1,'Teste Programa','Program Test','PR01','OP01','Descrição do programa','Fulano da Silva','FS',2010,2016,1,'1',1, 'descricao');
+
 CREATE TABLE sgpPrograma(
   cdPrograma   decimal (2,0) NOT NULL,
-  nmProjeto   varchar (150) NOT NULL,
-  nmProjetoIngles varchar (150) NOT NULL,
-  nuProjeto varchar(15) NOT NULL,
+  nmPrograma   varchar (150) NOT NULL,
+  nmProgramaIngles varchar (150) NULL,
+  nuPrograma varchar(15) NOT NULL,
   nuOperacao varchar(15) NOT NULL,
-  deProjeto varchar(2000) NOT NULL,
+  dePrograma varchar(2000) NOT NULL,
   nmMutuario varchar (100) NOT NULL,
   sgMutuario varchar (15) NOT NULL,
   nuAnoInicio decimal(4,0) NOT NULL,
   nuAnoFim decimal(4,0) NOT NULL,
-  CONSTRAINT XPKsgpPrograma PRIMARY KEY 
-  (
-  	cdPrograma
-  ));
+  sgTipoOperacao varchar (50) NOT NULL,
+  tpfonte char (1) NOT NULL,
+  cdSetor decimal(2,0) NOT NULL REFERENCES sgpSetor (cdSetor),
+  deClassificacao varchar (10) NULL,
+  CONSTRAINT XPKsgpPrograma PRIMARY KEY (cdPrograma),
+  UNIQUE (cdPrograma,nuPrograma,nuOperacao));
 
- CREATE TABLE sgpDetalhePrograma(
+
+CREATE TABLE sgpDetalhePrograma(
+	cdDetalheprograma decimal (2,0) NOT NULL,
 	cdPrograma decimal (2,0) NOT NULL REFERENCES sgpPrograma (cdPrograma),
 	dtAprovacao date NULL,
   	dtAssinatura date NULL,
@@ -28,9 +43,7 @@ CREATE TABLE sgpPrograma(
 	dtApresentacaoLRR date NULL,
 	dtAnaliseRiscoInicial date NULL,
 	dtRevisaoAnaliseRisco date NULL,
-	dtUltimaVisitaSupervisao date NULL,
-	sgTipoOperacao varchar (50) NULL,
-	tpfonte char (1) NULL,
+	dtUltimaVisitaSupervisao date NULL,	
 	deAtoCriacaoUnidade varchar (200) NULL,
 	deDesignacaoEquipe varchar (200) NULL,
 	sgDivisao varchar (30) NULL,
@@ -39,11 +52,10 @@ CREATE TABLE sgpPrograma(
 	cdEspFinanceiro decimal (3,0) NULL,
 	vlOriginalAprovado decimal (12,2) NULL,
 	vlVigente decimal (12,2) NULL,
-  CONSTRAINT XPKsgpDetalhePrograma PRIMARY KEY 
-
-  (cdPrograma)
-
+  CONSTRAINT XPKsgpDetalhePrograma PRIMARY KEY (cdDetalheprograma),
+  UNIQUE (cdPrograma)
   );
+
 CREATE TABLE sgpBanco (
 	cdBanco decimal(3,0) NOT NULL,
 	cdAuxiliar varchar(10) NOT NULL,
@@ -70,7 +82,8 @@ CREATE TABLE sgpOrigem(
 	sgOrigem varchar(15) NOT NULL,
 	deOrigem varchar(100) NOT NULL,
 	flContrapartida decimal(1,0) NOT NULL,
-	CONSTRAINT XPKsgpOrigem PRIMARY KEY (cdPrograma, cdOrigem));
+	CONSTRAINT XPKsgpOrigem PRIMARY KEY (cdOrigem),
+	UNIQUE (cdPrograma, cdOrigem));
 
 INSERT INTO sgpOrigem VALUES (1,1,'BID','Banco Interamericano de Desenvolvimento',0)
 INSERT INTO sgpOrigem VALUES (1,2,'CNTP','Contrapartida',0)
@@ -86,7 +99,8 @@ CREATE TABLE sgpComponente(
 	cdNivel decimal(2,0) NOT NULL,
 	flUltimoNivel decimal(1,0) NOT NULL,
 	flConcluido decimal(1, 0) NOT NULL,
-	CONSTRAINT XPKsgpComponente PRIMARY KEY (cdPrograma, cdComponente));
+	CONSTRAINT XPKsgpComponente PRIMARY KEY (cdComponente),
+	UNIQUE (cdPrograma, cdComponente));
 	
 CREATE TABLE sgpComponenteOrigem(
 	cdPrograma decimal(2,0) NOT NULL REFERENCES sgpPrograma (cdPrograma),
@@ -97,6 +111,8 @@ CREATE TABLE sgpComponenteOrigem(
 	peFinanciamento decimal(5,2) NOT NULL,
 	CONSTRAINT XPKsgpComponenteOrigem PRIMARY KEY (cdPrograma, cdComponente, cdOrigem));
 
+
+------- PARTE DOS USUARIOS DO SISTEMA AINDA FALTA MELHORAR ----
 CREATE TABLE sgpUsuario( 
 	cdUsuario varchar (255) NOT NULL,
 	senha varchar (255) NOT NULL	
