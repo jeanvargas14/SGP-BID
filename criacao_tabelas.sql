@@ -93,12 +93,13 @@ CREATE TABLE sgpComponente(
 	cdComponente decimal(3, 0) NOT NULL,
 	cdComponenteSuperior decimal(3,0) NULL,
 	cdAuxiliar varchar(20) NOT NULL,
-	deCategoria varchar(150) NOT NULL,
+	deComponente varchar(150) NOT NULL,
 	vlInicial decimal(11,2) NULL,
 	vlAtual decimal(11,2) NULL,
 	cdNivel decimal(2,0) NOT NULL,
 	flUltimoNivel decimal(1,0) NOT NULL,
 	flConcluido decimal(1, 0) NOT NULL,
+	flAnalitico decimal(1, 0) NOT NULL,
 	CONSTRAINT XPKsgpComponente PRIMARY KEY (cdComponente),
 	UNIQUE (cdPrograma, cdComponente));
 	

@@ -9,6 +9,8 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import br.com.empresa.sgpbid.componente.Componente;
+import br.com.empresa.sgpbid.componente.ComponenteDAO;
 import br.com.empresa.sgpbid.data.projeto.ProjetoDAO;
 import br.com.empresa.sgpbid.model.projeto.Projeto;
 import br.com.empresa.sgpbid.programa.DetalhePrograma;
@@ -35,6 +37,9 @@ public class CadastrobasicoService implements ICadastrobasico, Serializable{
 		
 	@Inject
 	private SetorDAO setorDAO;
+	
+	@Inject
+	private ComponenteDAO componenteDAO;
 	
 	public CadastrobasicoService() {
 		System.out.println("Criando uma instancia do [CadastrobasicoService]");
@@ -85,4 +90,9 @@ public class CadastrobasicoService implements ICadastrobasico, Serializable{
 	public List<Setor> findAllSetor() {
 		return setorDAO.findAll();
 	}
+
+    @Override
+    public List<Componente> findAllComponentesSuperiores(Integer cdPrograma) {
+        return componenteDAO.findAllComponentesSuperiores(cdPrograma);
+    }
 }

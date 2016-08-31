@@ -25,12 +25,14 @@ public class Componente {
 	private Integer cdPrograma;
 	private Integer cdComponentesuperior;
 	private String 	cdAuxiliar;
-	private String 	deCategoria;
+	private String 	deComponente;
 	private Double	vlInicial;
 	private Double	vlAtual;
 	private Integer cdNivel;
 	private Integer flUltimonivel;
 	private Integer flConcluido;
+	private Integer flAnalitico;
+	
 	public Integer getCdComponente() {
 		return cdComponente;
 	}
@@ -60,14 +62,14 @@ public class Componente {
 	}
 	public void setCdAuxiliar(String cdAuxiliar) {
 		this.cdAuxiliar = cdAuxiliar;
-	}
-	public String getDeCategoria() {
-		return deCategoria;
-	}
-	public void setDeCategoria(String deCategoria) {
-		this.deCategoria = deCategoria;
-	}
-	public Double getVlInicial() {
+	}	
+	public String getDeComponente() {
+        return deComponente;
+    }
+    public void setDeComponente(String deComponente) {
+        this.deComponente = deComponente;
+    }
+    public Double getVlInicial() {
 		return vlInicial;
 	}
 	public void setVlInicial(Double vlInicial) {
@@ -97,4 +99,10 @@ public class Componente {
 	public void setFlConcluido(Integer flConcluido) {
 		this.flConcluido = flConcluido;
 	}
+    public Integer getFlAnalitico() {
+        return flAnalitico;
+    }
+    public void setFlAnalitico(Integer flAnalitico) {
+        this.flAnalitico = flAnalitico;
+    }
 }

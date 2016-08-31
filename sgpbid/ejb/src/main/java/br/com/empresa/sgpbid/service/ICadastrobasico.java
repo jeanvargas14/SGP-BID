@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import br.com.empresa.sgpbid.componente.Componente;
 import br.com.empresa.sgpbid.model.projeto.Projeto;
 import br.com.empresa.sgpbid.programa.DetalhePrograma;
 import br.com.empresa.sgpbid.programa.Programa;
@@ -32,5 +33,6 @@ public interface ICadastrobasico {
 	
 	void salvarDetalheprograma(DetalhePrograma detalhePrograma);
 	
-	DetalhePrograma findDetalheprograma(Integer cdPrograma);
+	DetalhePrograma findDetalheprograma(Integer cdPrograma);    
+    List<Componente> findAllComponentesSuperiores(Integer cdPrograma);
 }
