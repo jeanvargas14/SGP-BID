@@ -8,6 +8,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import br.com.empresa.sgpbid.componente.Componente;
+import br.com.empresa.sgpbid.componente.Componenteorigem;
 import br.com.empresa.sgpbid.model.projeto.Projeto;
 import br.com.empresa.sgpbid.programa.DetalhePrograma;
 import br.com.empresa.sgpbid.programa.Programa;
@@ -29,10 +30,18 @@ public interface ICadastrobasico {
 	List<Projeto> findProjetos(Projeto filtro);
 	
 	List<Programa> findProgramas(Programa filtro);
-	void salvarPrograma(Programa programa);
-	
+	void salvarPrograma(Programa programa);	
 	void salvarDetalheprograma(DetalhePrograma detalhePrograma);
 	
-	DetalhePrograma findDetalheprograma(Integer cdPrograma);    
+	DetalhePrograma findDetalheprograma(Integer cdPrograma);
+	
+	/** Metodos dos componentes*/
     List<Componente> findAllComponentesSuperiores(Integer cdPrograma);
+    List<Componente> findAllComponentes(Programa programa);
+    void salvarComponente(Componente componente);
+    /**
+     * @param programa
+     * @return
+     */
+    List<Componenteorigem> findAllComponenteorigem(Programa programa);
 }

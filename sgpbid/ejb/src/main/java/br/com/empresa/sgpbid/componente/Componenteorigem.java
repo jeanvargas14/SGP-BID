@@ -22,6 +22,10 @@ public class Componenteorigem {
 	@JoinColumn(name="cdOrigem", insertable=false, updatable=false)
 	private Origem origem;
 	
+	@ManyToOne
+	@JoinColumn(name="cdComponente", insertable=false, updatable=false)
+	private Componente componente;
+	
 	public Componenteorigem() {
 		setComponenteorigemPK(new ComponenteorigemPK());
 		setOrigem(new Origem());		
@@ -55,5 +59,11 @@ public class Componenteorigem {
     }
     public void setOrigem(Origem origem) {
         this.origem = origem;
+    }
+    public Componente getComponente() {
+        return componente;
+    }
+    public void setComponente(Componente componente) {
+        this.componente = componente;
     }
 }

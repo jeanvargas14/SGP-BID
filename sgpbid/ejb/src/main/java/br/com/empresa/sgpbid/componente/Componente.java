@@ -105,4 +105,7 @@ public class Componente {
     public void setFlAnalitico(Integer flAnalitico) {
         this.flAnalitico = flAnalitico;
     }
+    public String getDeComponenteFmt(){
+        return cdAuxiliar + " - " + deComponente;
+    }
 }

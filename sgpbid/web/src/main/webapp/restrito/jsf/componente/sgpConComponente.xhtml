@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:p="http://primefaces.org/ui"
+   template="/templates/template.xhtml">
+   
+   			<ui:define name="titulo"><h:outputText value="#{i18n['label.consulta.componentes']}" /></ui:define>
+   			<ui:define name="conteudo">
+   				<h:form>   					
+				    <p:panel id="painelIdentificacao" header="#{i18n['label.field.identificacao']}">
+						<div class="ui-grid ui-grid-responsive">
+	   						<div class="ui-grid-col-2">
+			   					<p:outputLabel for="nuPrograma" value="#{i18n['label.field.numero.programa']}"/>
+							</div>
+	   						<div class="ui-grid-col-4">
+								<p:inputText id="nuPrograma" value="#{componenteMB.programa.nuPrograma}" title="#{i18n['label.field.numero.programa']}" disabled="true"/>
+		   					</div>
+		   					<div class="ui-grid-col-2">
+		   						<p:outputLabel for="nuOperacao" value="#{i18n['label.field.numero.operacao']}"/>
+		   					</div>					
+							<div class="ui-grid-col-4">
+		   						<p:inputText id="nuOperacao" value="#{componenteMB.programa.nuOperacao}" title="#{i18n['label.field.numero.operacao']}" disabled="true"/>
+							</div>
+	   					</div>
+	   				</p:panel>	   				
+	   				<br />
+	   				
+	   				<!-- TODO .... -->
+   					<p:panel id="panel" header="#{i18n['componente']}">
+			            <p align="right">
+			            	<p:commandButton value="Consultar" id="btConsultar" action="#{programaMB.consultarPrograma}" styleClass="ui-priority-primary" 
+			            		icon="fa fa-search"	ajax="false" />
+			            	<p:commandButton value="Novo" id="btNovo" action="#{programaMB.novo}" ajax="false" icon="fa fa-newspaper-o"/>
+			            </p>	   					
+	   					<br />	   					
+	   					<p:dataTable var="row" value="#{componenteMB.componenteOrigemList}" >
+	   						
+						    <p:column headerText="#{i18n['label.field.componentes']}" width="200">
+						        <h:outputText value="#{row.componente.deComponenteFmt}" />
+						    </p:column>
+						 
+						    <p:column headerText="#{i18n['label.field.bid']}">
+						        <h:outputText value="#{row.origem.}" />
+						    </p:column>
+						    <p:column headerText="#{i18n['label.field.local']}">
+						        <h:outputText value="#{}" />
+						    </p:column>
+						    <p:column headerText="#{i18n['label.field.total']}">
+						        <h:outputText value="#{}" />
+						    </p:column>
+						    <p:column headerText="%">
+						        <h:outputText value="#{}" />
+						    </p:column>
+						    
+						    <p:column style="width:32px;text-align: center">
+					             <p:commandButton icon="fa fa-edit" title="Etidar" action="#{programaMB.editar}" styleClass="ui-priority-primary">
+					                <f:setPropertyActionListener value="#{programa}" target="#{programaMB.programa}" />
+					            </p:commandButton>
+					        </p:column>
+						</p:dataTable>					
+   					</p:panel>
+   				</h:form>
+   			</ui:define>
+</ui:composition>

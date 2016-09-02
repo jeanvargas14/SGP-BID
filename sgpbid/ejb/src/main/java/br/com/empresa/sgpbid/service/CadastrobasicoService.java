@@ -11,6 +11,7 @@ import javax.inject.Inject;
 
 import br.com.empresa.sgpbid.componente.Componente;
 import br.com.empresa.sgpbid.componente.ComponenteDAO;
+import br.com.empresa.sgpbid.componente.Componenteorigem;
 import br.com.empresa.sgpbid.data.projeto.ProjetoDAO;
 import br.com.empresa.sgpbid.model.projeto.Projeto;
 import br.com.empresa.sgpbid.programa.DetalhePrograma;
@@ -94,5 +95,20 @@ public class CadastrobasicoService implements ICadastrobasico, Serializable{
     @Override
     public List<Componente> findAllComponentesSuperiores(Integer cdPrograma) {
         return componenteDAO.findAllComponentesSuperiores(cdPrograma);
+    }
+
+    @Override
+    public List<Componente> findAllComponentes(Programa programa) {
+        return componenteDAO.findAll(programa);
+    }
+
+    @Override
+    public void salvarComponente(Componente componente) {
+        componenteDAO.save(componente);        
+    }
+
+    @Override
+    public List<Componenteorigem> findAllComponenteorigem(Programa programa) {
+        return componenteDAO.findAllComponenteorigem(programa);
     }
 }
