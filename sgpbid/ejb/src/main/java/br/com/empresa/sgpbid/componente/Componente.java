@@ -1,5 +1,7 @@
 package br.com.empresa.sgpbid.componente;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,8 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import br.com.empresa.sgpbid.programa.Programa;
+import br.com.empresa.sgpbid.util.Constantes;
 
 @Entity
 @Table(name="SGPCOMPONENTE")
@@ -32,6 +36,9 @@ public class Componente {
 	private Integer flUltimonivel;
 	private Integer flConcluido;
 	private Integer flAnalitico;
+	
+	@Transient
+	private List<Componenteorigem> componentesorigem;
 	
 	public Integer getCdComponente() {
 		return cdComponente;
@@ -108,4 +115,31 @@ public class Componente {
     public String getDeComponenteFmt(){
         return cdAuxiliar + " - " + deComponente;
     }
+	public List<Componenteorigem> getComponentesorigem() {
+		return componentesorigem;
+	}
+	public void setComponentesorigem(List<Componenteorigem> componentesorigem) {
+		this.componentesorigem = componentesorigem;
+	}
+	public Componenteorigem getBid(){
+		return getComponenteorigem(Constantes.BID);
+	}
+	public Componenteorigem getCntp(){
+		return getComponenteorigem(Constantes.CNTP);
+	}
+	public Double getVlTotal(){
+		Double vlTotal = 0D;
+		for(Componenteorigem co : componentesorigem){
+			vlTotal += co.getVlAtual();
+		}
+		return vlTotal;
+	}
+	private Componenteorigem getComponenteorigem(int cdOrigem){
+		for(Componenteorigem co : componentesorigem){
+			if(co.getOrigem().getCdOrigem().intValue() == cdOrigem){
+				return co;
+			}
+		}
+		return null;
+	}
 }

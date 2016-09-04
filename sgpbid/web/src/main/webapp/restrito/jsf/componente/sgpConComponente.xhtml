@@ -28,36 +28,36 @@
 	   				</p:panel>	   				
 	   				<br />
 	   				
-	   				<!-- TODO .... -->
-   					<p:panel id="panel" header="#{i18n['componente']}">
+	   				
+   					<p:panel id="panel" header="#{i18n['label.field.componentes']}">
 			            <p align="right">
-			            	<p:commandButton value="Consultar" id="btConsultar" action="#{programaMB.consultarPrograma}" styleClass="ui-priority-primary" 
+			            	<p:commandButton value="Concluir" id="btConcluir" action="#{componenteMB.concluir}" styleClass="ui-priority-secundary" 
 			            		icon="fa fa-search"	ajax="false" />
-			            	<p:commandButton value="Novo" id="btNovo" action="#{programaMB.novo}" ajax="false" icon="fa fa-newspaper-o"/>
+			            	<p:commandButton value="Novo" id="btNovo" action="#{componenteMB.novo}" ajax="false" icon="fa fa-newspaper-o" styleClass="ui-priority-primary"/>
 			            </p>	   					
 	   					<br />	   					
-	   					<p:dataTable var="row" value="#{componenteMB.componenteOrigemList}" >
+	   					<p:dataTable var="row" value="#{componenteMB.componentes}" >
 	   						
 						    <p:column headerText="#{i18n['label.field.componentes']}" width="200">
-						        <h:outputText value="#{row.componente.deComponenteFmt}" />
+						        <h:outputText value="#{row.deComponenteFmt}" />
 						    </p:column>
 						 
 						    <p:column headerText="#{i18n['label.field.bid']}">
-						        <h:outputText value="#{row.origem.}" />
+						        <h:outputText value="#{row.bid.vlAtual}" />
 						    </p:column>
 						    <p:column headerText="#{i18n['label.field.local']}">
-						        <h:outputText value="#{}" />
+						        <h:outputText value="#{row.cntp.vlAtual}" />
 						    </p:column>
 						    <p:column headerText="#{i18n['label.field.total']}">
-						        <h:outputText value="#{}" />
+						        <h:outputText value="#{row.vlTotal}" />
 						    </p:column>
 						    <p:column headerText="%">
-						        <h:outputText value="#{}" />
+						        <h:outputText value="" />
 						    </p:column>
 						    
 						    <p:column style="width:32px;text-align: center">
-					             <p:commandButton icon="fa fa-edit" title="Etidar" action="#{programaMB.editar}" styleClass="ui-priority-primary">
-					                <f:setPropertyActionListener value="#{programa}" target="#{programaMB.programa}" />
+					             <p:commandButton icon="fa fa-edit" title="Etidar" action="#{componenteMB.editar}" styleClass="ui-priority-primary">
+					                <f:setPropertyActionListener value="#{row}" target="#{componenteMB.componente}" />
 					            </p:commandButton>
 					        </p:column>
 						</p:dataTable>					

@@ -43,5 +43,5 @@ public interface ICadastrobasico {
      * @param programa
      * @return
      */
-    List<Componenteorigem> findAllComponenteorigem(Programa programa);
+    List<Componenteorigem> findAllComponenteorigem(Componente componente);
 }

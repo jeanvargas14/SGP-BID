@@ -32,14 +32,16 @@ public class ComponenteMB {
     @Inject
     private ICadastrobasico cadastrobasicoService;
     private Componente componente;
-    private List<Componenteorigem> componenteOrigemList;
+    private List<Componente> componentes;
     private List<SelectItem> componentesSuperiores;
     private Programa programa;
     
     @PostConstruct
     public void init(){
-        System.out.println("[ProgramaMB] init ...");
-        componenteOrigemList = new ArrayList<Componenteorigem>();
+        System.out.println("[ComponenteMB] init ...");
+        componente = new Componente();
+        componente.setComponentesorigem(new ArrayList<Componenteorigem>());
+        componentes = new ArrayList<Componente>();
         carregacomponentesSuperiores();
     }
     
@@ -52,10 +54,21 @@ public class ComponenteMB {
     }
     
     public String abrirConComponente(){
-        componenteOrigemList = cadastrobasicoService.findAllComponenteorigem(programa);
+        componentes = cadastrobasicoService.findAllComponentes(programa);
         return CONSULTA_JSF;
     }
-
+    public String novo(){
+    	return CADASTRO_JSF;
+    }
+    public String editar(){
+    	return CADASTRO_JSF;
+    }
+    public String save(){
+    	return CADASTRO_JSF;
+    }
+    public String concluir(){
+    	return CONSULTA_JSF;
+    }
     public Componente getComponente() {
         return componente;
     }
@@ -80,11 +93,11 @@ public class ComponenteMB {
         this.programa = programa;
     }
 
-    public List<Componenteorigem> getComponenteOrigemList() {
-        return componenteOrigemList;
-    }
+	public List<Componente> getComponentes() {
+		return componentes;
+	}
 
-    public void setComponenteOrigemList(List<Componenteorigem> componenteOrigemList) {
-        this.componenteOrigemList = componenteOrigemList;
-    }       
+	public void setComponentes(List<Componente> componentes) {
+		this.componentes = componentes;
+	}       
 }

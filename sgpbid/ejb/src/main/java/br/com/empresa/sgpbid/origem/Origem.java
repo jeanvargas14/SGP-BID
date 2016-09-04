@@ -26,6 +26,7 @@ public class Origem {
 	private String  sgOrigem;
 	private String  deOrigem;
 	private Integer flContrapartida;
+	
 	public Integer getCdOrigem() {
 		return cdOrigem;
 	}

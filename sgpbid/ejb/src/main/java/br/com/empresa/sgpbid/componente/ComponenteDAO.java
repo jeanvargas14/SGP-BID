@@ -79,6 +79,10 @@ public class ComponenteDAO {
             query.setParameter("cdprograma", programa.getCdPrograma());
             
             componentes = query.getResultList();
+            
+            for(Componente comp : componentes){
+            	comp.setComponentesorigem(findAllComponenteorigem(comp));
+            }
         } catch (Exception e) {
             throw new RuntimeException("Erro ao buscar todos componente, do programa: "+programa.getCdPrograma(), e);
         }
@@ -108,18 +112,18 @@ public class ComponenteDAO {
      * @param programa
      * @return
      */
-    public List<Componenteorigem> findAllComponenteorigem(Programa programa) {        
+    public List<Componenteorigem> findAllComponenteorigem(Componente componente) {        
         try {
             StringBuilder hql = new StringBuilder();
             hql.append(" from Componenteorigem co ");
-            hql.append(" INNER JOIN FETCH co.componente c ");
             hql.append(" INNER JOIN FETCH co.origem o ");
             hql.append(" where ");            
-            hql.append(" co.componenteorigemPK.cdPrograma = :cdprograma ");
+            hql.append(" co.componenteorigemPK.cdComponente = :cdcomponente ");
+            hql.append(" and co.componenteorigemPK.cdPrograma = :cdprograma ");
             
             TypedQuery<Componenteorigem> query = em.createQuery(hql.toString(),Componenteorigem.class);            
-            
-            query.setParameter("cdprograma", programa.getCdPrograma());
+            query.setParameter("cdcomponente", componente.getCdComponente());
+            query.setParameter("cdprograma", componente.getCdPrograma());
             
             return query.getResultList();
         } catch (Exception e) {

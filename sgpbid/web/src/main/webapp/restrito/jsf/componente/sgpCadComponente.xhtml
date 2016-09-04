@@ -7,126 +7,39 @@
    xmlns:p="http://primefaces.org/ui"
    template="/templates/template.xhtml">
 
-  			<ui:define name="titulo"><p:outputLabel value="#{i18n['label.cadastro.programa']}" /></ui:define>  			
+  			<ui:define name="titulo"><p:outputLabel value="#{i18n['label.cadastro.componente']}" /></ui:define>  			
   			<ui:define name="conteudo">
-	   			
-	   			<h:panelGroup id="tableRenderPanel" rendered="#{not empty programaMB.programa.dePrograma}">
-		   			<ui:include src="menuPrograma.xhtml"  />
-    			</h:panelGroup>
-	   			
-  				<h:form>
+	   			<h:form>
   					<h1 style="margin-top:10"></h1>
-  					<p:panel id="painel" header="#{i18n['label.cadastro.programa']}">
+  					<p:panel id="painel" header="#{i18n['label.cadastro.componente']}">
 	  					
 	  					<p:messages autoUpdate="true"/>
 	  					   				
-						<div class="ui-fluid">						
+						<p:panel id="painelIdentificacao" header="#{i18n['label.field.identificacao']}">
 							<div class="ui-grid ui-grid-responsive">
 		   						<div class="ui-grid-col-2">
-				   					<p:outputLabel for="nuPrograma" value="#{i18n['label.field.numero.programa']}" indicateRequired="true"/>
+				   					<p:outputLabel for="nuPrograma" value="#{i18n['label.field.numero.programa']}"/>
 								</div>
 		   						<div class="ui-grid-col-4">
-									<p:inputText id="nuPrograma" value="#{programaMB.programa.nuPrograma}" required="true" title="#{i18n['label.field.numero.programa']}"
-										disabled="#{programaMB.disabled}"/>
+									<p:inputText id="nuPrograma" value="#{componenteMB.programa.nuPrograma}" title="#{i18n['label.field.numero.programa']}" disabled="true"/>
 			   					</div>
 			   					<div class="ui-grid-col-2">
-			   						<p:outputLabel for="nuOperacao" value="#{i18n['label.field.numero.operacao']}" indicateRequired="true"/>
+			   						<p:outputLabel for="nuOperacao" value="#{i18n['label.field.numero.operacao']}"/>
 			   					</div>					
 								<div class="ui-grid-col-4">
-			   						<p:inputText id="nuOperacao" value="#{programaMB.programa.nuOperacao}" required="true" title="#{i18n['label.field.numero.operacao']}"
-			   							disabled="#{programaMB.disabled}"/>
+			   						<p:inputText id="nuOperacao" value="#{componenteMB.programa.nuOperacao}" title="#{i18n['label.field.numero.operacao']}" disabled="true"/>
 								</div>
-								
-		   						<div class="ui-grid-col-2">	   					
-			   						<p:outputLabel for="nmPrograma" value="#{i18n['label.field.nome.programa']}" indicateRequired="true"/>
-			   					</div>			   					
-			   					<div class="ui-grid-col-10">
-					   				<p:inputText id="nmPrograma" value="#{programaMB.programa.nmPrograma}" required="true" title="#{i18n['label.field.nome.programa']}"
-					   					disabled="#{programaMB.disabled}"/>
-			   					</div>
-			   				
-			   					
-			   					<div class="ui-grid-col-2">
-			   						<p:outputLabel for="nmMutuario" value="#{i18n['label.field.nome.mutuario']}" indicateRequired="true"/>
-			   					</div>
-			   					<div class="ui-grid-col-10">
-			   						<p:inputText id="nmMutuario" value="#{programaMB.programa.nmMutuario}" required="true" title="#{i18n['label.field.nome.mutuario']}"
-			   							disabled="#{programaMB.disabled}"/>
-			   					</div>
-			   					
-			   					<div class="ui-grid-col-2">
-			   						<p:outputLabel for="sgMutuario" value="#{i18n['label.field.sigla.mutuario']}" indicateRequired="true"/>
-			   					</div>
-			   					<div class="ui-grid-col-10">
-					   				<p:inputText id="sgMutuario" value="#{programaMB.programa.sgMutuario}" required="true" title="#{i18n['label.field.sigla.mutuario']}"
-					   					disabled="#{programaMB.disabled}"/>
-			   					</div>
-			   					
-			   					<div class="ui-grid-col-2">
-			   						<p:outputLabel for="sgTipoOperacao" value="#{i18n['label.field.sigla.tipooperacao']}" indicateRequired="true"/>
-			   					</div>
-			   					<div class="ui-grid-col-10">
-					   				<p:inputText id="sgTipoOperacao" value="#{programaMB.programa.sgTipoOperacao}" required="true" title="#{i18n['label.field.sigla.tipooperacao']}"
-					   					disabled="#{programaMB.disabled}"/>
-			   					</div>
-			   					
-			   					<div class="ui-grid-col-2">
-			   						<p:outputLabel for="deClassificacao" value="#{i18n['label.field.classificacao']}"/>
-			   					</div>
-			   					<div class="ui-grid-col-10">
-					   				<p:inputText id="deClassificacao" value="#{programaMB.programa.deClassificacao}" title="#{i18n['label.field.classificacao']}"
-					   					disabled="#{programaMB.disabled}"/>
-			   					</div>
-			   							   				
-		   						<div class="ui-grid-col-2">
-				   					<p:outputLabel for="fonte" value="#{i18n['label.field.fonte']}" indicateRequired="true"/>
-								</div>
-		   						<div class="ui-grid-col-4">
-									<p:selectOneMenu id="fonte" value="#{programaMB.programa.tpfonte}" required="true">
-							            <f:selectItem itemLabel="#{i18n['label.field.selecione']}" itemValue="" />
-							            <f:selectItems value="#{programaMB.fontes}" />
-							        </p:selectOneMenu>
-			   					</div>
-			   					
-		   						<div class="ui-grid-col-2">
-				   					<p:outputLabel for="setor" value="#{i18n['label.field.setor']}" indicateRequired="true"/>
-								</div>
-		   						<div class="ui-grid-col-4">
-									<p:selectOneMenu id="setor" value="#{programaMB.programa.cdSetor}" required="true">
-							            <f:selectItem itemLabel="#{i18n['label.field.selecione']}" itemValue="" />
-							            <f:selectItems value="#{programaMB.setores}" />
-							        </p:selectOneMenu>
-			   					</div>
-			   					
-								
-		   						<div class="ui-grid-col-2">
-		   							<p:outputLabel for="dePrograma" value="#{i18n['label.field.observacao.programa']}" indicateRequired="true"/>
-			   					</div>
-			   					<div class="ui-grid-col-10">
-					   				<p:inputTextarea id="dePrograma" value="#{programaMB.programa.dePrograma}" rows="6" required="true" autoResize="false" title="#{i18n['label.field.observacao.programa']}"/>
-			   					</div>
-			   					
-			   					<div class="ui-grid-col-2">
-			   						<p:outputLabel for="nuAnoInicio" value="#{i18n['label.field.ano.inicio']}" indicateRequired="true"/>
-			   					</div>
-								<div class="ui-grid-col-4">			   						
-			   						<p:inputMask mask="9999" id="nuAnoInicio" value="#{programaMB.programa.nuAnoInicio}" required="true" size="10" title="#{i18n['label.field.ano.inicio']}"
-			   							disabled="#{programaMB.disabled}"/>
-			   					</div>
-			   					<div class="ui-grid-col-2">
-			   						<p:outputLabel for="nuAnoFim" value="#{i18n['label.field.ano.fim']}" indicateRequired="true"/>
-		   						</div>
-		   						<div class="ui-grid-col-4">
-		   							<p:inputMask mask="9999" id="nuAnoFim" value="#{programaMB.programa.nuAnoFim}" required="true" size="10" title="#{i18n['label.field.ano.fim']}"
-		   								disabled="#{programaMB.disabled}"/>
-		   						</div>
-		   					</div>		   					
-			   			</div>		
+		   					</div>
+		   				</p:panel>	   				
+		   				<br />
+		   				
+		   				
+		   						
 	   					<p align="right">
-	   						<p:commandButton value="#{i18n['botao.salvar']}" id="btSalvar" update="painel" action="#{programaMB.save}" 
+	   						<p:commandButton value="#{i18n['botao.salvar']}" id="btSalvar" update="painel" action="#{componenteMB.save}" 
 	   							icon="fa fa-save" styleClass="ui-priority-primary" validateClient="true"/>
 	   							
-	   						<p:commandButton value="#{i18n['botao.voltar']}" id="btVoltar" update="messages" action="#{programaMB.abrirConPrograma}" 
+	   						<p:commandButton value="#{i18n['botao.voltar']}" id="btVoltar" update="messages" action="#{componenteMB.abrirConComponente}" 
 	   							icon="fa fa-reply" ajax="false" immediate="true"/>
 	   					</p>
 	   				</p:panel>

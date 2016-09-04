@@ -108,7 +108,7 @@ public class CadastrobasicoService implements ICadastrobasico, Serializable{
     }
 
     @Override
-    public List<Componenteorigem> findAllComponenteorigem(Programa programa) {
-        return componenteDAO.findAllComponenteorigem(programa);
+    public List<Componenteorigem> findAllComponenteorigem(Componente componente) {
+        return componenteDAO.findAllComponenteorigem(componente);
     }
 }
