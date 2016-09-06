@@ -37,6 +37,9 @@ public class ProgramaMB {
 	@Inject
 	private ICadastrobasico cadastrobasicoService;
 	
+	@Inject
+	private ComponenteMB componenteMB;
+	
 	private List<Programa> lista;
 	private List<String> equipeAprovacao;
 	private List<String> equipeAtual;
@@ -122,6 +125,11 @@ public class ProgramaMB {
 	public String detalhePrograma(){
 		detalhePrograma = cadastrobasicoService.findDetalheprograma(programa.getCdPrograma()); 
 		return DETALHE_PROGRAMA_JSF;
+	}
+	
+	public String componente(){
+		componenteMB.setPrograma(programa);		
+		return componenteMB.abrirConComponente();
 	}
 	
 	public void onRowSelect(SelectEvent event) {

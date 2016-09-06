@@ -5,13 +5,14 @@
    xmlns:f="http://java.sun.com/jsf/core"
    xmlns:h="http://java.sun.com/jsf/html"
    xmlns:p="http://primefaces.org/ui"
+   xmlns:sgp="http://java.sun.com/jsf/composite/componentes"
    template="/templates/template.xhtml">
 
   			<ui:define name="titulo"><p:outputLabel value="#{i18n['label.cadastro.programa']}" /></ui:define>  			
   			<ui:define name="conteudo">
 	   			
 	   			<h:panelGroup id="tableRenderPanel" rendered="#{not empty programaMB.programa.dePrograma}">
-		   			<ui:include src="menuPrograma.xhtml"  />
+		   			<sgp:menuPrograma activeIndex="0" />
     			</h:panelGroup>
 	   			
   				<h:form>

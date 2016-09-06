@@ -4,15 +4,15 @@
    xmlns:ui="http://java.sun.com/jsf/facelets"
    xmlns:f="http://java.sun.com/jsf/core"
    xmlns:h="http://java.sun.com/jsf/html"
-   xmlns:p="http://primefaces.org/ui"
+   xmlns:p="http://primefaces.org/ui"   
+   xmlns:sgp="http://java.sun.com/jsf/composite/componentes"
    template="/templates/template.xhtml">
-   
 		   	
   			<ui:define name="titulo"><p:outputLabel value="#{i18n['label.cadastro.detalhe.programa']}" /></ui:define>  			
   			<ui:define name="conteudo">
-  			
-			    <ui:include src="menuPrograma.xhtml" />
-			   
+  				
+			    <sgp:menuPrograma activeIndex="1" />
+			    
   				<h:form>
   					<h1 style="margin-top:10"></h1>
   					<p:messages autoUpdate="true"/>

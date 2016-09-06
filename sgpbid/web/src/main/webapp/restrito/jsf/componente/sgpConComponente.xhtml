@@ -5,27 +5,33 @@
    xmlns:f="http://java.sun.com/jsf/core"
    xmlns:h="http://java.sun.com/jsf/html"
    xmlns:p="http://primefaces.org/ui"
+   xmlns:sgp="http://java.sun.com/jsf/composite/componentes"
    template="/templates/template.xhtml">
    
    			<ui:define name="titulo"><h:outputText value="#{i18n['label.consulta.componentes']}" /></ui:define>
    			<ui:define name="conteudo">
-   				<h:form>   					
-				    <p:panel id="painelIdentificacao" header="#{i18n['label.field.identificacao']}">
-						<div class="ui-grid ui-grid-responsive">
-	   						<div class="ui-grid-col-2">
-			   					<p:outputLabel for="nuPrograma" value="#{i18n['label.field.numero.programa']}"/>
-							</div>
-	   						<div class="ui-grid-col-4">
-								<p:inputText id="nuPrograma" value="#{componenteMB.programa.nuPrograma}" title="#{i18n['label.field.numero.programa']}" disabled="true"/>
+   				
+   				<sgp:menuPrograma activeIndex="2" />
+   				
+   				<h:form>
+   					<div class="ui-fluid">   					
+					    <p:panel id="painelIdentificacao" header="#{i18n['label.field.identificacao']}">
+							<div class="ui-grid ui-grid-responsive">
+		   						<div class="ui-grid-col-2">
+				   					<p:outputLabel for="nuPrograma" value="#{i18n['label.field.numero.programa']}"/>
+								</div>
+		   						<div class="ui-grid-col-4">
+									<p:inputText id="nuPrograma" value="#{componenteMB.programa.nuPrograma}" title="#{i18n['label.field.numero.programa']}" disabled="true"/>
+			   					</div>
+			   					<div class="ui-grid-col-2">
+			   						<p:outputLabel for="nuOperacao" value="#{i18n['label.field.numero.operacao']}"/>
+			   					</div>					
+								<div class="ui-grid-col-4">
+			   						<p:inputText id="nuOperacao" value="#{componenteMB.programa.nuOperacao}" title="#{i18n['label.field.numero.operacao']}" disabled="true"/>
+								</div>
 		   					</div>
-		   					<div class="ui-grid-col-2">
-		   						<p:outputLabel for="nuOperacao" value="#{i18n['label.field.numero.operacao']}"/>
-		   					</div>					
-							<div class="ui-grid-col-4">
-		   						<p:inputText id="nuOperacao" value="#{componenteMB.programa.nuOperacao}" title="#{i18n['label.field.numero.operacao']}" disabled="true"/>
-							</div>
-	   					</div>
-	   				</p:panel>	   				
+		   				</p:panel>
+		   			</div>		   				
 	   				<br />
 	   				
 	   				
@@ -36,8 +42,7 @@
 			            	<p:commandButton value="Novo" id="btNovo" action="#{componenteMB.novo}" ajax="false" icon="fa fa-newspaper-o" styleClass="ui-priority-primary"/>
 			            </p>	   					
 	   					<br />	   					
-	   					<p:dataTable var="row" value="#{componenteMB.componentes}" >
-	   						
+	   					<p:dataTable var="row" value="#{componenteMB.componentes}" >	   						
 						    <p:column headerText="#{i18n['label.field.componentes']}" width="200">
 						        <h:outputText value="#{row.deComponenteFmt}" />
 						    </p:column>
@@ -52,7 +57,7 @@
 						        <h:outputText value="#{row.vlTotal}" />
 						    </p:column>
 						    <p:column headerText="%">
-						        <h:outputText value="" />
+						        
 						    </p:column>
 						    
 						    <p:column style="width:32px;text-align: center">

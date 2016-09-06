@@ -42,7 +42,7 @@ public class ComponenteMB {
         componente = new Componente();
         componente.setComponentesorigem(new ArrayList<Componenteorigem>());
         componentes = new ArrayList<Componente>();
-        carregacomponentesSuperiores();
+        //carregacomponentesSuperiores();
     }
     
     private void carregacomponentesSuperiores() {

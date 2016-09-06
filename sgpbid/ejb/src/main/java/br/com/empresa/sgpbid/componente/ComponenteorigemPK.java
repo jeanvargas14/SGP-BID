@@ -1,9 +1,12 @@
 package br.com.empresa.sgpbid.componente;
 
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class ComponenteorigemPK {
+public class ComponenteorigemPK implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private Integer cdPrograma;
 	private Integer cdComponente;
 	private Integer cdOrigem;

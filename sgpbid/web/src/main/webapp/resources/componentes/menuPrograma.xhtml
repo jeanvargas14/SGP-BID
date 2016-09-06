@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+      
+	<f:loadBundle basename="mensagens" var="i18n"/>
+	
+	<composite:interface>
+		<composite:attribute name="activeIndex" required="true" />		
+	</composite:interface>
+	
+	<composite:implementation>	
+		<h:form id="formMenu">
+			<p:tabMenu id="tabMenu" activeIndex="#{cc.attributes.activeIndex}">		        
+		        <p:menuitem value="#{i18n['label.menu.programa']}" action="#{programaMB.editar}" />
+		        <p:menuitem value="#{i18n['label.menu.detalhe.programa']}" action="#{programaMB.detalhePrograma}" />
+		        <p:menuitem value="#{i18n['label.menu.componente']}" action="#{programaMB.componente}" />
+		    </p:tabMenu>
+		</h:form>
+	</composite:implementation>
+</html>
