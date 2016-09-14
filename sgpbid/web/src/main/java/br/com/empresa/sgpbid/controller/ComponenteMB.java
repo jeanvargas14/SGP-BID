@@ -14,6 +14,7 @@ import javax.inject.Inject;
 
 import br.com.empresa.sgpbid.componente.Componente;
 import br.com.empresa.sgpbid.componente.Componenteorigem;
+import br.com.empresa.sgpbid.dto.ComponenteDTO;
 import br.com.empresa.sgpbid.programa.Programa;
 import br.com.empresa.sgpbid.service.ICadastrobasico;
 
@@ -32,16 +33,15 @@ public class ComponenteMB {
     @Inject
     private ICadastrobasico cadastrobasicoService;
     private Componente componente;
-    private List<Componente> componentes;
+    private List<ComponenteDTO> componentes;
     private List<SelectItem> componentesSuperiores;
     private Programa programa;
     
     @PostConstruct
     public void init(){
         System.out.println("[ComponenteMB] init ...");
-        componente = new Componente();
-        componente.setComponentesorigem(new ArrayList<Componenteorigem>());
-        componentes = new ArrayList<Componente>();
+        componente = new Componente();        
+        componentes = new ArrayList<ComponenteDTO>();
         //carregacomponentesSuperiores();
     }
     
@@ -54,7 +54,7 @@ public class ComponenteMB {
     }
     
     public String abrirConComponente(){
-        componentes = cadastrobasicoService.findAllComponentes(programa);
+        componentes = cadastrobasicoService.findAllComponentesDTO(programa);
         return CONSULTA_JSF;
     }
     public String novo(){

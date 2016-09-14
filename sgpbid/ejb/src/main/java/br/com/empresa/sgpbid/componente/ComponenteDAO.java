@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import br.com.empresa.sgpbid.dto.ComponenteDTO;
 import br.com.empresa.sgpbid.programa.Programa;
 
 /**
@@ -129,5 +130,18 @@ public class ComponenteDAO {
         } catch (Exception e) {
             throw new RuntimeException("Erro ao carregar todos os componentes superiores ", e);
         }
+    }
+
+    /**
+     * @param programa
+     * @return
+     * select c.*, bid.*, local.*  from sgpComponente c
+     * join sgpComponenteorigem bid on bid.cdorigem = 1 and bid.cdcomponente = c.cdcomponente
+     * join sgpComponenteorigem local on local.cdorigem = 2 and local.cdcomponente = c.cdcomponente
+     * 
+     */
+    public List<ComponenteDTO> findAllComponentesDTO(Programa programa) {
+        
+        return null;
     }
 }
