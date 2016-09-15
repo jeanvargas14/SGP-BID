@@ -11,6 +11,7 @@ import br.com.empresa.sgpbid.componente.Componente;
 import br.com.empresa.sgpbid.componente.Componenteorigem;
 import br.com.empresa.sgpbid.dto.ComponenteDTO;
 import br.com.empresa.sgpbid.model.projeto.Projeto;
+import br.com.empresa.sgpbid.origem.Origem;
 import br.com.empresa.sgpbid.programa.DetalhePrograma;
 import br.com.empresa.sgpbid.programa.Programa;
 import br.com.empresa.sgpbid.setor.Setor;
@@ -42,4 +43,5 @@ public interface ICadastrobasico {
     void salvarComponente(Componente componente);    
     List<Componenteorigem> findAllComponenteorigem(Componente componente);    
     List<ComponenteDTO> findAllComponentesDTO(Programa programa);
+    List<Origem> findAllOrigem();
 }

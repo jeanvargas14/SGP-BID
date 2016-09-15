@@ -12,9 +12,12 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
+import org.primefaces.event.CellEditEvent;
+
 import br.com.empresa.sgpbid.componente.Componente;
 import br.com.empresa.sgpbid.componente.Componenteorigem;
 import br.com.empresa.sgpbid.dto.ComponenteDTO;
+import br.com.empresa.sgpbid.origem.Origem;
 import br.com.empresa.sgpbid.programa.Programa;
 import br.com.empresa.sgpbid.service.ICadastrobasico;
 
@@ -37,12 +40,16 @@ public class ComponenteMB {
     private List<SelectItem> componentesSuperiores;
     private Programa programa;
     
+    private List<Componenteorigem> componenteorigens;
+    private Double vlTotal;
+    
     @PostConstruct
     public void init(){
         System.out.println("[ComponenteMB] init ...");
         componente = new Componente();        
         componentes = new ArrayList<ComponenteDTO>();
-        //carregacomponentesSuperiores();
+        vlTotal = 0D;
+        carregacomponentesSuperiores();
     }
     
     private void carregacomponentesSuperiores() {
@@ -51,14 +58,24 @@ public class ComponenteMB {
         for(Componente componente : lista){
             componentesSuperiores.add(new SelectItem(componente.getCdComponente(), componente.getCdAuxiliar() +" - "+componente.getDeComponente(), componente.getCdAuxiliar()));
         }
-    }
-    
+    }    
     public String abrirConComponente(){
         componentes = cadastrobasicoService.findAllComponentesDTO(programa);
         return CONSULTA_JSF;
     }
+    
     public String novo(){
+        criaListaComponenteorigem();        
     	return CADASTRO_JSF;
+    }
+    
+    private void criaListaComponenteorigem(){
+        List<Origem> origens = cadastrobasicoService.findAllOrigem();
+        for(Origem o : origens){            
+            Componenteorigem c = new Componenteorigem();
+            c.setOrigem(o);
+            componenteorigens.add(c);
+        }
     }
     public String editar(){
     	return CADASTRO_JSF;
@@ -93,11 +110,32 @@ public class ComponenteMB {
         this.programa = programa;
     }
 
-	public List<Componente> getComponentes() {
-		return componentes;
-	}
+    public List<ComponenteDTO> getComponentes() {
+        return componentes;
+    }
 
-	public void setComponentes(List<Componente> componentes) {
-		this.componentes = componentes;
-	}       
+    public void setComponentes(List<ComponenteDTO> componentes) {
+        this.componentes = componentes;
+    }
+
+    public List<Componenteorigem> getComponenteorigens() {
+        return componenteorigens;
+    }
+
+    public void setComponenteorigens(List<Componenteorigem> componenteorigens) {
+        this.componenteorigens = componenteorigens;
+    }
+
+    public Double getVlTotal() {
+        return vlTotal;
+    }
+
+    public void setVlTotal(Double vlTotal) {
+        this.vlTotal = vlTotal;
+    }
+    public void onChangeVlAtual(CellEditEvent event) {        
+        for(Componenteorigem co : componenteorigens) {
+           vlTotal += co.getVlAtual();
+        }
+    }
 }

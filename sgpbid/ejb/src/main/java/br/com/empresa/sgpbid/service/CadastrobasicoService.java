@@ -15,6 +15,8 @@ import br.com.empresa.sgpbid.componente.Componenteorigem;
 import br.com.empresa.sgpbid.data.projeto.ProjetoDAO;
 import br.com.empresa.sgpbid.dto.ComponenteDTO;
 import br.com.empresa.sgpbid.model.projeto.Projeto;
+import br.com.empresa.sgpbid.origem.Origem;
+import br.com.empresa.sgpbid.origem.OrigemDAO;
 import br.com.empresa.sgpbid.programa.DetalhePrograma;
 import br.com.empresa.sgpbid.programa.Programa;
 import br.com.empresa.sgpbid.programa.ProgramaDAO;
@@ -42,6 +44,9 @@ public class CadastrobasicoService implements ICadastrobasico, Serializable{
 	
 	@Inject
 	private ComponenteDAO componenteDAO;
+	
+	@Inject
+	private OrigemDAO origemDAO;
 	
 	public CadastrobasicoService() {
 		System.out.println("Criando uma instancia do [CadastrobasicoService]");
@@ -117,4 +122,10 @@ public class CadastrobasicoService implements ICadastrobasico, Serializable{
     public List<ComponenteDTO> findAllComponentesDTO(Programa programa) {
         return componenteDAO.findAllComponentesDTO(programa);
     }
+    
+    @Override
+    public List<Origem> findAllOrigem() {
+        return origemDAO.findAll();
+    }
+    
 }

@@ -42,22 +42,22 @@
 			            	<p:commandButton value="Novo" id="btNovo" action="#{componenteMB.novo}" ajax="false" icon="fa fa-newspaper-o" styleClass="ui-priority-primary"/>
 			            </p>	   					
 	   					<br />	   					
-	   					<p:dataTable var="row" value="#{componenteMB.componentes}" >	   						
+	   					<p:dataTable var="row" value="#{componenteMB.componentes}" >	   							   						
 						    <p:column headerText="#{i18n['label.field.componentes']}" width="200">
-						        <h:outputText value="#{row.deComponenteFmt}" />
+						        <h:outputText value="#{row.cdAuxiliar}" />
 						    </p:column>
 						 
 						    <p:column headerText="#{i18n['label.field.bid']}">
-						        <h:outputText value="#{row.bid.vlAtual}" />
+						        <h:outputText value="#{row.vlAtualbid}" />
 						    </p:column>
 						    <p:column headerText="#{i18n['label.field.local']}">
-						        <h:outputText value="#{row.cntp.vlAtual}" />
+						        <h:outputText value="#{row.vlAtuallocal}" />
 						    </p:column>
 						    <p:column headerText="#{i18n['label.field.total']}">
 						        <h:outputText value="#{row.vlTotal}" />
 						    </p:column>
 						    <p:column headerText="%">
-						        
+						        <h:outputText value="#{row.peFinanciamento}" />
 						    </p:column>
 						    
 						    <p:column style="width:32px;text-align: center">

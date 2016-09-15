@@ -7,6 +7,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import org.hibernate.Session;
+import org.hibernate.transform.Transformers;
+
 import br.com.empresa.sgpbid.dto.ComponenteDTO;
 import br.com.empresa.sgpbid.programa.Programa;
 
@@ -80,10 +83,6 @@ public class ComponenteDAO {
             query.setParameter("cdprograma", programa.getCdPrograma());
             
             componentes = query.getResultList();
-            
-            for(Componente comp : componentes){
-            	comp.setComponentesorigem(findAllComponenteorigem(comp));
-            }
         } catch (Exception e) {
             throw new RuntimeException("Erro ao buscar todos componente, do programa: "+programa.getCdPrograma(), e);
         }
@@ -133,15 +132,45 @@ public class ComponenteDAO {
     }
 
     /**
+     * references: http://in.relation.to/2006/03/17/hibernate-32-transformers-for-hql-and-sql/
      * @param programa
      * @return
      * select c.*, bid.*, local.*  from sgpComponente c
      * join sgpComponenteorigem bid on bid.cdorigem = 1 and bid.cdcomponente = c.cdcomponente
      * join sgpComponenteorigem local on local.cdorigem = 2 and local.cdcomponente = c.cdcomponente
      * 
+     * List resultWithAliasedBean = s.createSQLQuery(
+      "SELECT st.name as studentName, co.description as courseDescription " +
+      "FROM Enrolment e " +
+      "INNER JOIN Student st on e.studentId=st.studentId " +
+      "INNER JOIN Course co on e.courseCode=co.courseCode")
+      .addScalar("studentName")
+      .addScalar("courseDescription")
+      .setResultTransformer( Transformers.aliasToBean(StudentDTO.class))
+      .list();    
+      StudentDTO dto =(StudentDTO) resultWithAliasedBean.get(0);
+     * 
      */
     public List<ComponenteDTO> findAllComponentesDTO(Programa programa) {
-        
-        return null;
+        try {
+            StringBuilder sql = new StringBuilder();
+            sql.append(" select  ");            
+            sql.append(" c.cdcomponente as cdComponente, c.cdcomponentesuperior as cdComponentesuperior, c.cdauxiliar as cdAuxiliar, c.decomponente as deComponente, c.cdnivel as cdNivel, c.flanalitico as flAnalitico, c.flultimonivel as flUltimonivel, ");            
+            sql.append(" bid.cdorigem as cdOrigembid, bid.sgOrigem as sgOrigembid, bid.vlinicial as vlInicialbid, bid.vlatual as vlAtualbid, bid.pefinanciamento  as peFinanciamentobid, ");            
+            sql.append(" local.cdorigem as cdOrigemlocal, local.sgOrigem as sgOrigemlocal, local.vlinicial as vlIniciallocal, local.vlatual as vlAtuallocal, local.pefinanciamento as peFinanciamentolocal  ");            
+            sql.append(" from sgpComponente c ");            
+            sql.append(" join sgpComponenteorigem bid on bid.cdorigem = 1 and bid.cdcomponente = c.cdcomponente ");            
+            sql.append(" join sgpComponenteorigem local on local.cdorigem = 2 and local.cdcomponente = c.cdcomponente ");            
+            sql.append(" where c.cdprograma = :cdPrograma ");            
+            
+            Session session = em.unwrap(Session.class);
+            
+            return session.createSQLQuery(sql.toString())                        
+            .setInteger("cdPrograma", programa.getCdPrograma())
+            .setResultTransformer(Transformers.aliasToBean(ComponenteDTO.class))
+            .list();
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao carregar todos os componentes superiores ", e);
+        }
     }
 }
