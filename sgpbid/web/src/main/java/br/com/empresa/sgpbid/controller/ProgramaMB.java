@@ -37,8 +37,8 @@ public class ProgramaMB {
 	@Inject
 	private ICadastrobasico cadastrobasicoService;
 	
-	@Inject
-	private ComponenteMB componenteMB;
+	//@Inject
+	//private ComponenteMB componenteMB;
 	
 	private List<Programa> lista;
 	private List<String> equipeAprovacao;
@@ -127,10 +127,10 @@ public class ProgramaMB {
 		return DETALHE_PROGRAMA_JSF;
 	}
 	
-	public String componente(){
-		componenteMB.setPrograma(programa);		
-		return componenteMB.abrirConComponente();
-	}
+	//public String componente(){
+	//	componenteMB.setPrograma(programa);		
+	//	return componenteMB.abrirConComponente();
+	//}
 	
 	public void onRowSelect(SelectEvent event) {
         FacesMessage msg = new FacesMessage("Programa Selected", ""+((Programa) event.getObject()).getCdPrograma());

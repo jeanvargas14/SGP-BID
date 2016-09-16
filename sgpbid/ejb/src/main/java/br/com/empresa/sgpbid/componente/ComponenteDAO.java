@@ -156,8 +156,8 @@ public class ComponenteDAO {
             StringBuilder sql = new StringBuilder();
             sql.append(" select  ");            
             sql.append(" c.cdcomponente as cdComponente, c.cdcomponentesuperior as cdComponentesuperior, c.cdauxiliar as cdAuxiliar, c.decomponente as deComponente, c.cdnivel as cdNivel, c.flanalitico as flAnalitico, c.flultimonivel as flUltimonivel, ");            
-            sql.append(" bid.cdorigem as cdOrigembid, bid.sgOrigem as sgOrigembid, bid.vlinicial as vlInicialbid, bid.vlatual as vlAtualbid, bid.pefinanciamento  as peFinanciamentobid, ");            
-            sql.append(" local.cdorigem as cdOrigemlocal, local.sgOrigem as sgOrigemlocal, local.vlinicial as vlIniciallocal, local.vlatual as vlAtuallocal, local.pefinanciamento as peFinanciamentolocal  ");            
+            sql.append(" bid.cdorigem as cdOrigembid, bid.vlinicial as vlInicialbid, bid.vlatual as vlAtualbid, bid.pefinanciamento  as peFinanciamentobid, ");            
+            sql.append(" local.cdorigem as cdOrigemlocal, local.vlinicial as vlIniciallocal, local.vlatual as vlAtuallocal, local.pefinanciamento as peFinanciamentolocal  ");            
             sql.append(" from sgpComponente c ");            
             sql.append(" join sgpComponenteorigem bid on bid.cdorigem = 1 and bid.cdcomponente = c.cdcomponente ");            
             sql.append(" join sgpComponenteorigem local on local.cdorigem = 2 and local.cdcomponente = c.cdcomponente ");            

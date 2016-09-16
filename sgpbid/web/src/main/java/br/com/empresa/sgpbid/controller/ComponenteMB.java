@@ -49,7 +49,7 @@ public class ComponenteMB {
         componente = new Componente();        
         componentes = new ArrayList<ComponenteDTO>();
         vlTotal = 0D;
-        carregacomponentesSuperiores();
+        //carregacomponentesSuperiores();
     }
     
     private void carregacomponentesSuperiores() {
@@ -61,15 +61,19 @@ public class ComponenteMB {
     }    
     public String abrirConComponente(){
         componentes = cadastrobasicoService.findAllComponentesDTO(programa);
+        setPrograma(programa);        
         return CONSULTA_JSF;
     }
     
-    public String novo(){
+    public String novo(Programa programa){
+        setPrograma(programa);        
+        carregacomponentesSuperiores();
         criaListaComponenteorigem();        
     	return CADASTRO_JSF;
     }
     
     private void criaListaComponenteorigem(){
+        componentes = new ArrayList<ComponenteDTO>();
         List<Origem> origens = cadastrobasicoService.findAllOrigem();
         for(Origem o : origens){            
             Componenteorigem c = new Componenteorigem();
