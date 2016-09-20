@@ -11,91 +11,90 @@
   			<ui:define name="conteudo">
 	   			<h:form>
   					<h1 style="margin-top:10"></h1>
-  					<p:panel id="painel" header="#{i18n['label.cadastro.componente']}">
-	  					
-	  					<p:messages autoUpdate="true"/>
-	  					   				
-						<p:panel id="painelIdentificacao" header="#{i18n['label.field.identificacao']}">
-							<div class="ui-grid ui-grid-responsive">
-		   						<div class="ui-grid-col-2">
-				   					<p:outputLabel for="nuPrograma" value="#{i18n['label.field.numero.programa']}"/>
-								</div>
-		   						<div class="ui-grid-col-4">
-									<p:inputText id="nuPrograma" value="#{componenteMB.programa.nuPrograma}" title="#{i18n['label.field.numero.programa']}" disabled="true"/>
-			   					</div>
-			   					<div class="ui-grid-col-2">
-			   						<p:outputLabel for="nuOperacao" value="#{i18n['label.field.numero.operacao']}"/>
-			   					</div>					
-								<div class="ui-grid-col-4">
-			   						<p:inputText id="nuOperacao" value="#{componenteMB.programa.nuOperacao}" title="#{i18n['label.field.numero.operacao']}" disabled="true"/>
-								</div>
-		   					</div>
-		   				</p:panel>	   				
-		   				<br />
-		   				
-		   				<p:panel id="painelDadosComponentes" header="#{i18n['label.dados.componente']}">
-							<div class="ui-grid ui-grid-responsive">
-			   					<div class="ui-grid-col-2">
-				   					<p:outputLabel value="#{i18n['label.field.componente.superior']}"/>
-								</div>
-		   						<div class="ui-grid-col-4">
-									<p:selectOneMenu id="superior" value="#{componenteMB.componente.cdComponentesuperior}">
-							            <f:selectItem itemLabel="#{i18n['label.field.selecione']}" itemValue="" />
-							            <f:selectItems value="#{componenteMB.componentesSuperiores}" />
-							        </p:selectOneMenu>
-			   					</div>
-			   					
-			   					<div class="ui-grid-col-2">
-				   					<p:outputLabel for="descricao" value="#{i18n['label.field.descricao']}" indicateRequired="true"/>
-								</div>
-		   						<div class="ui-grid-col-4">
-									<p:inputText id="descricao" value="#{componenteMB.componente.deComponente}" title="#{i18n['label.field.descricao']}" required="true"/>
-			   					</div>
-			   					
-						        <p:selectOneRadio id="tpComponente" value="#{componenteMB.componente.flAnalitico}" layout="responsive" columns="2">
-						            <f:selectItem value="1" itemLabel="#{i18n['label.field.analitico']}" itemValue="1"/>
-						            <f:selectItem value="0" itemLabel="#{i18n['label.field.sintetico']}" itemValue="0"/>
-						        </p:selectOneRadio>
-
-			   					
-			   					<p:dataTable id="componenteorigens" var="co" value="#{componenteMB.componenteorigens}" editable="true" editMode="cell">
-			   						
-			   						<p:ajax event="cellEdit" listener="#{componenteMB.onChangeVlAtual}" update="vlTotal" />
-			   													       
-							       	<p:column headerText="#{i18n['label.field.origem']}">
-						                <h:outputText value="#{co.origem.deOrigem}" />
-						            </p:column>
-							 
-							        <p:column headerText="#{i18n['label.field.percentual']}">
-						                <h:outputText value="#{co.peFinanciamento}" />
-							       </p:column>
-							 
-							       <p:column headerText="#{i18n['label.field.vlatual.uss']}">
-							           <p:cellEditor>
-							               <f:facet name="output"><h:outputText value="#{co.vlAtual}" /></f:facet>
-							               <f:facet name="input"><p:inputText id="modelInput" value="#{co.vlAtual}" style="width:96%"/></f:facet>							               
-							           </p:cellEditor>
-							       </p:column>
-							       
-							       <f:facet name="footer">
-							       		<p align="right">#{i18n['label.field.vltotal']}:
-							       			<h:outputText value="#{componenteMB.vlTotal}" id="vlTotal" /> 
-							       		</p>
-								    </f:facet>
-							    </p:dataTable>
-			   				</div>
+	  					<p:panel id="painel" header="#{i18n['label.cadastro.componente']}">
+		  					<div class="ui-fluid">		  					
+			  					<p:messages autoUpdate="true"/>
+			  					   				
+								<p:panel id="painelIdentificacao" header="#{i18n['label.field.identificacao']}">
+									<div class="ui-grid ui-grid-responsive">
+				   						<div class="ui-grid-col-2">
+						   					<p:outputLabel for="nuPrograma" value="#{i18n['label.field.numero.programa']}"/>
+										</div>
+				   						<div class="ui-grid-col-4">
+											<p:inputText id="nuPrograma" value="#{componenteMB.programa.nuPrograma}" title="#{i18n['label.field.numero.programa']}" disabled="true"/>
+					   					</div>
+					   					<div class="ui-grid-col-2">
+					   						<p:outputLabel for="nuOperacao" value="#{i18n['label.field.numero.operacao']}"/>
+					   					</div>					
+										<div class="ui-grid-col-4">
+					   						<p:inputText id="nuOperacao" value="#{componenteMB.programa.nuOperacao}" title="#{i18n['label.field.numero.operacao']}" disabled="true"/>
+										</div>
+				   					</div>
+				   				</p:panel>	   				
+				   				<br />
+				   				
+				   				<p:panel id="painelDadosComponentes" header="#{i18n['label.dados.componente']}">
+									<div class="ui-grid ui-grid-responsive">
+					   					<div class="ui-grid-col-2">
+						   					<p:outputLabel value="#{i18n['label.field.componente.superior']}"/>
+										</div>
+				   						<div class="ui-grid-col-4">
+											<p:selectOneMenu id="superior" value="#{componenteMB.componente.cdComponentesuperior}">
+									            <f:selectItem itemLabel="#{i18n['label.field.selecione']}" itemValue="" />
+									            <f:selectItems value="#{componenteMB.componentesSuperiores}" />
+									        </p:selectOneMenu>
+					   					</div>
+					   					
+					   					<div class="ui-grid-col-2">
+						   					<p:outputLabel for="descricao" value="#{i18n['label.field.descricao']}" indicateRequired="true"/>
+										</div>
+				   						<div class="ui-grid-col-4">
+											<p:inputText id="descricao" value="#{componenteMB.componente.deComponente}" title="#{i18n['label.field.descricao']}" required="true"/>
+					   					</div>
+					   					<div class="ui-grid-col-12">
+									        <p:selectOneRadio id="tpComponente" value="#{componenteMB.componente.flAnalitico}">
+									            <f:selectItem itemLabel="#{i18n['label.field.analitico']}" itemValue="1"/>
+									            <f:selectItem itemLabel="#{i18n['label.field.sintetico']}" itemValue="0"/>
+									        </p:selectOneRadio>
+										</div>
+					   					
+					   					<p:dataTable id="componenteorigens" var="co" value="#{componenteMB.componenteorigens}" editable="true" editMode="cell">
+					   						
+					   						<p:ajax event="cellEdit" listener="#{componenteMB.onChangeVlAtual}" update="vlTotal" />
+					   													       
+									       	<p:column headerText="#{i18n['label.field.origem']}">
+								                <h:outputText value="#{co.origem.deOrigem}" />
+								            </p:column>
+									 
+									        <p:column headerText="#{i18n['label.field.percentual']}">
+								                <h:outputText value="#{co.peFinanciamento}" />
+									       </p:column>
+									 
+									       <p:column headerText="#{i18n['label.field.vlatual.uss']}">
+									           <p:cellEditor>
+									               <f:facet name="output"><h:outputText value="#{co.vlAtual}" /></f:facet>
+									               <f:facet name="input"><p:inputText id="modelInput" value="#{co.vlAtual}" style="width:96%"/></f:facet>							               
+									           </p:cellEditor>
+									       </p:column>
+									       
+									       <f:facet name="footer">
+									       		<p align="right">#{i18n['label.field.vltotal']}:
+									       			<h:outputText value="#{componenteMB.vlTotal}" id="vlTotal" /> 
+									       		</p>
+										    </f:facet>
+									    </p:dataTable>
+					   				</div>
+				   				</p:panel>			   						
+				   			</div>
+		   					<p align="right">
+		   						<p:commandButton value="#{i18n['botao.salvar']}" id="btSalvar" update="painel" action="#{componenteMB.save}" 
+		   							icon="fa fa-save" styleClass="ui-priority-primary" validateClient="true"/>
+		   							
+		   						<p:commandButton value="#{i18n['botao.voltar']}" id="btVoltar" update="messages" action="#{componenteMB.abrirConComponente}" 
+		   							icon="fa fa-reply" ajax="false" immediate="true">
+		   						</p:commandButton>
+		   					</p>
 		   				</p:panel>
-		   				
-		   						
-	   					<p align="right">
-	   						<p:commandButton value="#{i18n['botao.salvar']}" id="btSalvar" update="painel" action="#{componenteMB.save}" 
-	   							icon="fa fa-save" styleClass="ui-priority-primary" validateClient="true"/>
-	   							
-	   						<p:commandButton value="#{i18n['botao.voltar']}" id="btVoltar" update="messages" action="#{componenteMB.abrirConComponente}" 
-	   							icon="fa fa-reply" ajax="false" immediate="true">
-	   						</p:commandButton>
-	   					</p>
-	   				</p:panel>
   				</h:form>
   			</ui:define>   			
 </ui:composition>

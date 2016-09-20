@@ -39,9 +39,8 @@
 			            <p align="right">
 			            	<p:commandButton value="Concluir" id="btConcluir" action="#{componenteMB.concluir}" styleClass="ui-priority-secundary" 
 			            		icon="fa fa-search"	ajax="false" />
-			            	<p:commandButton value="Novo" id="btNovo" action="#{componenteMB.novo}" ajax="false" icon="fa fa-newspaper-o" styleClass="ui-priority-primary">
-			            			<f:setPropertyActionListener value="#{programa}" target="#{componenteMB.programa}" />
-			            	</p:commandButton>
+			            	<p:commandButton value="Novo" id="btNovo" action="#{componenteMB.novo}" ajax="false" icon="fa fa-newspaper-o" styleClass="ui-priority-primary" />		            			
+			            	
 			            </p>	   					
 	   					<br />	   					
 	   					<p:dataTable var="row" value="#{componenteMB.componentes}" >	   							   						

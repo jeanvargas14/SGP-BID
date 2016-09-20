@@ -127,5 +127,9 @@ public class CadastrobasicoService implements ICadastrobasico, Serializable{
     public List<Origem> findAllOrigem() {
         return origemDAO.findAll();
     }
-    
+
+    @Override
+    public Programa findByProgramaId(Integer cdProgramaSession) {
+        return programaDAO.findById(cdProgramaSession);
+    }    
 }

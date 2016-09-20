@@ -9,8 +9,11 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.primefaces.event.CellEditEvent;
 
@@ -20,6 +23,7 @@ import br.com.empresa.sgpbid.dto.ComponenteDTO;
 import br.com.empresa.sgpbid.origem.Origem;
 import br.com.empresa.sgpbid.programa.Programa;
 import br.com.empresa.sgpbid.service.ICadastrobasico;
+import br.com.empresa.sgpbid.util.Constantes;
 
 /**
  * 31 de ago de 2016
@@ -49,10 +53,10 @@ public class ComponenteMB {
         componente = new Componente();        
         componentes = new ArrayList<ComponenteDTO>();
         vlTotal = 0D;
-        //carregacomponentesSuperiores();
     }
     
     private void carregacomponentesSuperiores() {
+        getProgramaSessao();
         componentesSuperiores = new ArrayList<SelectItem>();
         List<Componente> lista = cadastrobasicoService.findAllComponentesSuperiores(programa.getCdPrograma());
         for(Componente componente : lista){
@@ -60,20 +64,21 @@ public class ComponenteMB {
         }
     }    
     public String abrirConComponente(){
-        componentes = cadastrobasicoService.findAllComponentesDTO(programa);
-        setPrograma(programa);        
+        getProgramaSessao();
+        componentes = cadastrobasicoService.findAllComponentesDTO(programa);                
         return CONSULTA_JSF;
     }
     
-    public String novo(Programa programa){
-        setPrograma(programa);        
+    public String novo(){                
         carregacomponentesSuperiores();
-        criaListaComponenteorigem();        
+        criaListaComponenteorigem();
+        componente = new Componente();
+        componente.setFlAnalitico("0");
     	return CADASTRO_JSF;
     }
     
     private void criaListaComponenteorigem(){
-        componentes = new ArrayList<ComponenteDTO>();
+        componenteorigens = new ArrayList<Componenteorigem>();
         List<Origem> origens = cadastrobasicoService.findAllOrigem();
         for(Origem o : origens){            
             Componenteorigem c = new Componenteorigem();
@@ -141,5 +146,11 @@ public class ComponenteMB {
         for(Componenteorigem co : componenteorigens) {
            vlTotal += co.getVlAtual();
         }
+    }
+    public void getProgramaSessao(){
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = (HttpSession) request.getSession();
+        Integer cdProgramaSession = (Integer) session.getAttribute(Constantes.CD_PROGRAMA);
+        programa = cadastrobasicoService.findByProgramaId(cdProgramaSession);
     }
 }

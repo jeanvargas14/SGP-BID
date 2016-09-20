@@ -31,6 +31,8 @@ public interface ICadastrobasico {
 	List<Setor> findAllSetor();
 	List<Projeto> findProjetos(Projeto filtro);
 	
+	
+	Programa findByProgramaId(Integer cdProgramaSession);
 	List<Programa> findProgramas(Programa filtro);
 	void salvarPrograma(Programa programa);	
 	void salvarDetalheprograma(DetalhePrograma detalhePrograma);
@@ -44,4 +46,5 @@ public interface ICadastrobasico {
     List<Componenteorigem> findAllComponenteorigem(Componente componente);    
     List<ComponenteDTO> findAllComponentesDTO(Programa programa);
     List<Origem> findAllOrigem();
+    
 }

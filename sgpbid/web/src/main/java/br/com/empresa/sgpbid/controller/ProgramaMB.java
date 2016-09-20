@@ -13,6 +13,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.primefaces.event.SelectEvent;
 
@@ -20,6 +21,7 @@ import br.com.empresa.sgpbid.programa.DetalhePrograma;
 import br.com.empresa.sgpbid.programa.Programa;
 import br.com.empresa.sgpbid.service.ICadastrobasico;
 import br.com.empresa.sgpbid.setor.Setor;
+import br.com.empresa.sgpbid.util.Constantes;
 
 /**
  * 26 de jul de 2016
@@ -36,9 +38,6 @@ public class ProgramaMB {
 	
 	@Inject
 	private ICadastrobasico cadastrobasicoService;
-	
-	//@Inject
-	//private ComponenteMB componenteMB;
 	
 	private List<Programa> lista;
 	private List<String> equipeAprovacao;
@@ -119,6 +118,9 @@ public class ProgramaMB {
 	
 	public String editar(){	
 		disabled = true;
+		FacesContext fc = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+		session.setAttribute(Constantes.CD_PROGRAMA, programa.getCdPrograma());
 		return CADASTRO_JSF;
 	}
 	
@@ -126,11 +128,6 @@ public class ProgramaMB {
 		detalhePrograma = cadastrobasicoService.findDetalheprograma(programa.getCdPrograma()); 
 		return DETALHE_PROGRAMA_JSF;
 	}
-	
-	//public String componente(){
-	//	componenteMB.setPrograma(programa);		
-	//	return componenteMB.abrirConComponente();
-	//}
 	
 	public void onRowSelect(SelectEvent event) {
         FacesMessage msg = new FacesMessage("Programa Selected", ""+((Programa) event.getObject()).getCdPrograma());
