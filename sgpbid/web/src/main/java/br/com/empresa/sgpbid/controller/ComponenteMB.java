@@ -46,6 +46,7 @@ public class ComponenteMB {
     
     private List<Componenteorigem> componenteorigens;
     private Double vlTotal;
+    private boolean analitico;
     
     @PostConstruct
     public void init(){
@@ -53,6 +54,7 @@ public class ComponenteMB {
         componente = new Componente();        
         componentes = new ArrayList<ComponenteDTO>();
         vlTotal = 0D;
+        analitico = false;
     }
     
     private void carregacomponentesSuperiores() {
@@ -152,5 +154,14 @@ public class ComponenteMB {
         HttpSession session = (HttpSession) request.getSession();
         Integer cdProgramaSession = (Integer) session.getAttribute(Constantes.CD_PROGRAMA);
         programa = cadastrobasicoService.findByProgramaId(cdProgramaSession);
+    }
+    public void setAnalitico(boolean analitico){
+        this.analitico = analitico;
+    }
+    public boolean isAnalitico(){
+        if(componente == null) {
+            return false;
+        }
+        return componente.getFlAnalitico().equals("1");
     }
 }
