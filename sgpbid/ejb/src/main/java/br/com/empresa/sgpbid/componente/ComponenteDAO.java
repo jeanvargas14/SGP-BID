@@ -94,7 +94,7 @@ public class ComponenteDAO {
         try {
             StringBuilder hql = new StringBuilder();
             hql.append(" select c from Componente c ");
-            hql.append(" where c.flAnalitico = 0 ");            
+            hql.append(" where c.flAnalitico = '0' ");            
             hql.append(" and c.cdPrograma = :cdprograma ");
             
             TypedQuery<Componente> query = em.createQuery(hql.toString(),Componente.class);            
@@ -159,8 +159,8 @@ public class ComponenteDAO {
             sql.append(" bid.cdorigem as cdOrigembid, bid.vlinicial as vlInicialbid, bid.vlatual as vlAtualbid, bid.pefinanciamento  as peFinanciamentobid, ");            
             sql.append(" local.cdorigem as cdOrigemlocal, local.vlinicial as vlIniciallocal, local.vlatual as vlAtuallocal, local.pefinanciamento as peFinanciamentolocal  ");            
             sql.append(" from sgpComponente c ");            
-            sql.append(" join sgpComponenteorigem bid on bid.cdorigem = 1 and bid.cdcomponente = c.cdcomponente ");            
-            sql.append(" join sgpComponenteorigem local on local.cdorigem = 2 and local.cdcomponente = c.cdcomponente ");            
+            sql.append(" left join sgpComponenteorigem bid on bid.cdorigem = 1 and bid.cdcomponente = c.cdcomponente ");            
+            sql.append(" left join sgpComponenteorigem local on local.cdorigem = 2 and local.cdcomponente = c.cdcomponente ");            
             sql.append(" where c.cdprograma = :cdPrograma ");            
             
             Session session = em.unwrap(Session.class);

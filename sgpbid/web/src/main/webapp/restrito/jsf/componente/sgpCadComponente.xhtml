@@ -55,37 +55,40 @@
 									        <p:selectOneRadio id="tpComponente" value="#{componenteMB.componente.flAnalitico}">
 									            <f:selectItem itemLabel="#{i18n['label.field.analitico']}" itemValue="1"/>
 									            <f:selectItem itemLabel="#{i18n['label.field.sintetico']}" itemValue="0"/>
-									            <p:ajax update="componenteorigens" event="valueChange" />
+									            
+									            <p:ajax update="panelGrid" event="change"/>  
 									        </p:selectOneRadio>
 										</div>
-					   										   										   					
-					   					<p:dataTable id="componenteorigens" var="co" value="#{componenteMB.componenteorigens}" 
-					   						editable="true" editMode="cell" 
-					   						rendered="#{componenteMB.analitico}">
-					   						
-					   						<p:ajax event="cellEdit" listener="#{componenteMB.onChangeVlAtual}" update="vlTotal" />
-					   													       
-									       	<p:column headerText="#{i18n['label.field.origem']}">
-								                <h:outputText value="#{co.origem.deOrigem}" />
-								            </p:column>
-									 
-									        <p:column headerText="#{i18n['label.field.percentual']}">
-								                <h:outputText value="#{co.peFinanciamento}" />
-									       </p:column>
-									 
-									       <p:column headerText="#{i18n['label.field.vlatual.uss']}">
-									           <p:cellEditor>
-									               <f:facet name="output"><h:outputText value="#{co.vlAtual}" /></f:facet>
-									               <f:facet name="input"><p:inputText id="modelInput" value="#{co.vlAtual}" style="width:96%"/></f:facet>							               
-									           </p:cellEditor>
-									       </p:column>
-									       
-									       <f:facet name="footer">
-									       		<p align="right">#{i18n['label.field.vltotal']}:
-									       			<h:outputText value="#{componenteMB.vlTotal}" id="vlTotal" /> 
-									       		</p>
-										    </f:facet>
-									    </p:dataTable>				
+										
+					   					<p:outputPanel id="panelGrid">					   										   					
+						   					<p:dataTable id="componenteorigens" var="co" value="#{componenteMB.componenteorigens}" 
+						   						editable="true" editMode="cell" 
+						   						rendered="#{componenteMB.componente.flAnalitico == 1}">
+						   						
+						   						<p:ajax event="cellEdit" listener="#{componenteMB.onChangeVlAtual}" update="vlTotal" />
+						   													       
+										       	<p:column headerText="#{i18n['label.field.origem']}">
+									                <h:outputText value="#{co.origem.deOrigem}" />
+									            </p:column>
+										 
+										        <p:column headerText="#{i18n['label.field.percentual']}">
+									                <h:outputText value="#{co.peFinanciamento}" />
+										       </p:column>
+										 
+										       <p:column headerText="#{i18n['label.field.vlatual.uss']}">
+										           <p:cellEditor>
+										               <f:facet name="output"><h:outputText value="#{co.vlAtual}" /></f:facet>
+										               <f:facet name="input"><p:inputText id="modelInput" value="#{co.vlAtual}" style="width:96%"/></f:facet>							               
+										           </p:cellEditor>
+										       </p:column>
+										       
+										       <f:facet name="footer">
+										       		<p align="right">#{i18n['label.field.vltotal']}:
+										       			<h:outputText value="#{componenteMB.vlTotal}" id="vlTotal" /> 
+										       		</p>
+											    </f:facet>
+										    </p:dataTable>				
+										</p:outputPanel>    
 					   				</div>
 				   				</p:panel>			   						
 				   			</div>

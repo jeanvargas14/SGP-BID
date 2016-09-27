@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -46,7 +47,6 @@ public class ComponenteMB {
     
     private List<Componenteorigem> componenteorigens;
     private Double vlTotal;
-    private boolean analitico;
     
     @PostConstruct
     public void init(){
@@ -54,7 +54,6 @@ public class ComponenteMB {
         componente = new Componente();        
         componentes = new ArrayList<ComponenteDTO>();
         vlTotal = 0D;
-        analitico = false;
     }
     
     private void carregacomponentesSuperiores() {
@@ -74,8 +73,9 @@ public class ComponenteMB {
     public String novo(){                
         carregacomponentesSuperiores();
         criaListaComponenteorigem();
-        componente = new Componente();
+        componente = new Componente();        
         componente.setFlAnalitico("0");
+        componente.setCdPrograma(programa.getCdPrograma());
     	return CADASTRO_JSF;
     }
     
@@ -91,8 +91,21 @@ public class ComponenteMB {
     public String editar(){
     	return CADASTRO_JSF;
     }
-    public String save(){
-    	return CADASTRO_JSF;
+    public void save(){
+    	try {
+			System.out.println("Executando metodo salvar componente ...");
+			componente.setCdAuxiliar("1");
+			componente.setCdNivel(1);
+			componente.setFlUltimonivel(0);		
+			componente.setFlConcluido(0);
+			componente.setCdPrograma(programa.getCdPrograma());
+			cadastrobasicoService.salvarComponente(componente);    	
+			FacesContext context = FacesContext.getCurrentInstance();
+	        context.addMessage(null, new FacesMessage("Sucesso",  "Operação realizada com sucesso"));
+		} catch(Exception e ){
+			FacesContext context = FacesContext.getCurrentInstance();
+	        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Erro", "Erro ao realizar a operação"));
+		}
     }
     public String concluir(){
     	return CONSULTA_JSF;
@@ -154,14 +167,5 @@ public class ComponenteMB {
         HttpSession session = (HttpSession) request.getSession();
         Integer cdProgramaSession = (Integer) session.getAttribute(Constantes.CD_PROGRAMA);
         programa = cadastrobasicoService.findByProgramaId(cdProgramaSession);
-    }
-    public void setAnalitico(boolean analitico){
-        this.analitico = analitico;
-    }
-    public boolean isAnalitico(){
-        if(componente == null) {
-            return false;
-        }
-        return componente.getFlAnalitico().equals("1");
     }
 }
