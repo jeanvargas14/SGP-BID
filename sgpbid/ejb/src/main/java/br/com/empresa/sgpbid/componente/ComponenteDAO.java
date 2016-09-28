@@ -7,11 +7,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.transform.Transformers;
 
 import br.com.empresa.sgpbid.dto.ComponenteDTO;
 import br.com.empresa.sgpbid.programa.Programa;
+import br.com.empresa.sgpbid.util.Utils;
 
 /**
  * 31 de ago de 2016
@@ -155,7 +157,7 @@ public class ComponenteDAO {
         try {
             StringBuilder sql = new StringBuilder();
             sql.append(" select  ");            
-            sql.append(" c.cdcomponente as cdComponente, c.cdcomponentesuperior as cdComponentesuperior, c.cdauxiliar as cdAuxiliar, c.decomponente as deComponente, c.cdnivel as cdNivel, c.flanalitico as flAnalitico, c.flultimonivel as flUltimonivel, ");            
+            sql.append(" c.cdComponente as cdComponente, c.cdcomponentesuperior as cdComponentesuperior, c.cdauxiliar as cdAuxiliar, c.decomponente as deComponente, c.cdnivel as cdNivel, c.flanalitico as flAnalitico, c.flultimonivel as flUltimonivel, ");            
             sql.append(" bid.cdorigem as cdOrigembid, bid.vlinicial as vlInicialbid, bid.vlatual as vlAtualbid, bid.pefinanciamento  as peFinanciamentobid, ");            
             sql.append(" local.cdorigem as cdOrigemlocal, local.vlinicial as vlIniciallocal, local.vlatual as vlAtuallocal, local.pefinanciamento as peFinanciamentolocal  ");            
             sql.append(" from sgpComponente c ");            
@@ -173,4 +175,32 @@ public class ComponenteDAO {
             throw new RuntimeException("Erro ao carregar todos os componentes superiores ", e);
         }
     }
+
+	public String findMaxCdAuxiliar(Componente componente) {
+		try {
+            StringBuilder hql = new StringBuilder();
+            hql.append(" select max(comp.cdAuxiliar) from Componente comp ");
+            hql.append(" where ");            
+            hql.append(" comp.cdPrograma = :cdPrograma ");
+            if(!Utils.isNullOrZero(componente.getCdComponentesuperior())){
+            	hql.append(" and comp.cdComponente = :cdComponente ");            	
+            }
+            
+            TypedQuery<Componente> query = em.createQuery(hql.toString(),Componente.class);            
+            query.setParameter("cdPrograma", componente.getCdPrograma());
+            
+            if(!Utils.isNullOrZero(componente.getCdComponentesuperior())){
+            	query.setParameter("cdComponente", componente.getCdComponentesuperior());
+            }
+            Componente result = query.getSingleResult();
+            if(result == null){
+            	return "01";
+            } else {
+            	int valor = Integer.valueOf(result.getCdAuxiliar()) + 1;
+            	return valor < 9 ? "0"+valor : ""+valor;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao consultar MaxCdAuxiliar ", e);
+        }		
+	}
 }

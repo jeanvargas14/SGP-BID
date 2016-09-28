@@ -14,6 +14,7 @@ import br.com.empresa.sgpbid.componente.ComponenteDAO;
 import br.com.empresa.sgpbid.componente.Componenteorigem;
 import br.com.empresa.sgpbid.data.projeto.ProjetoDAO;
 import br.com.empresa.sgpbid.dto.ComponenteDTO;
+import br.com.empresa.sgpbid.enums.NivelEnum;
 import br.com.empresa.sgpbid.model.projeto.Projeto;
 import br.com.empresa.sgpbid.origem.Origem;
 import br.com.empresa.sgpbid.origem.OrigemDAO;
@@ -22,6 +23,7 @@ import br.com.empresa.sgpbid.programa.Programa;
 import br.com.empresa.sgpbid.programa.ProgramaDAO;
 import br.com.empresa.sgpbid.setor.Setor;
 import br.com.empresa.sgpbid.setor.SetorDAO;
+import br.com.empresa.sgpbid.util.Utils;
 
 /**
  * 14 de jun de 2016
@@ -110,6 +112,19 @@ public class CadastrobasicoService implements ICadastrobasico, Serializable{
 
     @Override
     public void salvarComponente(Componente componente) {
+    	String cdAuxiliar = "";
+    	if(Utils.isNullOrZero(componente.getCdComponentesuperior())){
+    		componente.setCdNivel(NivelEnum.COMPONENTE.getValor());
+    		componente.setFlUltimonivel(0);
+    	} else {
+    		componente.setCdNivel(NivelEnum.SUBCOMPONENTE.getValor());
+    		componente.setFlUltimonivel(1);
+    		Componente componenteSuperior = componenteDAO.findById(componente.getCdComponentesuperior());
+    		cdAuxiliar = componenteSuperior.getCdAuxiliar()+".";
+    	}
+    	cdAuxiliar +=  componenteDAO.findMaxCdAuxiliar(componente);
+    	componente.setCdAuxiliar(cdAuxiliar);
+		componente.setFlConcluido(0);
         componenteDAO.save(componente);        
     }
 

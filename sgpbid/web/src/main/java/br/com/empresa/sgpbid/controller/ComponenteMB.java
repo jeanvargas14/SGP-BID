@@ -93,11 +93,7 @@ public class ComponenteMB {
     }
     public void save(){
     	try {
-			System.out.println("Executando metodo salvar componente ...");
-			componente.setCdAuxiliar("1");
-			componente.setCdNivel(1);
-			componente.setFlUltimonivel(0);		
-			componente.setFlConcluido(0);
+			System.out.println("Executando metodo salvar componente ...");			
 			componente.setCdPrograma(programa.getCdPrograma());
 			cadastrobasicoService.salvarComponente(componente);    	
 			FacesContext context = FacesContext.getCurrentInstance();

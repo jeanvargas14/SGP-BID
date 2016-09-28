@@ -42,6 +42,8 @@
 											<p:selectOneMenu id="superior" value="#{componenteMB.componente.cdComponentesuperior}">
 									            <f:selectItem itemLabel="#{i18n['label.field.selecione']}" itemValue="" />
 									            <f:selectItems value="#{componenteMB.componentesSuperiores}" />
+									            
+									            <p:ajax update="panelGrid" event="change"/>
 									        </p:selectOneMenu>
 					   					</div>
 					   					
@@ -50,20 +52,12 @@
 										</div>
 				   						<div class="ui-grid-col-10">
 											<p:inputText id="descricao" value="#{componenteMB.componente.deComponente}" title="#{i18n['label.field.descricao']}" required="true"/>
-					   					</div>
-					   					<div class="ui-grid-col-12">
-									        <p:selectOneRadio id="tpComponente" value="#{componenteMB.componente.flAnalitico}">
-									            <f:selectItem itemLabel="#{i18n['label.field.analitico']}" itemValue="1"/>
-									            <f:selectItem itemLabel="#{i18n['label.field.sintetico']}" itemValue="0"/>
-									            
-									            <p:ajax update="panelGrid" event="change"/>  
-									        </p:selectOneRadio>
-										</div>
+					   					</div>					   					
 										
 					   					<p:outputPanel id="panelGrid">					   										   					
 						   					<p:dataTable id="componenteorigens" var="co" value="#{componenteMB.componenteorigens}" 
 						   						editable="true" editMode="cell" 
-						   						rendered="#{componenteMB.componente.flAnalitico == 1}">
+						   						rendered="#{componenteMB.componente.cdComponentesuperior != null}">
 						   						
 						   						<p:ajax event="cellEdit" listener="#{componenteMB.onChangeVlAtual}" update="vlTotal" />
 						   													       
