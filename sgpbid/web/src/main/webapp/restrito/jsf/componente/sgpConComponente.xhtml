@@ -6,7 +6,8 @@
    xmlns:h="http://java.sun.com/jsf/html"
    xmlns:p="http://primefaces.org/ui"
    xmlns:sgp="http://java.sun.com/jsf/composite/componentes"
-   template="/templates/template.xhtml">
+   template="/templates/template.xhtml"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
    
    			<ui:define name="titulo"><h:outputText value="#{i18n['label.consulta.componentes']}" /></ui:define>
    			<ui:define name="conteudo">
@@ -47,7 +48,7 @@
 						    <p:column headerText="#{i18n['label.field.componentes']}" width="200">
 						        <h:outputText value="#{row.cdAuxiliar}" />
 						    </p:column>
-						 
+						 	
 						    <p:column headerText="#{i18n['label.field.bid']}">
 						        <h:outputText value="#{row.vlAtualbid}" />
 						    </p:column>

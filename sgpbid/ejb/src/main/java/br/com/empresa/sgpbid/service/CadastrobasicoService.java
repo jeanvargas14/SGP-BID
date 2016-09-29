@@ -116,9 +116,11 @@ public class CadastrobasicoService implements ICadastrobasico, Serializable{
     	if(Utils.isNullOrZero(componente.getCdComponentesuperior())){
     		componente.setCdNivel(NivelEnum.COMPONENTE.getValor());
     		componente.setFlUltimonivel(0);
+    		componente.setFlAnalitico(0);
     	} else {
     		componente.setCdNivel(NivelEnum.SUBCOMPONENTE.getValor());
     		componente.setFlUltimonivel(1);
+    		componente.setFlAnalitico(1);
     		Componente componenteSuperior = componenteDAO.findById(componente.getCdComponentesuperior());
     		cdAuxiliar = componenteSuperior.getCdAuxiliar()+".";
     	}

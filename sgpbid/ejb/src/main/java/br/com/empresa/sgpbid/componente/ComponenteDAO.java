@@ -4,12 +4,9 @@ import java.util.List;
 
 import javax.annotation.ManagedBean;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.transform.Transformers;
 
 import br.com.empresa.sgpbid.dto.ComponenteDTO;
 import br.com.empresa.sgpbid.programa.Programa;
@@ -96,7 +93,7 @@ public class ComponenteDAO {
         try {
             StringBuilder hql = new StringBuilder();
             hql.append(" select c from Componente c ");
-            hql.append(" where c.flAnalitico = '0' ");            
+            hql.append(" where c.flAnalitico = 0 ");            
             hql.append(" and c.cdPrograma = :cdprograma ");
             
             TypedQuery<Componente> query = em.createQuery(hql.toString(),Componente.class);            
@@ -129,7 +126,7 @@ public class ComponenteDAO {
             
             return query.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao carregar todos os componentes superiores ", e);
+            throw new RuntimeException("Erro ao carregar todos os componentes origem ", e);
         }
     }
 
@@ -152,7 +149,6 @@ public class ComponenteDAO {
       .list();    
       StudentDTO dto =(StudentDTO) resultWithAliasedBean.get(0);
      * 
-     */
     public List<ComponenteDTO> findAllComponentesDTO(Programa programa) {
         try {
             StringBuilder sql = new StringBuilder();
@@ -172,35 +168,57 @@ public class ComponenteDAO {
             .setResultTransformer(Transformers.aliasToBean(ComponenteDTO.class))
             .list();
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao carregar todos os componentes superiores ", e);
+            throw new RuntimeException("Erro ao carregar todos os componentes", e);
+        }
+    }
+     */
+    
+    public List<ComponenteDTO> findAllComponentesDTO(Programa programa) {
+        try {
+            StringBuilder hql = new StringBuilder();
+            hql.append(" select  ");            
+            hql.append(" new br.com.empresa.sgpbid.dto.ComponenteDTO(c, bid, local) ");
+            hql.append(" from Componente c, Componenteorigem bid, Componenteorigem local ");            
+            hql.append(" where c.cdPrograma = :cdPrograma ");            
+            hql.append(" or ( ");
+            hql.append("        (bid.componenteorigemPK.cdOrigem = 1 and bid.componenteorigemPK.cdComponente = c.cdComponente) ");            
+            hql.append("     or ");
+            hql.append("        (local.componenteorigemPK.cdOrigem = 2 and local.componenteorigemPK.cdComponente = c.cdComponente) ");            
+            hql.append(" ) ");            
+            
+            TypedQuery<ComponenteDTO> query = em.createQuery(hql.toString(),ComponenteDTO.class);
+            query.setParameter("cdPrograma", programa.getCdPrograma());            
+            return query.getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao carregar todos os componentes", e);
         }
     }
 
 	public String findMaxCdAuxiliar(Componente componente) {
-		try {
-            StringBuilder hql = new StringBuilder();
-            hql.append(" select max(comp.cdAuxiliar) from Componente comp ");
-            hql.append(" where ");            
-            hql.append(" comp.cdPrograma = :cdPrograma ");
-            if(!Utils.isNullOrZero(componente.getCdComponentesuperior())){
-            	hql.append(" and comp.cdComponente = :cdComponente ");            	
-            }
-            
-            TypedQuery<Componente> query = em.createQuery(hql.toString(),Componente.class);            
-            query.setParameter("cdPrograma", componente.getCdPrograma());
-            
-            if(!Utils.isNullOrZero(componente.getCdComponentesuperior())){
-            	query.setParameter("cdComponente", componente.getCdComponentesuperior());
-            }
-            Componente result = query.getSingleResult();
-            if(result == null){
-            	return "01";
-            } else {
-            	int valor = Integer.valueOf(result.getCdAuxiliar()) + 1;
-            	return valor < 9 ? "0"+valor : ""+valor;
-            }
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao consultar MaxCdAuxiliar ", e);
+        StringBuilder hql = new StringBuilder();
+        hql.append(" select c from Componente c ");
+        hql.append(" where ");
+        hql.append(" c.cdAuxiliar = ( select max(comp.cdAuxiliar) from Componente comp ");            
+        hql.append("    where ");
+        hql.append("        comp.cdPrograma = :cdPrograma ");
+        if(!Utils.isNullOrZero(componente.getCdComponentesuperior())){
+        	hql.append(" and comp.cdComponente = :cdComponente ");            	
+        }
+        hql.append("    ) ");
+        
+        TypedQuery<Componente> query = em.createQuery(hql.toString(),Componente.class);            
+        query.setParameter("cdPrograma", componente.getCdPrograma());
+        
+        if(!Utils.isNullOrZero(componente.getCdComponentesuperior())){
+        	query.setParameter("cdComponente", componente.getCdComponentesuperior());
+        }
+        
+        try{
+            Componente result = query.getSingleResult();                
+            int valor = Integer.valueOf(result.getCdAuxiliar()) + 1;
+            return valor < 9 ? "0"+valor : ""+valor;                
+        } catch(NoResultException e){
+            return "01";
         }		
 	}
 }

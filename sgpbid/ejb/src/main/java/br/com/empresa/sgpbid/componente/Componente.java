@@ -31,7 +31,7 @@ public class Componente {
 	private Integer cdNivel;
 	private Integer flUltimonivel;
 	private Integer flConcluido;
-	private String flAnalitico;
+	private Integer flAnalitico;
 	
 	public Integer getCdComponente() {
 		return cdComponente;
@@ -99,10 +99,10 @@ public class Componente {
 	public void setFlConcluido(Integer flConcluido) {
 		this.flConcluido = flConcluido;
 	}
-    public String getFlAnalitico() {
+    public Integer getFlAnalitico() {
         return flAnalitico;
     }
-    public void setFlAnalitico(String flAnalitico) {
+    public void setFlAnalitico(Integer flAnalitico) {
         this.flAnalitico = flAnalitico;
     }
     public String getDeComponenteFmt(){

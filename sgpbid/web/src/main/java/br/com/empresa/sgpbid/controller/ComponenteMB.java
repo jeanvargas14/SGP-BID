@@ -66,7 +66,8 @@ public class ComponenteMB {
     }    
     public String abrirConComponente(){
         getProgramaSessao();
-        componentes = cadastrobasicoService.findAllComponentesDTO(programa);                
+        componentes = cadastrobasicoService.findAllComponentesDTO(programa);
+        
         return CONSULTA_JSF;
     }
     
@@ -74,7 +75,7 @@ public class ComponenteMB {
         carregacomponentesSuperiores();
         criaListaComponenteorigem();
         componente = new Componente();        
-        componente.setFlAnalitico("0");
+        componente.setFlAnalitico(0);
         componente.setCdPrograma(programa.getCdPrograma());
     	return CADASTRO_JSF;
     }
