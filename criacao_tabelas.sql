@@ -112,6 +112,19 @@ CREATE TABLE sgpComponenteOrigem(
 	peFinanciamento decimal(5,2) NOT NULL,
 	CONSTRAINT XPKsgpComponenteOrigem PRIMARY KEY (cdPrograma, cdComponente, cdOrigem));
 
+----------------Nível código----------------
+CREATE TABLE sgpNivel(
+	cdPrograma decimal(2,0) NOT NULL REFERENCES sgpPrograma (cdPrograma),
+	cdNivel decimal(2,0) NOT NULL,
+	deNivel varchar(20) NOT NULL,
+	tmNivel decimal(1,0) NOT NULL,
+	tpNivel char(1) NOT NULL,
+CONSTRAINT [XPKsgpNivel] PRIMARY KEY (cdNivel)
+UNIQUE (cdPrograma,cdNivel))
+ 
+ALTER TABLE sgpNivel ADD CONSTRAINT flag_C_N CHECK  (([tpNivel] = 'N' or [tpNivel] = 'C'))
+
+ALTER TABLE sgpNivel CHECK CONSTRAINT flag_C_N
 
 ------- PARTE DOS USUARIOS DO SISTEMA AINDA FALTA MELHORAR ----
 CREATE TABLE sgpUsuario( 
