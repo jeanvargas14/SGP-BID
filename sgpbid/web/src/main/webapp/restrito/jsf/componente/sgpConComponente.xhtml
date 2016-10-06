@@ -46,14 +46,14 @@
 	   					<br />	   					
 	   					<p:dataTable var="row" value="#{componenteMB.componentes}" >	   							   						
 						    <p:column headerText="#{i18n['label.field.componentes']}" width="200">
-						        <h:outputText value="#{row.cdAuxiliar}" />
+						        <h:outputText value="#{row.componente.deComponenteFmt}" />
 						    </p:column>
 						 	
 						    <p:column headerText="#{i18n['label.field.bid']}">
-						        <h:outputText value="#{row.vlAtualbid}" />
+						        <h:outputText value="#{row.bid.vlAtual}" />
 						    </p:column>
 						    <p:column headerText="#{i18n['label.field.local']}">
-						        <h:outputText value="#{row.vlAtuallocal}" />
+						        <h:outputText value="#{row.local.vlAtual}" />
 						    </p:column>
 						    <p:column headerText="#{i18n['label.field.total']}">
 						        <h:outputText value="#{row.vlTotal}" />
@@ -64,7 +64,7 @@
 						    
 						    <p:column style="width:32px;text-align: center">
 					             <p:commandButton icon="fa fa-edit" title="Etidar" action="#{componenteMB.editar}" styleClass="ui-priority-primary">
-					                <f:setPropertyActionListener value="#{row}" target="#{componenteMB.componente}" />
+					                <f:setPropertyActionListener value="#{row.componente}" target="#{componenteMB.componente}" />
 					            </p:commandButton>
 					        </p:column>
 						</p:dataTable>					

@@ -1,5 +1,6 @@
 package br.com.empresa.sgpbid.componente;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.ManagedBean;
@@ -7,6 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
+import org.hibernate.Session;
+import org.hibernate.transform.Transformers;
 
 import br.com.empresa.sgpbid.dto.ComponenteDTO;
 import br.com.empresa.sgpbid.programa.Programa;
@@ -174,21 +178,34 @@ public class ComponenteDAO {
      */
     
     public List<ComponenteDTO> findAllComponentesDTO(Programa programa) {
-        try {
-            StringBuilder hql = new StringBuilder();
-            hql.append(" select  ");            
-            hql.append(" new br.com.empresa.sgpbid.dto.ComponenteDTO(c, bid, local) ");
-            hql.append(" from Componente c, Componenteorigem bid, Componenteorigem local ");            
-            hql.append(" where c.cdPrograma = :cdPrograma ");            
-            hql.append(" or ( ");
-            hql.append("        (bid.componenteorigemPK.cdOrigem = 1 and bid.componenteorigemPK.cdComponente = c.cdComponente) ");            
-            hql.append("     or ");
-            hql.append("        (local.componenteorigemPK.cdOrigem = 2 and local.componenteorigemPK.cdComponente = c.cdComponente) ");            
-            hql.append(" ) ");            
+        try {        	
+            StringBuilder sql = new StringBuilder();
+            sql.append(" select  ");            
+            sql.append(" c.*, ");            
+            sql.append(" bid.*, ");            
+            sql.append(" local.* ");            
+            sql.append(" from sgpComponente c ");            
+            sql.append(" left join sgpComponenteorigem bid on bid.cdorigem = 1 and bid.cdcomponente = c.cdcomponente and bid.cdprograma = c.cdprograma ");            
+            sql.append(" left join sgpComponenteorigem local on local.cdorigem = 2 and local.cdcomponente = c.cdcomponente and local.cdprograma = c.cdprograma ");            
+            sql.append(" where c.cdprograma = :cdPrograma ");            
             
-            TypedQuery<ComponenteDTO> query = em.createQuery(hql.toString(),ComponenteDTO.class);
-            query.setParameter("cdPrograma", programa.getCdPrograma());            
-            return query.getResultList();
+            Session session = em.unwrap(Session.class);
+            
+            List<Object[]> lista = session.createSQLQuery(sql.toString())                        
+            .addEntity("comp", Componente.class)
+            .addEntity("bid", Componenteorigem.class)
+            .addEntity("local", Componenteorigem.class)
+            .setInteger("cdPrograma", programa.getCdPrograma())
+            .list();
+            
+            List<ComponenteDTO> retorno = new ArrayList<ComponenteDTO>();
+            ComponenteDTO dto = null;
+            for(Object[] o : lista){
+            	dto = new ComponenteDTO((Componente)o[0], (Componenteorigem)o[1], (Componenteorigem)o[2]);
+            	retorno.add(dto);
+            }
+            
+            return retorno;
         } catch (Exception e) {
             throw new RuntimeException("Erro ao carregar todos os componentes", e);
         }

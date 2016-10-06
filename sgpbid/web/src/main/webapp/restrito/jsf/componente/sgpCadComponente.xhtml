@@ -69,10 +69,10 @@
 									                <h:outputText value="#{co.peFinanciamento}" />
 										       </p:column>
 										 
-										       <p:column headerText="#{i18n['label.field.vlatual.uss']}">
+										       <p:column headerText="#{i18n['label.field.vlatual.uss']}" >
 										           <p:cellEditor>
-										               <f:facet name="output"><h:outputText value="#{co.vlAtual}" /></f:facet>
-										               <f:facet name="input"><p:inputText id="modelInput" value="#{co.vlAtual}" style="width:96%"/></f:facet>							               
+										               <f:facet name="output"><h:outputText value="#{co.vlAtual}" style="float:right" /></f:facet>
+										               <f:facet name="input"><p:inputText id="modelInput" value="#{co.vlAtual}" style="width:96%; float:right"/></f:facet>							               
 										           </p:cellEditor>
 										       </p:column>
 										       

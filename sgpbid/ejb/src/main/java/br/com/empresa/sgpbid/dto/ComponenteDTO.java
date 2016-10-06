@@ -19,7 +19,8 @@ public class ComponenteDTO implements Serializable {
     private Componente componente;
     private Componenteorigem bid;
     private Componenteorigem local;
-    
+    private Double 	peFinanciamento;
+    private Double 	vlTotal;
     public ComponenteDTO() {
     }
     /**
@@ -50,7 +51,19 @@ public class ComponenteDTO implements Serializable {
     }
     public void setLocal(Componenteorigem local) {
         this.local = local;
-    }    
+    } 
+    public Double getVlTotal(){
+    	if(bid != null && local != null){
+    		return bid.getVlAtual() + local.getVlAtual();
+    	}
+    	return 0D;
+    }
+    public Double getPeFinanciamento(){
+    	if(bid != null && local != null){
+    		return bid.getPeFinanciamento() + local.getPeFinanciamento();
+    	}
+    	return 0D;
+    }
 //    private Integer cdComponente;
 //    private Integer cdPrograma;
 //    private Integer cdComponentesuperior;
